@@ -24,6 +24,7 @@ class MY_Controller extends CI_Controller
 
     public function load_theme($content,$data = null)
     {
+        $this->data['app_title_logo'] = $this->config->item('ci_app_title_logo');
         $this->data['app_title']    = $this->config->item('ci_app_title');
         $this->data['content']      = $this->load->view($content,$data,TRUE);
         $this->load->view("template/content",$this->data);
