@@ -1,2 +1,2 @@
 # Supply-Chain-Management
-This app project pertamina system on method supply chain management using codeigniter framework
+This app project distibutor lpg on method supply chain management 
