@@ -203,16 +203,16 @@
   border-right-width: 0;
 }
 .skin-black .main-header > .logo {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #dc1111;
+  color: #ffffff;
   border-bottom: 0px solid transparent;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #dc1111;
 }
 .skin-black .main-header > .logo > a {
   color: #333333;
 }
 .skin-black .main-header > .logo:hover {
-  background: #fcfcfc;
+  background: #dc1111;
 }
 @media (max-width: 767px) {
   .skin-black .main-header > .logo {
@@ -245,10 +245,10 @@
 .skin-black .main-sidebar,
 .skin-black .left-side,
 .skin-black .wrapper {
-  background: #222;
+  background: #dc1111;
 }
 .skin-black .sidebar > .sidebar-menu > li.header {
-  background: #1d1d1d;
+  background: #c71818;
   color: rgba(255, 255, 255, 0.4);
 }
 .skin-black .sidebar > .sidebar-menu > li > a {
@@ -258,11 +258,11 @@
 .skin-black .sidebar > .sidebar-menu > li > a:hover,
 .skin-black .sidebar > .sidebar-menu > li.active > a {
   color: #fff;
-  background: #444;
+  background: #c12121;
   border-left-color: #fff;
 }
 .skin-black .sidebar > .sidebar-menu > li > .treeview-menu {
-  background: #333;
+  background: #b31313;
 }
 .skin-black .sidebar a {
   color: #eee;
@@ -278,14 +278,14 @@
   color: #fff;
 }
 .skin-black .sidebar-form {
-  border-radius: 3px;
-  border: 1px solid #3c3c3c;
+  border-radius: 1px;
+  border: 1px solid #c71818;
   margin: 10px 10px;
 }
 .skin-black .sidebar-form input[type="text"],
 .skin-black .sidebar-form .btn {
   box-shadow: none;
-  background-color: #3c3c3c;
+  background-color: #c71818;
   border: 1px solid transparent;
   height: 35px;
   -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
