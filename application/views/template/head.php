@@ -16,4 +16,4 @@
              folder instead of downloading all of them to reduce the load. -->
         <link href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/css/skins/_all-skins.css') ?>" rel="stylesheet" type="text/css" />
 
-     
+       <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
