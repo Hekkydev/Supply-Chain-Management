@@ -7,7 +7,7 @@ class MY_Controller extends CI_Controller
 {
     
     protected $helper = array('url','form');
-    protected $library = array('session');
+    protected $library = array('session','scm_library');
 
 
     function __construct()
@@ -16,6 +16,7 @@ class MY_Controller extends CI_Controller
         $this->load->database();
         $this->load->helper($this->helper);
         $this->load->library($this->library);
+
     }
 
 
