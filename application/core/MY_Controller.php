@@ -24,6 +24,6 @@ class MY_Controller extends CI_Controller
     {
         $this->data['app_title']    = $this->config->item('ci_app_title');
         $this->data['content']      = $this->load->view($content,$data,TRUE);
-        $this->load->view("template_base/content",$data);
+        $this->load->view("template/content",$data);
     }
 }
