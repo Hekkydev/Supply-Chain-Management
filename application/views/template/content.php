@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->load->view('template/head');
 ?>
 <!--tambahkan custom css disini-->
@@ -7,15 +7,14 @@ $this->load->view('template/topbar');
 $this->load->view('template/sidebar');
 ?>
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" style="margin-bottom:20px;">
     <h1>
-        Blank page
-        <small>it all starts here</small>
+        Dashboard
+
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li class="active"><?php echo ucfirst($this->uri->segment(1))?></li>
     </ol>
 </section>
 
@@ -24,22 +23,15 @@ $this->load->view('template/sidebar');
 
     <!-- Default box -->
     <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
         <div class="box-body">
-            Start creating your amazing application!
+          <?php echo $content;?>
         </div><!-- /.box-body -->
-       
+
     </div><!-- /.box -->
 
 </section><!-- /.content -->
 
-<?php 
+<?php
 $this->load->view('template/js');
 ?>
 <!--tambahkan custom js disini-->

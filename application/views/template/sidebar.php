@@ -37,17 +37,15 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
-                    <span>Layout Options</span>
-                    <span class="label label-primary pull-right">4</span>
+                    <span>Users</span>
+                  <i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                    <li><a href="<?php echo site_url('users'); ?>"><i class="fa fa-circle-o"></i>Users</a></li>
+                    <li><a href="<?php echo site_url('users_group'); ?>"><i class="fa fa-circle-o"></i>Users Group</a></li>
                 </ul>
             </li>
-            
+
         </ul>
     </section>
     <!-- /.sidebar -->
