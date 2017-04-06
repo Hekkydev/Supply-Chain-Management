@@ -16,18 +16,21 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                       
+                        <li><a><i class="fa fa-th"></i></a></li>
+                        <li><a><i class="fa fa-desktop"></i></a></li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
+                            
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <i class="fa fa-user"></i>
+                                <span class="hidden-xs">Super Admin</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-rounded" alt="User Image" />
                                     <p>
-                                        Alexander Pierce - Web Developer
+                                        Super Admin
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>

@@ -17,6 +17,16 @@ class Menu extends MY_Controller
     {
         $this->load_theme_dash('menu/master_data');
     }
+
+    public function operasional()
+    {
+        $this->load_theme_dash('menu/operasional');
+    }
+
+    public function laporan()
+    {
+        $this->load_theme_dash('menu/laporan');
+    }
 }
 
 

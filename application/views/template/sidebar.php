@@ -8,7 +8,7 @@
                 <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-rounded" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Super Admin</p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -27,12 +27,22 @@
         <ul class="sidebar-menu">
              <li >
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-caret-square-o-right pull-right"></i>
+                </a>
+            </li>
+            <li >
+                <a href="<?php echo site_url('menu/operasional')?>">
+                    <i class="fa fa-calendar"></i> <span>Operasional</span> <i class="fa fa-caret-square-o-right pull-right"></i>
+                </a>
+            </li>
+            <li >
+                <a href="<?php echo site_url('menu/laporan')?>">
+                    <i class="fa fa-history"></i> <span>Laporan</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
             <li >
                 <a href="<?php echo site_url('menu/masterdata')?>">
-                    <i class="fa fa-inbox"></i> <span>Master Data</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-inbox"></i> <span>Master Data</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
             <li class="treeview">
