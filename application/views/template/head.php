@@ -17,3 +17,4 @@
         <link href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/css/skins/_all-skins.css') ?>" rel="stylesheet" type="text/css" />
 
        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
+       <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/icon-scm/icons-scm.css');?>">
