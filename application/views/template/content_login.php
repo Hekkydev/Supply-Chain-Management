@@ -14,7 +14,7 @@
         <link href="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/square/blue.css') ?>" rel="stylesheet" type="text/css" />
         <link rel="icon" type="image/x-icon" href="<?php echo site_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
         <style media="screen">
-      .login-page {
+        .login-page {
           background: url(<?php echo base_url('assets/background.jpg')?>) no-repeat center center fixed;
           -webkit-background-size: cover;
           -moz-background-size: cover;

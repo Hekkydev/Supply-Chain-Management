@@ -31,6 +31,14 @@ class MY_Controller extends CI_Controller
         $this->load->view("template/content",$this->data);
     }
 
+    public function load_theme_dash($content,$data = null)
+    {
+        $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
+        $this->data['app_title']        = $this->config->item('ci_app_title');
+        $this->data['content']          = $this->load->view($content,$data,TRUE);
+        $this->load->view("template/content-dashboard",$this->data);
+    }
+
     public function load_theme_login($content,$data = null)
     {
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
