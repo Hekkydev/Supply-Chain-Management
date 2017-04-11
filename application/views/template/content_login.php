@@ -25,7 +25,7 @@
             border:1px solid red;
           }
 
-          .loader {
+          .loading {
             border: 16px solid #f3f3f3;
             border-radius: 50%;
             border-top: 16px solid red;
@@ -59,6 +59,7 @@
         <script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/icheck.min.js') ?>" type="text/javascript"></script>
         <script>
             $(function () {
+                $('.loading').hide();
                 $('input').iCheck({
                     checkboxClass: 'icheckbox_square-blue',
                     radioClass: 'iradio_square-blue',
@@ -69,7 +70,20 @@
 
         <script type="text/javascript">
           function login() {
-              $('.loading').show();
+              $.ajax({
+                  url:'/auth/autorization',
+                  type:'POST',
+                  beforeSend:function()
+                  {
+                      $('#login-form').hide();
+                      $('.loading').show();
+
+                  },
+                  success:function()
+                  {
+                     
+                  },
+              })
           }
         </script>
     </body>
