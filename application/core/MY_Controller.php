@@ -3,6 +3,7 @@
 /**
  *  App Controller Proses Sistem Root by Hekky Nurhikmat
  */
+
 class MY_Controller extends CI_Controller
 {
 
@@ -10,14 +11,27 @@ class MY_Controller extends CI_Controller
     protected $library = array('session','scm_library');
     protected $configurasi = "config-app";
     protected $title_page;
+
+
     function __construct()
     {
 
         parent::__construct();
-        $this->load->database();
+        
         $this->load->helper($this->helper);
         $this->load->library($this->library);
         $this->load->config($this->configurasi);
+        
+            // INCLUDE CONDITION
+            include(APPPATH.'config/database.php'); 
+            $readDB = $db['default']['database'];
+            if($readDB != "scm"){            
+                header('Location:'.base_url().'database-error.html');                                      
+            }else{
+                $this->load->database();
+            }
+        
+        
 
 
     }
