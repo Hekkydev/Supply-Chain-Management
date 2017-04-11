@@ -26,22 +26,22 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
            
-            <li >
+            <li class="<?php echo active_link('/menu/transaksi');?>">
                 <a href="<?php echo site_url('menu/transaksi')?>">
                     <i class="fa fa-calendar"></i> <span>Transaksi</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
-              <li >
+              <li class="<?php echo active_link('/menu/penyaluran');?>">
                 <a href="<?php echo site_url('menu/penyaluran')?>">
                     <i class="fa fa-refresh"></i> <span>Penyaluran</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
-            <li >
+            <li class="<?php echo active_link('/menu/laporan');?>">
                 <a href="<?php echo site_url('menu/laporan')?>">
                     <i class="fa fa-history"></i> <span>Laporan</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
-            <li >
+            <li class="<?php echo active_link('/menu/masterdata');?>">
                 <a href="<?php echo site_url('menu/masterdata')?>">
                     <i class="fa fa-inbox"></i> <span>Master Data</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>

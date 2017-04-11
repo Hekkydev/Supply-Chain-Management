@@ -120,3 +120,15 @@ if ( ! function_exists('hitung_mundur'))
 		return $hasil;
 	}
 }
+
+
+if(!function_exists('active_link')){
+	function active_link($url)
+	{
+		
+		if($url == $_SERVER['REQUEST_URI'])
+		{
+			return "active";
+		}
+	}
+}
