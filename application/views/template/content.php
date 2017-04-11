@@ -9,12 +9,11 @@ $this->load->view('template/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header" style="margin-bottom:20px;">
     <h1>
-        Dashboard
-
+       <?php echo strtoupper($title_page)?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?php echo ucfirst($this->uri->segment(1))?></li>
+        <li class="active"><?php echo ucfirst($title_page)?></li>
     </ol>
 </section>
 

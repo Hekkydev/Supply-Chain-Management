@@ -1,4 +1,4 @@
-<h2 style="margin-top:0px">Scm_agen <?php echo $button ?></h2>
+
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="int">Id User <?php echo form_error('id_user') ?></label>

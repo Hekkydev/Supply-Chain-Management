@@ -1,4 +1,4 @@
-    <h2 style="margin-top:0px">Scm_agen Read</h2>
+
         <table class="table">
 	    <tr><td>Id User</td><td><?php echo $id_user; ?></td></tr>
 	    <tr><td>Kode Agen</td><td><?php echo $kode_agen; ?></td></tr>

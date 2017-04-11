@@ -35,6 +35,11 @@
                     <i class="fa fa-calendar"></i> <span>Operasional</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
+              <li >
+                <a href="<?php echo site_url('menu/flow')?>">
+                    <i class="fa fa-refresh"></i> <span>Penyaluran</span> <i class="fa fa-caret-square-o-right pull-right"></i>
+                </a>
+            </li>
             <li >
                 <a href="<?php echo site_url('menu/laporan')?>">
                     <i class="fa fa-history"></i> <span>Laporan</span> <i class="fa fa-caret-square-o-right pull-right"></i>

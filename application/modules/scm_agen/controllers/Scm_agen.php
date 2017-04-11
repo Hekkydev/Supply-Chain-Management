@@ -40,6 +40,7 @@ class Scm_agen extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $this->title_page("Data Agen");
         $this->load_theme('scm_agen/scm_agen_list', $data);
     }
 
@@ -59,6 +60,7 @@ class Scm_agen extends MY_Controller
 		'created' => $row->created,
 		'modified' => $row->modified,
 	    );
+            $this->title_page("Data Agen");
             $this->load_theme('scm_agen/scm_agen_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -82,6 +84,7 @@ class Scm_agen extends MY_Controller
 	    'created' => set_value('created'),
 	    'modified' => set_value('modified'),
 	);
+        $this->title_page("Data Agen");
         $this->load_theme('scm_agen/scm_agen_form', $data);
     }
     
@@ -129,6 +132,7 @@ class Scm_agen extends MY_Controller
 		'created' => set_value('created', $row->created),
 		'modified' => set_value('modified', $row->modified),
 	    );
+            $this->title_page("Data Agen");
             $this->load_theme('scm_agen/scm_agen_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
