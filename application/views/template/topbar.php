@@ -8,7 +8,7 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" id="toggle">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -23,7 +23,7 @@
                             
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span class="hidden-xs">Super Admin</span>
+                                <span class="hidden-xs">SUPER ADMIN</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -37,14 +37,15 @@
                               
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn btn-default btn-flat btn-block">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="" class="btn btn-default btn-flat">History</a>
                                     </div>
                                 </li>
                             </ul>
                         </li>
+                         <li><a href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-sign-out"></i></a></li>
                     </ul>
                 </div>
             </nav>
