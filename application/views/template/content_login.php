@@ -13,38 +13,8 @@
         <!-- iCheck -->
         <link href="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/square/blue.css') ?>" rel="stylesheet" type="text/css" />
         <link rel="icon" type="image/x-icon" href="<?php echo site_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
-        <style media="screen">
-        .login-page {
-          background: url(<?php echo base_url('assets/background.jpg')?>) no-repeat center center fixed;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-          }
-          .form-pertamina{
-            border:1px solid red;
-          }
-
-          .loading {
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid red;
-            width: 120px;
-            height: 120px;
-            -webkit-animation: spin 2s linear infinite;
-            animation: spin 2s linear infinite;
-          }
-
-          @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-          }
-
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        </style>
+        <link href="<?php echo base_url('assets/loading.css') ?>" rel="stylesheet" type="text/css" />
+        
     </head>
     <body class="login-page">
         <div class="login-box">
@@ -58,6 +28,7 @@
         <!-- iCheck -->
         <script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/icheck.min.js') ?>" type="text/javascript"></script>
         <script>
+        var site_url = "<?php echo site_url()?>";
             $(function () {
                 $('.loading').hide();
                 $('input').iCheck({
@@ -66,25 +37,25 @@
                     increaseArea: '20%'
                 });
             });
-        </script>
 
-        <script type="text/javascript">
-          function login() {
-              $.ajax({
-                  url:'/auth/autorization',
-                  type:'POST',
-                  beforeSend:function()
-                  {
-                      $('#login-form').hide();
-                      $('.loading').show();
 
-                  },
-                  success:function()
-                  {
-                     
-                  },
-              })
-          }
+            function login() {
+                $.ajax({
+                    url: site_url+'auth/autorization',
+                    type:'POST',
+                    beforeSend:function()
+                    {
+                        $('#login-form').hide();
+                        $('.login-box-msg').hide();
+                        $('.loading').show();
+
+                    },
+                    success:function(result)
+                    {
+                        console.log(result);
+                    },
+                })
+            }
         </script>
     </body>
 </html>

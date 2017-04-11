@@ -7,8 +7,8 @@
     <div align="center">
         <div class="loading"></div>
     </div>
-    <p class="login-box-msg ">Access Management System</p>
-    <form action="<?php echo site_url('auth/login') ?>" method="post" id="login-form">
+    <p class="login-box-msg">Access Management System</p>
+    <form  method="post" id="login-form"> 
         <div class="form-group has-feedback ">
             <input type="text" class="form-control form-pertamina" placeholder="Username" id="username"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -20,7 +20,7 @@
         <div class="row">
 
             <div class="col-xs-offset-6 col-xs-6">
-                <button type="button" class="btn btn-primary btn-block btn-flat" onclick="return login()">LOGIN</button>
+                <button type="button" class="btn btn-primary btn-block btn-flat"  onClick="return login();">LOGIN</button>
             </div><!-- /.col -->
         </div>
     </form>

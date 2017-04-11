@@ -15,9 +15,14 @@ class Auth extends MY_Controller{
   }
   function login()
   {
-    redirect('users');
+    
   }
 
+  function autorization()
+  {
+    echo "success";
+  }
+  
   function logout()
   {
     redirect('auth');
