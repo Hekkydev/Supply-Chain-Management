@@ -11,10 +11,12 @@ $this->load->view('template/sidebar');
     <h1>
         <?php echo strtoupper($title_page);?>
     </h1>
+    <?php if($title_page == TRUE):?>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><?php echo ucfirst($title_page)?></li>
     </ol>
+    <?php endif;?>
 </section>
 
 <!-- Main content -->

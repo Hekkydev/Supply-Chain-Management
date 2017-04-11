@@ -15,7 +15,7 @@ class Menu extends MY_Controller
 
     function index()
     {
-        $this->title_page("Dashboard");
+        // $this->title_page("Dashboard");
         $this->load_theme_dash("dashboard/index");
     }
 

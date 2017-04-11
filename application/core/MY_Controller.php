@@ -6,7 +6,7 @@
 class MY_Controller extends CI_Controller
 {
 
-    protected $helper = array('url','form');
+    protected $helper = array('url','form','scm');
     protected $library = array('session','scm_library');
     protected $configurasi = "config-app";
     protected $title_page;
