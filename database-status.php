@@ -59,16 +59,24 @@
   <!-- START LOCK SCREEN ITEM -->
   <div class="lockscreen-items">
    
-
-   <h4 style="text-align:center;">Tidak terhubung dengan database !</h4>
-
+  <?php 
+  $con    = 'Terhubung dengan database :)';
+  $notcon = 'Tidak terhubung dengan database !';
+  $stat = isset($_GET['status']) ? $_GET['status'] : $con;
+  if($stat == 'error')
+  {
+    echo ' <h4 style="text-align:center;">'.$notcon.'</h4>';
+  }else{
+    echo ' <h4 style="text-align:center;">'.$con.'</h4>';
+  }
+  ?>
   </div>
   <!-- /.lockscreen-item -->
   <div class="help-block text-center">
     PROJECT ANISA
   </div>
   <div class="lockscreen-footer text-center">
-    Copyright &copy; 2017 <b><a target="_blank" href="https://github.com/Hekkydev/Supply-Chain-Management" class="text-black">Hekky Nurhikmat</a></b><br>
+    Copyright &copy; 2017 <b><a target="_blank" href="https://github.com/Hekkydev/Supply-Chain-Management" class="text-black">Hekkydev</a></b><br>
     
   </div>
 </div>

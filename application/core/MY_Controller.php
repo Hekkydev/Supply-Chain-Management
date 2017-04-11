@@ -21,16 +21,13 @@ class MY_Controller extends CI_Controller
         $this->load->helper($this->helper);
         $this->load->library($this->library);
         $this->load->config($this->configurasi);
-        
-            // INCLUDE CONDITION
-            include(APPPATH.'config/database.php'); 
-            $readDB = $db['default']['database'];
-            if($readDB != "scm"){            
-                header('Location:'.base_url().'database-error.html');                                      
-            }else{
-                $this->load->database();
-            }
-        
+        $conn = $this->load->database('default',TRUE);
+        if ($conn->initialize() == 1) {
+            $conn = $this->load->database();
+        }else{
+            $conn =  header('Location:'.base_url().'database-status.php?status=error');   
+            exit();
+        }
         
 
 
