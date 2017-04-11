@@ -13,16 +13,22 @@ class Menu extends MY_Controller
 
     }
 
+    function index()
+    {
+        $this->title_page("Dashboard");
+        $this->load_theme_dash("dashboard/index");
+    }
+
     public function masterdata()
     {
         $this->title_page("Master Data");
         $this->load_theme_dash('menu/master_data');
     }
 
-    public function operasional()
+    public function transaksi()
     {
-        $this->title_page("Operasional");
-        $this->load_theme_dash('menu/operasional');
+        $this->title_page("Transaksi");
+        $this->load_theme_dash('menu/transaksi');
     }
 
     public function laporan()
@@ -31,10 +37,23 @@ class Menu extends MY_Controller
         $this->load_theme_dash('menu/laporan');
     }
 
-    public function flow()
+    public function penyaluran()
     {
         $this->title_page("Penyaluran");
         $this->load_theme_dash('menu/penyaluran');
+    }
+
+
+    public function order_agen()
+    {
+        $this->title_page("Pemesanan Pangkalan Ke Agen");
+        $this->load_theme_dash("menu/pemesanan/agen");
+    }
+
+      public function order_sppbe()
+    {
+        $this->title_page("Pemesanan Ke SPPBE");
+        $this->load_theme_dash("menu/pemesanan/sppbe");
     }
 
 }

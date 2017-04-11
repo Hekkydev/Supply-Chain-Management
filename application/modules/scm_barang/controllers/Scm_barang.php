@@ -18,11 +18,11 @@ class Scm_barang extends MY_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'scm_barang/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'scm_barang/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'scm_barang/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'scm_barang/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'scm_barang/index.html';
-            $config['first_url'] = base_url() . 'scm_barang/index.html';
+            $config['base_url'] = base_url() . 'scm_barang/index';
+            $config['first_url'] = base_url() . 'scm_barang/index';
         }
 
         $config['per_page'] = 10;
@@ -40,6 +40,7 @@ class Scm_barang extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $this->title_page('Data Barang');
         $this->load_theme('scm_barang/scm_barang_list', $data);
     }
 
@@ -63,7 +64,8 @@ class Scm_barang extends MY_Controller
 		'created' => $row->created,
 		'modified' => $row->modified,
 	    );
-            $this->load->view('scm_barang/scm_barang_read', $data);
+         $this->title_page('Data Barang');
+            $this->load_theme('scm_barang/scm_barang_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_barang'));
@@ -90,7 +92,8 @@ class Scm_barang extends MY_Controller
 	    'created' => set_value('created'),
 	    'modified' => set_value('modified'),
 	);
-        $this->load->view('scm_barang/scm_barang_form', $data);
+     $this->title_page('Data Barang');
+        $this->load_theme('scm_barang/scm_barang_form', $data);
     }
     
     public function create_action() 
@@ -145,7 +148,7 @@ class Scm_barang extends MY_Controller
 		'created' => set_value('created', $row->created),
 		'modified' => set_value('modified', $row->modified),
 	    );
-            $this->load->view('scm_barang/scm_barang_form', $data);
+            $this->load_theme('scm_barang/scm_barang_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_barang'));

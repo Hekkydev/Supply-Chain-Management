@@ -1,4 +1,3 @@
-<h2 style="margin-top:0px">Users List</h2>
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
         <?php echo anchor(site_url('users/create'),'Create', 'class="btn btn-primary"'); ?>

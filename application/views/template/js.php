@@ -12,3 +12,18 @@
 <script src='<?php echo base_url('assets/AdminLTE-2.0.5/plugins/fastclick/fastclick.min.js') ?>'></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/app.min.js') ?>" type="text/javascript"></script>
+
+<!-- jQuery 2.1.3 -->
+<?php if($this->uri->segment(1) == ""):?>
+<script>
+    $(document).ready(function(){
+        $('body').addClass('sidebar-collapse');
+    });
+</script>
+<?php elseif($this->uri->segment(1) == "home"):?>
+<script>
+    $(document).ready(function(){
+        $('body').addClass('sidebar-collapse');
+    });
+</script>
+<?php endif;?>

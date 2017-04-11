@@ -40,6 +40,7 @@ class Users_group extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $this->title_page('Users Group');
         $this->load_theme('users_group/users_group_list', $data);
     }
 
@@ -51,6 +52,7 @@ class Users_group extends MY_Controller
 		'id_group' => $row->id_group,
 		'form_access' => $row->form_access,
 	    );
+            $this->title_page('Users Group');
             $this->load_theme('users_group/users_group_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -66,6 +68,7 @@ class Users_group extends MY_Controller
 	    'id_group' => set_value('id_group'),
 	    'form_access' => set_value('form_access'),
 	);
+        $this->title_page('Users Group');
         $this->load_theme('users_group/users_group_form', $data);
     }
 
@@ -97,6 +100,7 @@ class Users_group extends MY_Controller
             		'id_group' => set_value('id_group', $row->id_group),
             		'form_access' => set_value('form_access', $row->form_access),
             	    );
+            $this->title_page('Users Group');        
             $this->load_theme('users_group/users_group_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

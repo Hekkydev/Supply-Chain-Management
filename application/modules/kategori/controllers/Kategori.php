@@ -18,11 +18,11 @@ class Kategori extends MY_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'kategori/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'kategori/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'kategori/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'kategori/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'kategori/index.html';
-            $config['first_url'] = base_url() . 'kategori/index.html';
+            $config['base_url'] = base_url() . 'kategori/index';
+            $config['first_url'] = base_url() .'kategori/index';
         }
 
         $config['per_page'] = 10;

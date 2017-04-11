@@ -39,6 +39,7 @@ class Users extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $this->title_page('Users');
         $this->load_theme('users/users_list', $data);
     }
 
@@ -57,6 +58,7 @@ class Users extends MY_Controller
 		'created' => $row->created,
 		'modified' => $row->modified,
 	    );
+            $this->title_page('Users');
             $this->load_theme('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -79,6 +81,7 @@ class Users extends MY_Controller
 	    'created' => set_value('created'),
 	    'modified' => set_value('modified'),
 	);
+        $this->title_page('Users');
         $this->load_theme('users/users_form', $data);
     }
 
@@ -124,6 +127,7 @@ class Users extends MY_Controller
 		'created' => set_value('created', $row->created),
 		'modified' => set_value('modified', $row->modified),
 	    );
+             $this->title_page('Users');
             $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

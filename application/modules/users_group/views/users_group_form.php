@@ -1,4 +1,4 @@
-<h2 style="margin-top:0px">Users_group <?php echo $button ?></h2>
+
 <form action="<?php echo $action; ?>" method="post">
 <div class="form-group">
     <label for="varchar">Form Access <?php echo form_error('form_access') ?></label>

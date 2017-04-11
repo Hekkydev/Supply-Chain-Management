@@ -1,4 +1,4 @@
-<h2 style="margin-top:0px">Scm_barang List</h2>
+
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('scm_barang/create'),'Create', 'class="btn btn-primary"'); ?>
@@ -80,11 +80,11 @@
             ?>
         </table>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" >
                 <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-		<?php echo anchor(site_url('scm_barang/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('scm_barang/word'), 'Word', 'class="btn btn-primary"'); ?>
-	    </div>
+                <?php echo anchor(site_url('scm_barang/excel'), 'Excel', 'class="btn btn-primary btn-md"'); ?>
+                <?php echo anchor(site_url('scm_barang/word'), 'Word', 'class="btn btn-primary btn-md"'); ?>
+	        </div>
             <div class="col-md-6 text-right">
                 <?php echo $pagination ?>
             </div>

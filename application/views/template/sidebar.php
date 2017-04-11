@@ -26,17 +26,17 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
              <li >
-                <a href="#">
+                <a href="<?php echo site_url('home')?>">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
             <li >
-                <a href="<?php echo site_url('menu/operasional')?>">
-                    <i class="fa fa-calendar"></i> <span>Operasional</span> <i class="fa fa-caret-square-o-right pull-right"></i>
+                <a href="<?php echo site_url('menu/transaksi')?>">
+                    <i class="fa fa-calendar"></i> <span>Transaksi</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
               <li >
-                <a href="<?php echo site_url('menu/flow')?>">
+                <a href="<?php echo site_url('menu/penyaluran')?>">
                     <i class="fa fa-refresh"></i> <span>Penyaluran</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>

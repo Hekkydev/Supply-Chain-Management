@@ -1,4 +1,3 @@
-<h2 style="margin-top:0px">Users <?php echo $button ?></h2>
 <form action="<?php echo $action; ?>" method="post">
 <div class="form-group">
     <label for="int">Id Group <?php echo form_error('id_group') ?></label>

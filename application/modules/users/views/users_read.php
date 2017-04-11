@@ -1,4 +1,4 @@
-<h2 style="margin-top:0px">Users Read</h2>
+
 <table class="table">
 <tr><td>Id Group</td><td><?php echo $id_group; ?></td></tr>
 <tr><td>Kode User</td><td><?php echo $kode_user; ?></td></tr>
