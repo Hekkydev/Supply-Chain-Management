@@ -40,8 +40,8 @@ class SCM_library
         $html .= '<div class="col-lg-3">';
         $html .= '<a href="'.site_url($link).'" class="icon-link">';
         $html .= '<div align="center" class="icon-master">';
-        $html .= '<img src="'.base_url().'assets/icon-scm/'.$icon.'" style="width:70px;">';
-        $html .= '<h5 class="icon-title">'.$title.'</h5>';
+        $html .= '<img src="'.base_url().'assets/icon-scm/'.$icon.'" style="width:50px;">';
+        $html .= '<h6 class="icon-title">'.$title.'</h6>';
         $html .= '</div></a></div>';
         return $html;
     }
