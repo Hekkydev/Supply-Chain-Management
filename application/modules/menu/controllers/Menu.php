@@ -56,6 +56,12 @@ class Menu extends MY_Controller
         $this->load_theme_dash("menu/pemesanan/sppbe");
     }
 
+    public function users()
+    {
+        $this->title_page("Management Akun");
+        $this->load_theme_dash('menu/management_akun');
+    }
+
 }
 
 

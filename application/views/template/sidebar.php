@@ -5,7 +5,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-rounded" alt="User Image" />
+                <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-responsive" alt="User Image" />
             </div>
             <div class="pull-left info">
                 <p>Super Admin</p>
@@ -46,18 +46,12 @@
                     <i class="fa fa-inbox"></i> <span>Master Data</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Users</span>
-                  <i class="fa fa-angle-left pull-right"></i></span>
+             <li class="<?php echo active_link('/menu/users');?>">
+                <a href="<?php echo site_url('menu/users')?>">
+                    <i class="fa fa-key"></i> <span>Management Akun</span> <i class="fa fa-caret-square-o-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('users'); ?>"><i class="fa fa-circle-o"></i>Users</a></li>
-                    <li><a href="<?php echo site_url('users_group'); ?>"><i class="fa fa-circle-o"></i>Users Group</a></li>
-                </ul>
             </li>
-
+           
         </ul>
     </section>
     <!-- /.sidebar -->
