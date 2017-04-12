@@ -20,7 +20,16 @@ class Auth extends MY_Controller{
 
   function autorization()
   {
-    echo "success";
+    $post = (object) $_POST;
+    $username = $post->username;
+    $password = $post->password;
+    if($username == "admin" && $password == "admin")
+    {
+      echo "success";
+    }else{
+      echo "error";
+    }
+
   }
   
   function logout()

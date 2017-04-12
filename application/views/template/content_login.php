@@ -28,7 +28,7 @@
         <!-- iCheck -->
         <script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/icheck.min.js') ?>" type="text/javascript"></script>
         <script>
-        var site_url = "<?php echo site_url()?>";
+        var site_url = "<?php echo site_url('')?>";
             $(function () {
                 $('.loading').hide();
                 $('input').iCheck({
@@ -37,25 +37,59 @@
                     increaseArea: '20%'
                 });
             });
-
-
-            function login() {
-                $.ajax({
+            
+            function login() { 
+            var width = 1;
+            var id = setInterval(frame, 50);
+            function frame() {
+                if (width >= 50) {
+                clearInterval(id);
+                } else {
+                width++; 
+                    $('#login-form').hide();
+                    $('.login-box-msg').text("Login proses");
+                    $('.loading').show();  
+                if(width == 50)
+                {
+                    autorization();
+                } 
+                }
+            }
+            }
+            function autorization() {
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+               
+                    $.ajax({
                     url: site_url+'auth/autorization',
                     type:'POST',
-                    beforeSend:function()
-                    {
-                        $('#login-form').hide();
-                        $('.login-box-msg').hide();
-                        $('.loading').show();
-
-                    },
+                    data:{username:username,password:password},
                     success:function(result)
                     {
-                        console.log(result);
+                        
+                       if(result == "success")
+                       {
+                            window.location = site_url+'home';
+                       }else{
+                           
+                            $('#login-form').show();
+                            $('.login-box-msg').show();
+                            $('.loading').hide();                    
+                       }
                     },
-                })
+                    });       
             }
+
+            function loading()
+            {
+                $('#login-form').hide();
+                $('.login-box-msg').hide();
+                $('.loading').show();    
+            }
+
+            
         </script>
+
+
     </body>
 </html>
