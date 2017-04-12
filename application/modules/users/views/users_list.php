@@ -1,6 +1,6 @@
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
-        <?php echo anchor(site_url('users/create'),'Create', 'class="btn btn-primary"'); ?>
+        <?php echo anchor(site_url('users/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
     </div>
     <div class="col-md-4 text-center">
         <div style="margin-top: 8px" id="message">
@@ -22,7 +22,7 @@
                             <?php
                         }
                     ?>
-                  <button class="btn btn-primary" type="submit">Search</button>
+                  <button class="btn btn-primary btn-flat" type="submit"><i class="fa fa-search"></i> Search</button>
                 </span>
             </div>
         </form>
@@ -31,36 +31,29 @@
 <table class="table table-bordered" style="margin-bottom: 10px">
     <tr>
         <th>No</th>
-<th>Id Group</th>
-<th>Kode User</th>
-<th>Nama Lengkap</th>
-<th>No Telp</th>
-<th>Username</th>
-<th>Password</th>
-<th>Created</th>
-<th>Modified</th>
-<th>Action</th>
-    </tr><?php
+        <th>Otoritas</th>
+        <th>Kode User</th>
+        <th>Nama Lengkap</th>
+        <th>No Telp</th>
+        <th>Username</th>
+        <th style="text-align:center">Action</th>
+    </tr>
+    <?php
     foreach ($users_data as $users)
     {
         ?>
         <tr>
-<td width="80px"><?php echo ++$start ?></td>
-<td><?php echo $users->id_group ?></td>
+<td width="50px"><?php echo ++$start ?></td>
+<td><?php echo $users->form_access ?></td>
 <td><?php echo $users->kode_user ?></td>
 <td><?php echo $users->nama_lengkap ?></td>
 <td><?php echo $users->no_telp ?></td>
 <td><?php echo $users->username ?></td>
-<td><?php echo $users->password ?></td>
-<td><?php echo $users->created ?></td>
-<td><?php echo $users->modified ?></td>
-<td style="text-align:center" width="200px">
+<td style="text-align:center" width="300px">
 <?php
-echo anchor(site_url('users/read/'.$users->id_user),'Read');
-echo ' | ';
-echo anchor(site_url('users/update/'.$users->id_user),'Update');
-echo ' | ';
-echo anchor(site_url('users/delete/'.$users->id_user),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read','class="btn btn-md bg-dark btn-flat"');
+echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update','class="btn btn-md bg-dark btn-flat"');
+echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','class="btn btn-md bg-dark btn-flat" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 ?>
 </td>
 </tr>
@@ -70,10 +63,10 @@ echo anchor(site_url('users/delete/'.$users->id_user),'Delete','onclick="javasci
 </table>
 <div class="row">
     <div class="col-md-6">
-        <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-<?php echo anchor(site_url('users/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-<?php echo anchor(site_url('users/word'), 'Word', 'class="btn btn-primary"'); ?>
-</div>
+        <a href="#" class="btn btn-primary btn-sm btn-flat">Total Record : <?php echo $total_rows ?></a>
+        <?php echo anchor(site_url('users/excel'), 'Excel', 'class="btn btn-primary btn-sm btn-flat"'); ?>
+        <?php echo anchor(site_url('users/word'), 'Word', 'class="btn btn-primary btn-sm btn-flat"'); ?>
+    </div>
     <div class="col-md-6 text-right">
         <?php echo $pagination ?>
     </div>

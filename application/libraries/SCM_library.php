@@ -14,6 +14,7 @@ class SCM_library
     {
         $this->SCM =& get_instance();
         $this->model_kategori = '../modules/kategori/models/kategori_model';
+        $this->model_user = '../modules/users/models/Users_model';
 
     }
 
@@ -22,6 +23,13 @@ class SCM_library
     {
         $this->SCM->load->model($this->model_kategori);
         $result = $this->SCM->kategori_model->generate_auto_kode();
+        return $result;
+    }
+
+    public function kode_user()
+    {
+        $this->SCM->load->model($this->model_user);
+        $result = $this->SCM->Users_model->generate_auto_kode();
         return $result;
     }
 

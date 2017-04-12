@@ -21,7 +21,7 @@ $this->load->view('template/sidebar');
 <section class="content">
 
     <!-- Default box -->
-    <div class="box">
+    <div class="box box-primary">
         <div class="box-body">
           <?php echo $content;?>
         </div><!-- /.box-body -->
