@@ -29,14 +29,18 @@ class MY_Controller extends CI_Controller
         if ($conn->initialize() == 1) {
             $conn = $this->load->database();
         }else{
-            $conn =  header('Location:'.base_url().'database-status.php?status=error');   
+            $conn =  header('Location:'.base_url().'database-status.php?status=error');
             exit();
         }
-        
+
 
 
     }
 
+    public function date_now()
+    {
+      return $waktu = date('Y-m-d H:i:s');
+    }
     public function title_page($title)
     {
         $judul = isset($title) ? $title : "";

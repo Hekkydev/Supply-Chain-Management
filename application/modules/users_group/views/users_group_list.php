@@ -1,7 +1,7 @@
 
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
-        <?php echo anchor(site_url('users_group/create'),'Create', 'class="btn btn-primary"'); ?>
+        <?php echo anchor(site_url('users_group/create'),'Create', 'class="btn btn-primary btn-md btn-flat"'); ?>
     </div>
     <div class="col-md-4 text-center">
         <div style="margin-top: 8px" id="message">
@@ -23,7 +23,7 @@
                             <?php
                         }
                     ?>
-                  <button class="btn btn-primary" type="submit">Search</button>
+                  <button class="btn btn-primary btn-md btn-flat" type="submit">Search</button>
                 </span>
             </div>
         </form>
@@ -41,13 +41,11 @@
         <tr>
 <td width="80px"><?php echo ++$start ?></td>
 <td><?php echo $users_group->form_access ?></td>
-<td style="text-align:center" width="200px">
+<td style="text-align:center" width="300px">
 <?php
-echo anchor(site_url('users_group/read/'.$users_group->id_group),'Read');
-echo ' | ';
-echo anchor(site_url('users_group/update/'.$users_group->id_group),'Update');
-echo ' | ';
-echo anchor(site_url('users_group/delete/'.$users_group->id_group),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+echo anchor(site_url('users_group/read/'.$users_group->id_group),'<i class="fa fa-search "></i> Read','class="btn btn-sm bg-dark btn-flat"');
+echo anchor(site_url('users_group/update/'.$users_group->id_group),'<i class="fa fa-edit "></i> Update','class="btn btn-sm bg-dark "');
+echo anchor(site_url('users_group/delete/'.$users_group->id_group),'<i class="fa fa-trash "></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-sm bg-dark "');
 ?>
 </td>
 </tr>
@@ -57,9 +55,10 @@ echo anchor(site_url('users_group/delete/'.$users_group->id_group),'Delete','onc
 </table>
 <div class="row">
     <div class="col-md-6">
-        <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-<?php echo anchor(site_url('users_group/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-<?php echo anchor(site_url('users_group/word'), 'Word', 'class="btn btn-primary"'); ?>
+        <a href="#" class="btn btn-primary btn-sm btn-flat">Total Record : <?php echo $total_rows ?></a>
+<?php echo anchor(site_url('users_group/excel'), 'Excel', 'class="btn btn-primary btn-sm btn-flat"'); ?>
+
+<?php echo anchor(site_url('users_group/word'), 'Word', 'class="btn btn-primary btn-sm btn-flat"'); ?>
 </div>
     <div class="col-md-6 text-right">
         <?php echo $pagination ?>

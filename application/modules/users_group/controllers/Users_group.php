@@ -65,23 +65,24 @@ class Users_group extends MY_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('users_group/create_action'),
-	    'id_group' => set_value('id_group'),
-	    'form_access' => set_value('form_access'),
-	);
+      	    'id_group' => set_value('id_group'),
+      	    'form_access' => set_value('form_access'),
+      	);
         $this->title_page('Users Group');
         $this->load_theme('users_group/users_group_form', $data);
     }
 
     public function create_action()
     {
+
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
             $data = array(
-		'form_access' => $this->input->post('form_access',TRUE),
-	    );
+        		'form_access' => $this->input->post('form_access',TRUE),
+        	    );
 
             $this->Users_group_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -100,7 +101,7 @@ class Users_group extends MY_Controller
             		'id_group' => set_value('id_group', $row->id_group),
             		'form_access' => set_value('form_access', $row->form_access),
             	    );
-            $this->title_page('Users Group');        
+            $this->title_page('Users Group');
             $this->load_theme('users_group/users_group_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

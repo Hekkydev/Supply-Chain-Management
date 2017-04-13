@@ -43,18 +43,21 @@
     {
         ?>
         <tr>
-<td width="50px"><?php echo ++$start ?></td>
-<td><?php echo $users->form_access ?></td>
-<td><?php echo $users->kode_user ?></td>
-<td><?php echo $users->nama_lengkap ?></td>
-<td><?php echo $users->no_telp ?></td>
-<td><?php echo $users->username ?></td>
-<td style="text-align:center" width="300px">
-<?php
-echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read','class="btn btn-md bg-dark btn-flat"');
-echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update','class="btn btn-md bg-dark btn-flat"');
-echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','class="btn btn-md bg-dark btn-flat" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-?>
+        <td width="50px"><?php echo ++$start ?></td>
+        <td><?php echo $users->form_access ?></td>
+        <td><?php echo $users->kode_user ?></td>
+        <td><?php echo $users->nama_lengkap ?></td>
+        <td><?php echo $users->no_telp ?></td>
+        <td><?php echo $users->username ?></td>
+        <td style="text-align:center" width="300px">
+        <?php
+        echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read','class="btn btn-md bg-dark btn-flat"');
+        echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update','class="btn btn-md bg-dark btn-flat"');
+        ?>
+        <?php if($users->id_group != 1):?>
+        echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','class="btn btn-md bg-dark btn-flat" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        ?>
+      <?php endif;?>
 </td>
 </tr>
         <?php

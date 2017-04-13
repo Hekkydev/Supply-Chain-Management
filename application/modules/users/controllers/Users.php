@@ -69,19 +69,18 @@ class Users extends MY_Controller
 
     public function create()
     {
+
         $kode_user = $this->scm_library->kode_user();
         $data = array(
             'button' => 'Create',
             'action' => site_url('users/create_action'),
-            'id_user' => set_value('id_user'),
             'id_group' => set_value('id_group'),
-            'kode_user' => $kode_user,
+            'kode_user' => set_value('kode_user',$kode_user),
             'nama_lengkap' => set_value('nama_lengkap'),
             'no_telp' => set_value('no_telp'),
             'username' => set_value('username'),
             'password' => set_value('password'),
             'created' => set_value('created'),
-            'modified' => set_value('modified'),
         );
         $data['group'] = $this->group_all;
         $this->title_page('Users');
@@ -90,7 +89,7 @@ class Users extends MY_Controller
 
     public function create_action()
     {
-        var_dump($this->form_validation->run()) ; die();
+        $this->load->library('form_validation');
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->create();
@@ -102,8 +101,7 @@ class Users extends MY_Controller
             'no_telp' => $this->input->post('no_telp',TRUE),
             'username' => $this->input->post('username',TRUE),
             'password' => $this->input->post('password',TRUE),
-            'created' => $this->input->post('created',TRUE),
-            'modified' => $this->input->post('modified',TRUE),
+            'created' => $this->date_now(),
             );
 
             $this->Users_model->insert($data);
