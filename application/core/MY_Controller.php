@@ -96,4 +96,9 @@ class MY_Controller extends CI_Controller
         $this->load->view("template/content_login",$this->data);
     }
 
+    public function load_theme_home($content,$data = null)
+    {
+      
+    }
+
 }

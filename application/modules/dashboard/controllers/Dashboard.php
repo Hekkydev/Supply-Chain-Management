@@ -17,4 +17,6 @@ class Dashboard extends MY_Controller
     {
         $this->load_theme("dashboard/index");
     }
+
+    
 }
