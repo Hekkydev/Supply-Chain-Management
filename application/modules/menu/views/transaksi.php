@@ -1,10 +1,19 @@
 <div class="col-lg-12">
     <div class="row">
-
-        <?php echo $this->scm_library->menu('penjualan/create','TRANSAKSI PENJUALAN','laporan-penjualan.svg');?>
-        <?php echo $this->scm_library->menu('pembelian/create','TRANSAKSI PEMBELIAN','laporan-pembelian.svg');?>
       
-        
+      <?php
+          $id_group = $this->account->id_group;
+          switch ($id_group) {
+                case '1':
+                      echo $this->scm_library->menu('penjualan/create','TRANSAKSI PENJUALAN','laporan-penjualan.svg');
+                      echo $this->scm_library->menu('pembelian/create','TRANSAKSI PEMBELIAN','laporan-pembelian.svg');
+                      break;
+          default:
+
+                break;
+          }
+          ?>
+
     </div>
 
 </div>
