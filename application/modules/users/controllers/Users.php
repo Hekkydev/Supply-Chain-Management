@@ -25,7 +25,7 @@ class Users extends MY_Controller
             $config['first_url'] = base_url() . 'users/index';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 5;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Users_model->total_rows($q);
         $users = $this->Users_model->get_limit_data($config['per_page'], $start, $q);
@@ -40,6 +40,7 @@ class Users extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $this->title_page('Data Akun');
         $this->load_theme('users/users_list', $data);
     }
 
@@ -81,7 +82,7 @@ class Users extends MY_Controller
             'created'=>set_value('created',$this->date_now()),
       	);
         $data['group'] = $this->Users_group_model->get_all();
-        $this->title_page('Users');
+        $this->title_page('Data Akun');
         $this->load_theme('users/users_form', $data);
     }
 
@@ -122,7 +123,7 @@ class Users extends MY_Controller
             		'created' => set_value('created', $row->created),
             	    );
                   $data['group'] = $this->Users_group_model->get_all();
-                  $this->title_page('Users');
+                  $this->title_page('Data Akun');
             $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

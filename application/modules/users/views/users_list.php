@@ -1,6 +1,6 @@
   <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('users/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('users/create'),'Create', 'class="btn btn-primary btn-md btn-flat"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -22,7 +22,7 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
+                          <button class="btn btn-primary btn-md btn-flat" type="submit">Search</button>
                         </span>
                     </div>
                 </form>
@@ -50,11 +50,11 @@
 			<td><?php echo $users->username ?></td>
 			<td style="text-align:center" width="200px">
 				<?php
-				echo anchor(site_url('users/read/'.$users->id_user),'Read');
-				echo ' | ';
-				echo anchor(site_url('users/update/'.$users->id_user),'Update');
-				echo ' | ';
-				echo anchor(site_url('users/delete/'.$users->id_user),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+				echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
+				echo ' &nbsp; ';
+				echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
+				echo ' &nbsp;  ';
+				echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>
@@ -64,9 +64,9 @@
         </table>
         <div class="row">
             <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-		<?php echo anchor(site_url('users/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('users/word'), 'Word', 'class="btn btn-primary"'); ?>
+                <a href="#" class="btn btn-primary btn-md btn-flat">Total Record : <?php echo $total_rows ?></a>
+		<?php echo anchor(site_url('users/excel'), 'Excel', 'class="btn btn-primary btn-md btn-flat"'); ?>
+		<?php echo anchor(site_url('users/word'), 'Word', 'class="btn btn-primary btn-md btn-flat"'); ?>
 	    </div>
             <div class="col-md-6 text-right">
                 <?php echo $pagination ?>
