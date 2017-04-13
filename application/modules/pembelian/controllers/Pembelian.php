@@ -69,15 +69,17 @@ class Pembelian extends MY_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('pembelian/create_action'),
-	    'id_pembelian' => set_value('id_pembelian'),
-	    'kode_pembelian' => set_value('kode_pembelian'),
-	    'tanggal_pembelian' => set_value('tanggal_pembelian'),
-	    'keterangan' => set_value('keterangan'),
-	    'created' => set_value('created'),
-	    'modified' => set_value('modified'),
-	    'deleted' => set_value('deleted'),
-	);
-        $this->load_theme('pembelian/scm_pembelian_form', $data);
+            'id_pembelian' => set_value('id_pembelian'),
+            'kode_pembelian' => set_value('kode_pembelian'),
+            'tanggal_pembelian' => set_value('tanggal_pembelian'),
+            'keterangan' => set_value('keterangan'),
+            'created' => set_value('created'),
+            'modified' => set_value('modified'),
+            'deleted' => set_value('deleted'),
+        );
+        $this->title_page('Transaksi Pembelian');
+        $this->load_theme('pembelian/transaksi/add', $data);
+        //$this->load_theme('pembelian/scm_pembelian_form', $data);
     }
     
     public function create_action() 
