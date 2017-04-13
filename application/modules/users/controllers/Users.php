@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH'))   exit('No direct script access allowed');
 /**
- * Author Hekky Nurhikmat  
+ * Author Hekky Nurhikmat
  */
 class Users extends MY_Controller
 {
@@ -90,8 +90,8 @@ class Users extends MY_Controller
 
     public function create_action()
     {
+        var_dump($this->form_validation->run()) ; die();
         $this->_rules();
-
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
@@ -130,7 +130,7 @@ class Users extends MY_Controller
                 'created' => set_value('created', $row->created),
                 'modified' => set_value('modified', $row->modified),
                 );
-             $data['group'] = $this->group_all;   
+             $data['group'] = $this->group_all;
              $this->title_page('Users');
             $this->load_theme('users/users_form', $data);
         } else {
