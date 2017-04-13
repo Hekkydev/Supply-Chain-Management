@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller
     protected $model   = array(
         '../modules/users/models/Users_model',
         '../modules/users_group/models/Users_group_model',
+        '../modules/auth/models/auth_model',
     );
     protected $configurasi = "config-app";
     protected $title_page;
@@ -37,6 +38,18 @@ class MY_Controller extends CI_Controller
 
     }
 
+    public function authentikasi()
+    {
+        $status = $this->session->userdata('logged_in');
+        if($status != 1)
+        {
+            redirect('logout');
+        }else{
+          $account = $this->auth_model->account_login($this->session->userdata('kode_user'))->first_row();
+          return $account;
+        }
+    }
+
     public function date_now()
     {
       return $waktu = date('Y-m-d H:i:s');
@@ -49,6 +62,7 @@ class MY_Controller extends CI_Controller
 
     public function load_theme($content,$data = null)
     {
+        $this->data['account']          = $this->authentikasi();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['title_page']       = $this->title_page;
@@ -58,6 +72,7 @@ class MY_Controller extends CI_Controller
 
     public function load_theme_dash($content,$data = null)
     {
+        $this->data['account']          = $this->authentikasi();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['title_page']       = $this->title_page;
@@ -67,6 +82,7 @@ class MY_Controller extends CI_Controller
 
     public function load_theme_login($content,$data = null)
     {
+
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['content']          = $this->load->view($content,$data,TRUE);

@@ -8,6 +8,7 @@ class Pembelian extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Pembelian_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Pembelian extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'pembelian/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'pembelian/index.html?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Pembelian extends MY_Controller
         $this->load_theme('pembelian/scm_pembelian_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Pembelian_model->get_by_id($id);
         if ($row) {
@@ -64,7 +65,7 @@ class Pembelian extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -81,8 +82,8 @@ class Pembelian extends MY_Controller
         $this->load_theme('pembelian/transaksi/add', $data);
         //$this->load_theme('pembelian/scm_pembelian_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -103,8 +104,8 @@ class Pembelian extends MY_Controller
             redirect(site_url('pembelian'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Pembelian_model->get_by_id($id);
 
@@ -126,8 +127,8 @@ class Pembelian extends MY_Controller
             redirect(site_url('pembelian'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -148,8 +149,8 @@ class Pembelian extends MY_Controller
             redirect(site_url('pembelian'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Pembelian_model->get_by_id($id);
 
@@ -163,7 +164,7 @@ class Pembelian extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('kode_pembelian', 'kode pembelian', 'trim|required');
 	$this->form_validation->set_rules('tanggal_pembelian', 'tanggal pembelian', 'trim|required');
@@ -234,7 +235,7 @@ class Pembelian extends MY_Controller
             'scm_pembelian_data' => $this->Pembelian_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load_theme('pembelian/scm_pembelian_doc',$data);
     }
 

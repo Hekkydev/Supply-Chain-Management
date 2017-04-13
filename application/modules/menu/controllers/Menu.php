@@ -1,21 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Menu Controller 
+ * Menu Controller
  * Author : Hekky Nurhikmat
  */
 class Menu extends MY_Controller
 {
-    
+
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
 
     }
 
     function index()
     {
-        // $this->title_page("Dashboard");
+
         $this->load_theme_dash("dashboard/index");
     }
 

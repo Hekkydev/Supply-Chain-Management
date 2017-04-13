@@ -8,6 +8,7 @@ class Scm_barang extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Scm_barang_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Scm_barang extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'scm_barang/index?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'scm_barang/index?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Scm_barang extends MY_Controller
         $this->load_theme('scm_barang/scm_barang_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Scm_barang_model->get_by_id($id);
         if ($row) {
@@ -72,7 +73,7 @@ class Scm_barang extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -95,8 +96,8 @@ class Scm_barang extends MY_Controller
      $this->title_page('Data Barang');
         $this->load_theme('scm_barang/scm_barang_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -124,8 +125,8 @@ class Scm_barang extends MY_Controller
             redirect(site_url('scm_barang'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Scm_barang_model->get_by_id($id);
 
@@ -154,8 +155,8 @@ class Scm_barang extends MY_Controller
             redirect(site_url('scm_barang'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -183,8 +184,8 @@ class Scm_barang extends MY_Controller
             redirect(site_url('scm_barang'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Scm_barang_model->get_by_id($id);
 
@@ -198,7 +199,7 @@ class Scm_barang extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
 	$this->form_validation->set_rules('kode_barang', 'kode barang', 'trim|required');
@@ -290,7 +291,7 @@ class Scm_barang extends MY_Controller
             'scm_barang_data' => $this->Scm_barang_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('scm_barang/scm_barang_doc',$data);
     }
 

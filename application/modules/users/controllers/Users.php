@@ -8,6 +8,7 @@ class Users extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Users_model');
         $this->load->library('form_validation');
     }

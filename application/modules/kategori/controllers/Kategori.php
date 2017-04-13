@@ -8,6 +8,7 @@ class Kategori extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Kategori_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Kategori extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'kategori/index?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'kategori/index?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Kategori extends MY_Controller
         $this->load_theme('kategori/scm_barang_kategori_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Kategori_model->get_by_id($id);
         if ($row) {
@@ -60,7 +61,7 @@ class Kategori extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $kode_kategori = $this->scm_library->kode_kategori();
         $data = array(
@@ -73,8 +74,8 @@ class Kategori extends MY_Controller
         $this->title_page("Kategori Barang");
         $this->load_theme('kategori/scm_barang_kategori_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -91,8 +92,8 @@ class Kategori extends MY_Controller
             redirect(site_url('kategori'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Kategori_model->get_by_id($id);
 
@@ -111,8 +112,8 @@ class Kategori extends MY_Controller
             redirect(site_url('kategori'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -128,8 +129,8 @@ class Kategori extends MY_Controller
             redirect(site_url('kategori'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Kategori_model->get_by_id($id);
 
@@ -143,7 +144,7 @@ class Kategori extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('nama_kategori', 'nama kategori', 'trim|required');
 

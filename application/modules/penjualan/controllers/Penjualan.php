@@ -8,6 +8,7 @@ class Penjualan extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Penjualan_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Penjualan extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'penjualan/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'penjualan/index.html?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Penjualan extends MY_Controller
         $this->load_theme('penjualan/scm_penjualan_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Penjualan_model->get_by_id($id);
         if ($row) {
@@ -64,7 +65,7 @@ class Penjualan extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -79,8 +80,8 @@ class Penjualan extends MY_Controller
 	);
         $this->load_theme('penjualan/scm_penjualan_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -101,8 +102,8 @@ class Penjualan extends MY_Controller
             redirect(site_url('penjualan'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Penjualan_model->get_by_id($id);
 
@@ -124,8 +125,8 @@ class Penjualan extends MY_Controller
             redirect(site_url('penjualan'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -146,8 +147,8 @@ class Penjualan extends MY_Controller
             redirect(site_url('penjualan'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Penjualan_model->get_by_id($id);
 
@@ -161,7 +162,7 @@ class Penjualan extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('kode_penjualan', 'kode penjualan', 'trim|required');
 	$this->form_validation->set_rules('tanggal_penjualan', 'tanggal penjualan', 'trim|required');
@@ -232,7 +233,7 @@ class Penjualan extends MY_Controller
             'scm_penjualan_data' => $this->Penjualan_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load_theme('penjualan/scm_penjualan_doc',$data);
     }
 

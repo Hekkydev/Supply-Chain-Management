@@ -8,6 +8,7 @@ class Scm_pangkalan extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Scm_pangkalan_model');
         $this->load->library('form_validation');
     }

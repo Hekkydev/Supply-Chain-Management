@@ -8,6 +8,7 @@ class Scm_agen extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Scm_agen_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Scm_agen extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'scm_agen/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'scm_agen/index.html?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Scm_agen extends MY_Controller
         $this->load_theme('scm_agen/scm_agen_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Scm_agen_model->get_by_id($id);
         if ($row) {
@@ -68,7 +69,7 @@ class Scm_agen extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -87,8 +88,8 @@ class Scm_agen extends MY_Controller
         $this->title_page("Data Agen");
         $this->load_theme('scm_agen/scm_agen_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -112,8 +113,8 @@ class Scm_agen extends MY_Controller
             redirect(site_url('scm_agen'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Scm_agen_model->get_by_id($id);
 
@@ -139,8 +140,8 @@ class Scm_agen extends MY_Controller
             redirect(site_url('scm_agen'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -164,8 +165,8 @@ class Scm_agen extends MY_Controller
             redirect(site_url('scm_agen'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Scm_agen_model->get_by_id($id);
 
@@ -179,7 +180,7 @@ class Scm_agen extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
 	$this->form_validation->set_rules('kode_agen', 'kode agen', 'trim|required');
@@ -259,7 +260,7 @@ class Scm_agen extends MY_Controller
             'scm_agen_data' => $this->Scm_agen_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('scm_agen/scm_agen_doc',$data);
     }
 

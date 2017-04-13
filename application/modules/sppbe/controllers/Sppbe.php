@@ -8,6 +8,7 @@ class Sppbe extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        $this->account = $this->authentikasi();
         $this->load->model('Sppbe_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Sppbe extends MY_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'sppbe/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'sppbe/index.html?q=' . urlencode($q);
@@ -44,7 +45,7 @@ class Sppbe extends MY_Controller
         $this->load_theme('sppbe/scm_sppbe_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Sppbe_model->get_by_id($id);
         if ($row) {
@@ -67,7 +68,7 @@ class Sppbe extends MY_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -85,8 +86,8 @@ class Sppbe extends MY_Controller
         $this->title_page('Data Sppbe');
         $this->load_theme('sppbe/scm_sppbe_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -109,8 +110,8 @@ class Sppbe extends MY_Controller
             redirect(site_url('sppbe'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Sppbe_model->get_by_id($id);
 
@@ -134,8 +135,8 @@ class Sppbe extends MY_Controller
             redirect(site_url('sppbe'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -158,8 +159,8 @@ class Sppbe extends MY_Controller
             redirect(site_url('sppbe'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Sppbe_model->get_by_id($id);
 
@@ -173,7 +174,7 @@ class Sppbe extends MY_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
 	$this->form_validation->set_rules('kode_spbbe', 'kode spbbe', 'trim|required');
@@ -250,7 +251,7 @@ class Sppbe extends MY_Controller
             'scm_sppbe_data' => $this->Sppbe_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('sppbe/scm_sppbe_doc',$data);
     }
 

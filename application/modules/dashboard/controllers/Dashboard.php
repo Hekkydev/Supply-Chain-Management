@@ -2,14 +2,15 @@
 
 /**
  * Dashboard
- * Author : Hekky Nurhikmat 
+ * Author : Hekky Nurhikmat
  */
 class Dashboard extends MY_Controller
 {
-    
+
     function __construct()
     {
        parent::__construct();
+       $this->account = $this->authentikasi();
     }
 
     public function index()
