@@ -48,16 +48,16 @@ class Users extends MY_Controller
         $row = $this->Users_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_user' => $row->id_user,
-		'id_group' => $row->id_group,
-		'kode_user' => $row->kode_user,
-		'nama_lengkap' => $row->nama_lengkap,
-		'no_telp' => $row->no_telp,
-		'username' => $row->username,
-		'password' => $row->password,
-		'created' => $row->created,
-		'modified' => $row->modified,
-	    );
+        		'id_user' => $row->id_user,
+        		'id_group' => $row->id_group,
+        		'kode_user' => $row->kode_user,
+        		'nama_lengkap' => $row->nama_lengkap,
+        		'no_telp' => $row->no_telp,
+        		'username' => $row->username,
+        		'password' => $row->password,
+        		'created' => $row->created,
+        		'modified' => $row->modified,
+    	    );
             $this->load_theme('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -67,44 +67,41 @@ class Users extends MY_Controller
 
     public function create()
     {
+      $kode_user = $this->scm_library->kode_user();
         $data = array(
             'button' => 'Create',
             'action' => site_url('users/create_action'),
-	    'id_user' => set_value('id_user'),
-	    'id_group' => set_value('id_group'),
-	    'kode_user' => set_value('kode_user'),
-	    'nama_lengkap' => set_value('nama_lengkap'),
-	    'no_telp' => set_value('no_telp'),
-	    'username' => set_value('username'),
-	    'password' => set_value('password'),
-	    'created' => set_value('created'),
-	    'modified' => set_value('modified'),
-	);
+      	    'id_user' => set_value('id_user'),
+      	    'id_group' => set_value('id_group'),
+      	    'kode_user' => set_value('kode_user',$kode_user),
+      	    'nama_lengkap' => set_value('nama_lengkap'),
+      	    'no_telp' => set_value('no_telp'),
+      	    'username' => set_value('username'),
+      	    'password' => set_value('password'),
+            'created'=>set_value('created',$this->date_now()),
+      	);
+        $data['group'] = $this->Users_group_model->get_all();
+        $this->title_page('Users');
         $this->load_theme('users/users_form', $data);
     }
 
     public function create_action()
     {
-        $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
             $data = array(
-		'id_group' => $this->input->post('id_group',TRUE),
-		'kode_user' => $this->input->post('kode_user',TRUE),
-		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-		'no_telp' => $this->input->post('no_telp',TRUE),
-		'username' => $this->input->post('username',TRUE),
-		'password' => $this->input->post('password',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
+        		'id_group' => $this->input->post('id_group',TRUE),
+        		'kode_user' => $this->input->post('kode_user',TRUE),
+        		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+        		'no_telp' => $this->input->post('no_telp',TRUE),
+        		'username' => $this->input->post('username',TRUE),
+        		'password' => $this->input->post('password',TRUE),
+      	    'created' => $this->input->post('created',TRUE),
+	         );
 
             $this->Users_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('users'));
-        }
+
     }
 
     public function update($id)
@@ -115,16 +112,17 @@ class Users extends MY_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('users/update_action'),
-		'id_user' => set_value('id_user', $row->id_user),
-		'id_group' => set_value('id_group', $row->id_group),
-		'kode_user' => set_value('kode_user', $row->kode_user),
-		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
-		'no_telp' => set_value('no_telp', $row->no_telp),
-		'username' => set_value('username', $row->username),
-		'password' => set_value('password', $row->password),
-		'created' => set_value('created', $row->created),
-		'modified' => set_value('modified', $row->modified),
-	    );
+            		'id_user' => set_value('id_user', $row->id_user),
+            		'id_group' => set_value('id_group', $row->id_group),
+            		'kode_user' => set_value('kode_user', $row->kode_user),
+            		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
+            		'no_telp' => set_value('no_telp', $row->no_telp),
+            		'username' => set_value('username', $row->username),
+            		'password' => set_value('password', $row->password),
+            		'created' => set_value('created', $row->created),
+            	    );
+                  $data['group'] = $this->Users_group_model->get_all();
+                  $this->title_page('Users');
             $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -134,26 +132,22 @@ class Users extends MY_Controller
 
     public function update_action()
     {
-        $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id_user', TRUE));
-        } else {
             $data = array(
-		'id_group' => $this->input->post('id_group',TRUE),
-		'kode_user' => $this->input->post('kode_user',TRUE),
-		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-		'no_telp' => $this->input->post('no_telp',TRUE),
-		'username' => $this->input->post('username',TRUE),
-		'password' => $this->input->post('password',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
+        		'id_group' => $this->input->post('id_group',TRUE),
+        		'kode_user' => $this->input->post('kode_user',TRUE),
+        		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+        		'no_telp' => $this->input->post('no_telp',TRUE),
+        		'username' => $this->input->post('username',TRUE),
+        		'password' => $this->input->post('password',TRUE),
+        		'created' => $this->input->post('created',TRUE),
+        		'modified' => $this->date_now(),
+        	    );
 
             $this->Users_model->update($this->input->post('id_user', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('users'));
-        }
+
     }
 
     public function delete($id)

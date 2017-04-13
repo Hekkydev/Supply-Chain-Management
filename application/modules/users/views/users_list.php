@@ -14,7 +14,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
-                            <?php 
+                            <?php
                                 if ($q <> '')
                                 {
                                     ?>
@@ -31,14 +31,11 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-		<th>Id Group</th>
+		<th>Tipe Group</th>
 		<th>Kode User</th>
 		<th>Nama Lengkap</th>
 		<th>No Telp</th>
 		<th>Username</th>
-		<th>Password</th>
-		<th>Created</th>
-		<th>Modified</th>
 		<th>Action</th>
             </tr><?php
             foreach ($users_data as $users)
@@ -51,16 +48,13 @@
 			<td><?php echo $users->nama_lengkap ?></td>
 			<td><?php echo $users->no_telp ?></td>
 			<td><?php echo $users->username ?></td>
-			<td><?php echo $users->password ?></td>
-			<td><?php echo $users->created ?></td>
-			<td><?php echo $users->modified ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('users/read/'.$users->id_user),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('users/update/'.$users->id_user),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('users/delete/'.$users->id_user),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				<?php
+				echo anchor(site_url('users/read/'.$users->id_user),'Read');
+				echo ' | ';
+				echo anchor(site_url('users/update/'.$users->id_user),'Update');
+				echo ' | ';
+				echo anchor(site_url('users/delete/'.$users->id_user),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>

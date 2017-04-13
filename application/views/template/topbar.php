@@ -1,7 +1,7 @@
 </head>
 <body class="skin-black">
     <!-- Site wrapper -->
-    <div class="wrapper" style="background:#fff;">
+    <div class="wrapper">
 
         <header class="main-header">
             <a href="#" class="logo"><img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/logo.png') ?>" alt="<?php echo $app_title_logo; ?>" style="width:155px; margin-top:-5px;"></a>
@@ -20,7 +20,7 @@
                         <li><a><i class="fa fa-desktop"></i></a></li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
-                            
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
                                 <span class="hidden-xs">SUPER ADMIN</span>
@@ -34,7 +34,7 @@
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
-                              
+
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat btn-block">Profile</a>
