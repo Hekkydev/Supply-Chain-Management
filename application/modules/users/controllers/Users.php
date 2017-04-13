@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Users extends CI_Controller
+class Users extends MY_Controller
 {
     function __construct()
     {
@@ -16,13 +16,13 @@ class Users extends CI_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'users/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'users/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'users/index.html';
-            $config['first_url'] = base_url() . 'users/index.html';
+            $config['base_url'] = base_url() . 'users/index';
+            $config['first_url'] = base_url() . 'users/index';
         }
 
         $config['per_page'] = 10;
@@ -40,10 +40,10 @@ class Users extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('users/users_list', $data);
+        $this->load_theme('users/users_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Users_model->get_by_id($id);
         if ($row) {
@@ -58,14 +58,14 @@ class Users extends CI_Controller
 		'created' => $row->created,
 		'modified' => $row->modified,
 	    );
-            $this->load->view('users/users_read', $data);
+            $this->load_theme('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -80,10 +80,10 @@ class Users extends CI_Controller
 	    'created' => set_value('created'),
 	    'modified' => set_value('modified'),
 	);
-        $this->load->view('users/users_form', $data);
+        $this->load_theme('users/users_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -106,8 +106,8 @@ class Users extends CI_Controller
             redirect(site_url('users'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -125,14 +125,14 @@ class Users extends CI_Controller
 		'created' => set_value('created', $row->created),
 		'modified' => set_value('modified', $row->modified),
 	    );
-            $this->load->view('users/users_form', $data);
+            $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -155,8 +155,8 @@ class Users extends CI_Controller
             redirect(site_url('users'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -170,7 +170,7 @@ class Users extends CI_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('id_group', 'id group', 'trim|required');
 	$this->form_validation->set_rules('kode_user', 'kode user', 'trim|required');
@@ -247,8 +247,8 @@ class Users extends CI_Controller
             'users_data' => $this->Users_model->get_all(),
             'start' => 0
         );
-        
-        $this->load->view('users/users_doc',$data);
+
+        $this->load_theme('users/users_doc',$data);
     }
 
 }
