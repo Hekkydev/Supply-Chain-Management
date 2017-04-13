@@ -32,11 +32,11 @@
 <table class="table table-bordered" style="margin-bottom: 10px">
     <tr>
         <th>No</th>
-<th>Form Access</th>
-<th>Action</th>
-    </tr><?php
-    foreach ($users_group_data as $users_group)
-    {
+        <th>Form Access</th>
+        <th>Action</th>
+            </tr><?php
+            foreach ($users_group_data as $users_group)
+            {
         ?>
         <tr>
 <td width="80px"><?php echo ++$start ?></td>
@@ -44,8 +44,18 @@
 <td style="text-align:center" width="300px">
 <?php
 echo anchor(site_url('users_group/read/'.$users_group->id_group),'<i class="fa fa-search "></i> Read','class="btn btn-sm bg-dark btn-flat"');
-echo anchor(site_url('users_group/update/'.$users_group->id_group),'<i class="fa fa-edit "></i> Update','class="btn btn-sm bg-dark "');
-echo anchor(site_url('users_group/delete/'.$users_group->id_group),'<i class="fa fa-trash "></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-sm bg-dark "');
+  switch ($this->account->id_group) {
+  case '1':
+    echo  $link_edit   =  anchor(site_url('users_group/update/'.$users_group->id_group),'<i class="fa fa-edit "></i> Update','class="btn btn-sm bg-dark "');
+    echo  $link_remove =  anchor(site_url('users_group/delete/'.$users_group->id_group),'<i class="fa fa-trash "></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-sm bg-dark "');
+    break;
+
+  default:
+    $link = null;
+    break;
+}
+
+
 ?>
 </td>
 </tr>

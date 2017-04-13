@@ -57,10 +57,37 @@ class Menu extends MY_Controller
         $this->load_theme_dash("menu/pemesanan/sppbe");
     }
 
-    public function users()
+    public function management()
     {
         $this->title_page("Management Akun");
-        $this->load_theme_dash('menu/management_akun');
+        $id_group = $this->account->id_group;
+
+        switch ($id_group) {
+          case '1':
+            $this->load_theme_dash('menu/admin/management_akun');
+            break;
+          case '2':
+            $this->load_theme_dash('menu/users_sppbe/management_akun');
+            break;
+          case '3':
+            $this->load_theme_dash('menu/admin_sppbe/management_akun');
+            break;
+          case '4':
+            $this->load_theme_dash('menu/admin_agen/management_akun');
+            break;
+          case '5':
+            $this->load_theme_dash('menu/users_agen/management_akun');
+            break;
+          case '6':
+            $this->load_theme_dash('menu/users_pangkalan/management_akun');
+            break;
+          default:
+              redirect('home');
+            break;
+        }
+
+
+
     }
 
 }

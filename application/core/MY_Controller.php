@@ -60,9 +60,15 @@ class MY_Controller extends CI_Controller
         return $this->title_page = $judul;
     }
 
+    public function app_menu()
+    {
+        return $this->db->get('scm_menu_link')->result_object();
+    }
+
     public function load_theme($content,$data = null)
     {
         $this->data['account']          = $this->authentikasi();
+        $this->data['menu']             = $this->app_menu();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['title_page']       = $this->title_page;
@@ -73,6 +79,7 @@ class MY_Controller extends CI_Controller
     public function load_theme_dash($content,$data = null)
     {
         $this->data['account']          = $this->authentikasi();
+        $this->data['menu']             = $this->app_menu();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['title_page']       = $this->title_page;

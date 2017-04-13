@@ -8,8 +8,9 @@
         <div class="loading"></div>
     </div>
     <p class="login-box-msg" style="margin:10px;">Access Management System</p>
-    <form  method="post" id="login-form" autocomplete="off"> 
+    <form  method="post" id="login-form" autocomplete="off">
         <div class="form-group has-feedback ">
+            <span id="error_username"></span>
             <input type="text" class="form-control form-pertamina" placeholder="Username" id="username"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>

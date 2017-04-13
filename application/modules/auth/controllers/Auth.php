@@ -40,8 +40,8 @@ class Auth extends MY_Controller{
   function autorization()
   {
     $post = (object) $_POST;
-    $username = $post->username;
-    $password = $post->password;
+    $username = strip_tags($post->username);
+    $password = strip_tags($post->password);
 
 
     if($this->login($username,$password) == 1)

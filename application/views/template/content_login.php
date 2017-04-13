@@ -74,6 +74,7 @@
 
                             $('#login-form').show();
                             $('.login-box-msg').show();
+                            $('.login-box-msg').text("Account Not valid");
                             $('.loading').hide();
                        }
                     },

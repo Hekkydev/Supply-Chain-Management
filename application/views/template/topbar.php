@@ -23,24 +23,24 @@
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span class="hidden-xs">SUPER ADMIN</span>
+                                <span class="hidden-xs"><?php echo $account->form_access; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-rounded" alt="User Image" />
                                     <p>
-                                        Super Admin
+                                        <?php echo $account->nama_lengkap; ?>
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
 
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat btn-block">Profile</a>
+                                        <a href="<?php echo site_url('account')?>" class="btn btn-default btn-flat btn-block">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="" class="btn btn-default btn-flat">History</a>
+                                        <a href="<?php echo site_url('account/history')?>" class="btn btn-default btn-flat">History</a>
                                     </div>
                                 </li>
                             </ul>
