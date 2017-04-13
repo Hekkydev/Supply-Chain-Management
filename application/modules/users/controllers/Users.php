@@ -1,28 +1,28 @@
-<?php if (!defined('BASEPATH'))   exit('No direct script access allowed');
-/**
- * Author Hekky Nurhikmat
- */
-class Users extends MY_Controller
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Users extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
         $this->load->model('Users_model');
         $this->load->library('form_validation');
-        $this->group_all = $this->Users_group_model->get_all();
     }
 
     public function index()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-
+        
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'users/index?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'users/index?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'users/index';
-            $config['first_url'] = base_url() . 'users/index';
+            $config['base_url'] = base_url() . 'users/index.html';
+            $config['first_url'] = base_url() . 'users/index.html';
         }
 
         $config['per_page'] = 10;
@@ -40,77 +40,74 @@ class Users extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->title_page('Management Akun');
-        $this->load_theme('users/users_list', $data);
+        $this->load->view('users/users_list', $data);
     }
 
-    public function read($id)
+    public function read($id) 
     {
         $row = $this->Users_model->get_by_id($id);
         if ($row) {
             $data = array(
-            'id_user' => $row->id_user,
-            'id_group' => $row->id_group,
-            'kode_user' => $row->kode_user,
-            'nama_lengkap' => $row->nama_lengkap,
-            'no_telp' => $row->no_telp,
-            'username' => $row->username,
-            'password' => $row->password,
-            'created' => $row->created,
-            'modified' => $row->modified,
-            );
-            $this->title_page('Users');
-            $this->load_theme('users/users_read', $data);
+		'id_user' => $row->id_user,
+		'id_group' => $row->id_group,
+		'kode_user' => $row->kode_user,
+		'nama_lengkap' => $row->nama_lengkap,
+		'no_telp' => $row->no_telp,
+		'username' => $row->username,
+		'password' => $row->password,
+		'created' => $row->created,
+		'modified' => $row->modified,
+	    );
+            $this->load->view('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
         }
     }
 
-    public function create()
+    public function create() 
     {
-
-        $kode_user = $this->scm_library->kode_user();
         $data = array(
             'button' => 'Create',
             'action' => site_url('users/create_action'),
-            'id_group' => set_value('id_group'),
-            'kode_user' => set_value('kode_user',$kode_user),
-            'nama_lengkap' => set_value('nama_lengkap'),
-            'no_telp' => set_value('no_telp'),
-            'username' => set_value('username'),
-            'password' => set_value('password'),
-            'created' => set_value('created'),
-        );
-        $data['group'] = $this->group_all;
-        $this->title_page('Users');
-        $this->load_theme('users/users_form', $data);
+	    'id_user' => set_value('id_user'),
+	    'id_group' => set_value('id_group'),
+	    'kode_user' => set_value('kode_user'),
+	    'nama_lengkap' => set_value('nama_lengkap'),
+	    'no_telp' => set_value('no_telp'),
+	    'username' => set_value('username'),
+	    'password' => set_value('password'),
+	    'created' => set_value('created'),
+	    'modified' => set_value('modified'),
+	);
+        $this->load->view('users/users_form', $data);
     }
-
-    public function create_action()
+    
+    public function create_action() 
     {
-        $this->load->library('form_validation');
         $this->_rules();
+
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
             $data = array(
-            'id_group' => $this->input->post('id_group',TRUE),
-            'kode_user' => $this->input->post('kode_user',TRUE),
-            'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-            'no_telp' => $this->input->post('no_telp',TRUE),
-            'username' => $this->input->post('username',TRUE),
-            'password' => $this->input->post('password',TRUE),
-            'created' => $this->date_now(),
-            );
+		'id_group' => $this->input->post('id_group',TRUE),
+		'kode_user' => $this->input->post('kode_user',TRUE),
+		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+		'no_telp' => $this->input->post('no_telp',TRUE),
+		'username' => $this->input->post('username',TRUE),
+		'password' => $this->input->post('password',TRUE),
+		'created' => $this->input->post('created',TRUE),
+		'modified' => $this->input->post('modified',TRUE),
+	    );
 
             $this->Users_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('users'));
         }
     }
-
-    public function update($id)
+    
+    public function update($id) 
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -118,49 +115,48 @@ class Users extends MY_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('users/update_action'),
-                'id_user' => set_value('id_user', $row->id_user),
-                'id_group' => set_value('id_group', $row->id_group),
-                'kode_user' => set_value('kode_user', $row->kode_user),
-                'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
-                'no_telp' => set_value('no_telp', $row->no_telp),
-                'username' => set_value('username', $row->username),
-                'password' => set_value('password', $row->password),
-                'created' => set_value('created', $row->created),
-                'modified' => set_value('modified', $row->modified),
-                );
-             $data['group'] = $this->group_all;
-             $this->title_page('Users');
-            $this->load_theme('users/users_form', $data);
+		'id_user' => set_value('id_user', $row->id_user),
+		'id_group' => set_value('id_group', $row->id_group),
+		'kode_user' => set_value('kode_user', $row->kode_user),
+		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
+		'no_telp' => set_value('no_telp', $row->no_telp),
+		'username' => set_value('username', $row->username),
+		'password' => set_value('password', $row->password),
+		'created' => set_value('created', $row->created),
+		'modified' => set_value('modified', $row->modified),
+	    );
+            $this->load->view('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
         }
     }
-
-    public function update_action()
+    
+    public function update_action() 
     {
         $this->_rules();
+
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_user', TRUE));
         } else {
             $data = array(
-            'id_group' => $this->input->post('id_group',TRUE),
-            'kode_user' => $this->input->post('kode_user',TRUE),
-            'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-            'no_telp' => $this->input->post('no_telp',TRUE),
-            'username' => $this->input->post('username',TRUE),
-            'password' => $this->input->post('password',TRUE),
-            'created' => $this->input->post('created',TRUE),
-            'modified' => $this->input->post('modified',TRUE),
-            );
+		'id_group' => $this->input->post('id_group',TRUE),
+		'kode_user' => $this->input->post('kode_user',TRUE),
+		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+		'no_telp' => $this->input->post('no_telp',TRUE),
+		'username' => $this->input->post('username',TRUE),
+		'password' => $this->input->post('password',TRUE),
+		'created' => $this->input->post('created',TRUE),
+		'modified' => $this->input->post('modified',TRUE),
+	    );
 
             $this->Users_model->update($this->input->post('id_user', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('users'));
         }
     }
-
-    public function delete($id)
+    
+    public function delete($id) 
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -174,7 +170,7 @@ class Users extends MY_Controller
         }
     }
 
-    public function _rules()
+    public function _rules() 
     {
 	$this->form_validation->set_rules('id_group', 'id group', 'trim|required');
 	$this->form_validation->set_rules('kode_user', 'kode user', 'trim|required');
@@ -226,8 +222,8 @@ class Users extends MY_Controller
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->id_group);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->kode_user);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->nama_lengkap);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->kode_user);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_lengkap);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->no_telp);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->username);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->password);
@@ -251,8 +247,14 @@ class Users extends MY_Controller
             'users_data' => $this->Users_model->get_all(),
             'start' => 0
         );
-
+        
         $this->load->view('users/users_doc',$data);
     }
 
 }
+
+/* End of file Users.php */
+/* Location: ./application/controllers/Users.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2017-04-13 17:47:38 */
+/* http://harviacode.com */
