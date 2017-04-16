@@ -2,7 +2,7 @@
 defined("BASEPATH") or exit("Jangan Sembarangan Hacking");
 
 /**
- * SCM Library by Hekky Nurhikmat 
+ * SCM Library by Hekky Nurhikmat
  *  general library untuk aplikasi supply chain management
  *
  */
@@ -15,7 +15,7 @@ class SCM_library
         $this->SCM =& get_instance();
         $this->model_kategori = '../modules/kategori/models/kategori_model';
         $this->model_user = '../modules/users/models/Users_model';
-
+        $this->model_barang = '../modules/scm_barang/models/scm_barang_model';
     }
 
 
@@ -26,10 +26,24 @@ class SCM_library
         return $result;
     }
 
+    public function kategori()
+    {
+      $this->SCM->load->model($this->model_kategori);
+      $result = $this->SCM->kategori_model->get_all();
+      return $result;
+    }
+
     public function kode_user()
     {
         $this->SCM->load->model($this->model_user);
         $result = $this->SCM->Users_model->generate_auto_kode();
+        return $result;
+    }
+
+    public function kode_barang()
+    {
+        $this->SCM->load->model($this->model_barang);
+        $result = $this->SCM->scm_barang_model->generate_auto_kode();
         return $result;
     }
 
@@ -46,7 +60,7 @@ class SCM_library
         return $html;
     }
 
-  
+
 
 
 }

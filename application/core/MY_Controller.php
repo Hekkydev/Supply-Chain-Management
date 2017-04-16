@@ -7,8 +7,8 @@
 class MY_Controller extends CI_Controller
 {
 
-    protected $helper = array('url','form','scm');
-    protected $library = array('session','scm_library');
+    protected $helper = array('form','url','scm','rupiah');
+    protected $library = array('session','scm_library','upload');
     protected $model   = array(
         '../modules/users/models/Users_model',
         '../modules/users_group/models/Users_group_model',
@@ -45,8 +45,8 @@ class MY_Controller extends CI_Controller
         {
             redirect('logout');
         }else{
-          $account = $this->auth_model->account_login($this->session->userdata('kode_user'))->first_row();
-          return $account;
+            $account = $this->auth_model->account_login($this->session->userdata('kode_user'))->first_row();
+            return $account;
         }
     }
 
@@ -96,9 +96,28 @@ class MY_Controller extends CI_Controller
         $this->load->view("template/content_login",$this->data);
     }
 
-    public function load_theme_home($content,$data = null)
+    public function load_theme_frontend($content,$data = null)
     {
-      
+        $this->data['app_title']        = $this->config->item('ci_app_title');
+        $this->data['title_page']       = $this->title_page;
+        $this->data['content']          = $this->load->view($content,$data,TRUE);
+        $this->load->view('template_frontend/content',$this->data);
+    }
+
+    public function load_theme_frontend_large($content,$data = null)
+    {
+        $this->data['app_title']        = $this->config->item('ci_app_title');
+        $this->data['title_page']       = $this->title_page;
+        $this->data['content']          = $this->load->view($content,$data,TRUE);
+        $this->load->view('template_frontend/content-large',$this->data);
+    }
+
+    public function load_theme_frontend_home($content,$data = null)
+    {
+        $this->data['app_title']        = $this->config->item('ci_app_title');
+        $this->data['title_page']       = $this->title_page;
+        $this->data['content']          = $this->load->view($content,$data,TRUE);
+        $this->load->view('template_frontend/content-home',$this->data);
     }
 
 }

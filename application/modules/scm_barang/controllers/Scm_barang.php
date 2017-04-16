@@ -75,56 +75,123 @@ class Scm_barang extends MY_Controller
 
     public function create()
     {
+        $this->load->model('../modules/kategori/models/kategori_model');
+        $kode_barang = $this->scm_library->kode_barang();
+
+        //print_r($data['kategori_barang']); die();
         $data = array(
             'button' => 'Create',
             'action' => site_url('scm_barang/create_action'),
-	    'id_barang' => set_value('id_barang'),
-	    'id_user' => set_value('id_user'),
-	    'kode_barang' => set_value('kode_barang'),
-	    'nama_barang' => set_value('nama_barang'),
-	    'stock' => set_value('stock'),
-	    'satuan' => set_value('satuan'),
-	    'harga_jual' => set_value('harga_jual'),
-	    'harga_beli' => set_value('harga_beli'),
-	    'diskon' => set_value('diskon'),
-	    'id_kategori' => set_value('id_kategori'),
-	    'keterangan' => set_value('keterangan'),
-	    'gambar' => set_value('gambar'),
-	    'created' => set_value('created'),
-	    'modified' => set_value('modified'),
-	);
-     $this->title_page('Data Barang');
-        $this->load_theme('scm_barang/scm_barang_form', $data);
+      	    'id_barang' => set_value('id_barang'),
+      	    'id_user' => set_value('id_user'),
+      	    'kode_barang' => $kode_barang,
+      	    'nama_barang' => set_value('nama_barang'),
+      	    'stock' => set_value('stock'),
+      	    'satuan' => set_value('satuan'),
+      	    'harga_jual' => set_value('harga_jual'),
+      	    'harga_beli' => set_value('harga_beli'),
+      	    'diskon' => set_value('diskon'),
+      	    'id_kategori' => set_value('id_kategori'),
+      	    'keterangan' => set_value('keterangan'),
+      	    'gambar' => set_value('gambar'),
+      	    'created' => set_value('created'),
+      	    'modified' => set_value('modified'),
+      	   );
+          $data['kategori_barang'] = $this->kategori_model->get_all();
+          $this->title_page('Data Barang');
+          $this->load_theme('scm_barang/add', $data);
     }
 
     public function create_action()
     {
-        $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_barang' => $this->input->post('kode_barang',TRUE),
-		'nama_barang' => $this->input->post('nama_barang',TRUE),
-		'stock' => $this->input->post('stock',TRUE),
-		'satuan' => $this->input->post('satuan',TRUE),
-		'harga_jual' => $this->input->post('harga_jual',TRUE),
-		'harga_beli' => $this->input->post('harga_beli',TRUE),
-		'diskon' => $this->input->post('diskon',TRUE),
-		'id_kategori' => $this->input->post('id_kategori',TRUE),
-		'keterangan' => $this->input->post('keterangan',TRUE),
-		'gambar' => $this->input->post('gambar',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
 
-            $this->Scm_barang_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('scm_barang'));
+        $upload_file = $_FILES;
+        $upload = $this->uploaded_image($upload_file);
+        if ($upload->status == 1) {
+          $gambar = $upload->gambar;
+        }else{
+          $gambar = $upload->gambar;
         }
+
+
+        $data = array(
+    		'id_user' => $this->account->id_user,
+    		'kode_barang' => $this->input->post('kode_barang',TRUE),
+    		'nama_barang' => $this->input->post('nama_barang',TRUE),
+    		'stock' => $this->input->post('stock',TRUE),
+    		'satuan' => $this->input->post('satuan',TRUE),
+    		'harga_jual' => $this->input->post('harga_jual',TRUE),
+    		'harga_beli' => $this->input->post('harga_beli',TRUE),
+    		'diskon' => $this->input->post('diskon',TRUE),
+    		'id_kategori' => $this->input->post('id_kategori',TRUE),
+    		'keterangan' => $this->input->post('keterangan',TRUE),
+    		'gambar' => $gambar,
+    		'created' => $this->date_now(),
+    	    );
+
+        $this->Scm_barang_model->insert($data);
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('scm_barang'));
+
     }
+
+    public function uploaded_image($upload_file = array())
+    {
+          $file = $upload_file;
+
+          $target_dir = "./upload/";
+          $target_file = $target_dir . basename($file["gambar"]["name"]);
+          $uploadOk = 1;
+          $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+          // Check if image file is a actual image or fake image
+          if(isset($_POST["submit"])) {
+              $check = getimagesize($file["gambar"]["tmp_name"]);
+              if($check !== false) {
+                  // echo "File is an image - " . $check["mime"] . ".";
+                  $uploadOk = 1;
+              } else {
+                  // echo "File is not an image.";
+                  $uploadOk = 0;
+              }
+          }
+
+                  // Check if file already exists
+            if (file_exists($target_file)) {
+                // echo "Sorry, file already exists.";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($file["gambar"]["size"] > 500000) {
+                // echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+            $type_image = array('JPG','PNG','JPEG','GIF','jpg','png','jpeg','gif');
+            // Allow certain file formats
+            if(array_key_exists($imageFileType,$type_image,TRUE)) {
+                //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($file["gambar"]["tmp_name"], $target_file)) {
+                    // echo "The file ". basename( $file["gambar"]["name"]). " has been uploaded.";
+                } else {
+                    // echo "Sorry, there was an error uploading your file.";
+                }
+            }
+
+
+            return $result = (object) array(
+              'status'=>$uploadOk,
+              'gambar'=>$file['gambar']['name'],
+            );
+    }
+
+
 
     public function update($id)
     {

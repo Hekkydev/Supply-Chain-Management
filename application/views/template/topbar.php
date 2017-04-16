@@ -17,7 +17,7 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo site_url('home')?>"><i class="fa fa-th"></i></a></li>
-                        <li><a><i class="fa fa-desktop"></i></a></li>
+                        <li><a href="<?php echo site_url()?>" target="_blank"><i class="fa fa-desktop"></i></a></li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
 

@@ -1,10 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
 
 $hostname = "localhost"; //localhost;
 $username = "root"; //users;
 $password = ""; //password;
-$database = "scm"; // database;
+$database = "scms"; // database;
 
 
 $db['default'] = array(

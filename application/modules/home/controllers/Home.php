@@ -11,7 +11,12 @@ class Home extends MY_Controller{
 
   function index()
   {
-          echo "Halaman Utama";
+          $this->load_theme_frontend_home('home/index');
+  }
+
+  function about()
+  {
+        $this->load->view("home/about/index");
   }
 
 }

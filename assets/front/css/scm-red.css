@@ -1,0 +1,250 @@
+/* Orange #DC1111 */
+/* Orange dark #dd6822 */
+
+/* Main defaults */
+a:hover {
+    color: #DC1111;
+}
+
+.navigation ul li:hover::before {
+    color: #DC1111;
+}
+
+.highlight-text {
+    color: #DC1111;
+}
+
+.highlight-bg {
+    color: #DC1111;
+}
+
+/* Top header */
+#top-header .language-picker .dropdown-menu li a:hover,
+#top-header .language-picker .dropdown-menu li:hover
+{
+    background: #ffffff;
+    color: #DC1111;
+}
+
+/* Header - nav buttons */
+.navbar .nav li.active a,
+.navbar .nav li:hover a,
+.navbar .nav li.active:hover a,
+.navbar .nav li.active a:focus,
+.navbar .nav li.active a:active
+{
+    color: #DC1111;
+}
+
+.navbar .nav li.active a:hover
+{
+    color: #DC1111;
+}
+
+/* Mobile editions */
+@media(max-width: 768px) {
+    .navbar-default .navbar-toggle:focus,
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle {
+        background: none;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background: #DC1111;
+    }
+
+    .navbar-default .navbar-toggle:focus .icon-bar,
+    .navbar-default .navbar-toggle:hover .icon-bar {
+        background: #666666;
+    }
+
+    .nav>li:hover,
+    .nav>li:hover>a {
+        background: #DC1111;
+        color: #fff !important;
+    }
+}
+
+/* Features */
+.features .feature i {
+    color: #DC1111;
+}
+
+.features a:hover .feature,
+.features a:hover .feature i,
+.features a:hover .feature h1 {
+    color: #555;
+}
+
+.headline.headline-primary {
+    background-color: #DC1111;
+}
+
+/* Gallery */
+ul.gallery li.item .contents h1,
+ul.gallery li.item .contents p {
+    color: #fff;
+}
+
+/* Pricing plan */
+.pricing-plans .plan .title span {
+    color: #fff;
+    background: #DC1111;
+}
+
+.pricing-plans .plan .actions .btn:hover {
+    border: 2px solid #DC1111;
+    color: #DC1111;
+}
+
+/* Effects */
+.color-hoverlay:hover .contents {
+    background-color: rgba(243, 101, 16, 0.9);
+}
+
+.color-hoverlay .btn,
+.color-hoverlay .btn-light {
+    background: #ffffff;
+    color: #DC1111;
+    opacity: 0.95;
+}
+
+.color-hoverlay .btn:hover,
+.color-hoverlay .btn-light:hover {
+    background: #222;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.color-hoverlay .btn-dark {
+    background: #222;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.color-hoverlay .btn-dark:hover {
+    background: #ffffff;
+    color: #DC1111;
+    opacity: 0.95;
+}
+
+/* Testimonials */
+.testimonials .item .person .description .organization {
+    color: #DC1111;
+}
+
+/* Carousel */
+.carousel-indicators .active {
+    background-color: #DC1111;
+    border-color: #DC1111;
+}
+
+/* Page header */
+.page-subheader hr {
+    border-color: #DC1111;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus,
+.btn-primary.active {
+    color: #ffffff !important;
+    background: #DC1111 !important;
+}
+
+.btn-primary:hover,
+.btn-primary.active:hover {
+    color: #ffffff !important;
+    background: #dd6822 !important;
+}
+
+/* Forms */
+.input:focus,
+.textarea:focus,
+.select:focus
+{
+    border: 1px solid #DC1111;
+}
+
+/* Tabs */
+.nav-tabs-custom .nav li.active a {
+    border-bottom: 3px solid #DC1111;
+    color: #DC1111;
+}
+
+/* Dropdown */
+#content .dropdown .dropdown-menu li:hover a {
+    color: #DC1111;
+}
+
+/* Pagination */
+.pagination > li.active a,
+.pagination > li.active:hover a,
+.pagination > li.active:focus a,
+.pagination > li.active:active a {
+    background: #DC1111 !important;
+    border-color: #DC1111 !important;
+}
+
+.pagination > li a,
+.pagination > li:active a,
+.pagination > li:focus a,
+.pagination > li a:active,
+.pagination > li a:focus {
+    color: #DC1111;
+}
+
+.pagination > li:hover a,
+.pagination > li a:hover {
+    color: #dd6822;
+    background: #f9f9f9;
+}
+
+/* Gallery */
+.gallery .carousel-indicators li.active
+{
+    border: 2px solid #DC1111;
+    border-radius: 2px;
+}
+
+/* Shop detail */
+.shop-detail .title .price {
+    color: #DC1111;
+}
+
+/* Reviews */
+.choices.ratings label.star.active {
+    color: #DC1111;
+}
+
+.choices.ratings label.star.active {
+    color: #DC1111;
+}
+
+/* Shop home */
+.headline-divided.headline-primary .info {
+    background: #DC1111;
+    color: #fff;
+}
+
+/* Terms */
+.terms-conditions .terms-category li:hover a,
+.terms-conditions .terms-category li.active,
+.terms-conditions .terms-category li.active a
+{
+    color: #DC1111;
+}
+
+.terms-conditions .terms-category li,
+.terms-conditions .terms-category li:hover a
+{
+    display: block;
+    text-decoration: none;
+}
+
+/* Footer */
+.footer-above a {
+    color: #DC1111;
+}

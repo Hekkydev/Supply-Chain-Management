@@ -22,4 +22,12 @@
          $('a#toggle').removeAttr('class');
     });
 </script>
+<?php elseif($this->uri->segment(1) == "administrator"):?>
+<script>
+    $(document).ready(function(){
+        $('body').addClass('sidebar-collapse');
+         $('a#toggle').removeAttr('data-toggle');
+         $('a#toggle').removeAttr('class');
+    });
+</script>
 <?php endif;?>
