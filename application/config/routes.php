@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Halaman Administrator
 $route['default_controller'] = 'home';
-$route['404_override'] = '';
+$route['404_override'] = 'home/home/error';
 $route['translate_uri_dashes'] = FALSE;
 $route['home'] = "menu";
 $route['administrator'] = "menu";

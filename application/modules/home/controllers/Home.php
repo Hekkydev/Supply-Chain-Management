@@ -19,4 +19,9 @@ class Home extends MY_Controller{
         $this->load->view("home/about/index");
   }
 
+  function error()
+  {
+       $this->load_theme_frontend_home('home/halaman_error');
+  }
+
 }
