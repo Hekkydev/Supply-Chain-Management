@@ -14,7 +14,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
-                            <?php 
+                            <?php
                                 if ($q <> '')
                                 {
                                     ?>
@@ -31,14 +31,10 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-		<th>Id User</th>
 		<th>Kode Spbbe</th>
 		<th>Nama Sppbe</th>
 		<th>Alamat Sppbe</th>
 		<th>Telp Sppbe</th>
-		<th>Created</th>
-		<th>Modified</th>
-		<th>Deleted</th>
 		<th>Action</th>
             </tr><?php
             foreach ($sppbe_data as $sppbe)
@@ -46,21 +42,17 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $sppbe->id_user ?></td>
 			<td><?php echo $sppbe->kode_spbbe ?></td>
 			<td><?php echo $sppbe->nama_sppbe ?></td>
 			<td><?php echo $sppbe->alamat_sppbe ?></td>
 			<td><?php echo $sppbe->telp_sppbe ?></td>
-			<td><?php echo $sppbe->created ?></td>
-			<td><?php echo $sppbe->modified ?></td>
-			<td><?php echo $sppbe->deleted ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('sppbe/read/'.$sppbe->id_spbbe),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				<?php
+				echo anchor(site_url('sppbe/read/'.$sppbe->id_spbbe),'Read');
+				echo ' | ';
+				echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'Update');
+				echo ' | ';
+				echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>
