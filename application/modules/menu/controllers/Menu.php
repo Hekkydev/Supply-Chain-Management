@@ -16,8 +16,17 @@ class Menu extends MY_Controller
 
     function index()
     {
+        $group = $this->account->id_group;
+        switch ($group) {
+          case '7':
+              $this->load_theme_dash("dashboard/index_konsumen");
+            break;
 
-        $this->load_theme_dash("dashboard/index");
+          default:
+              $this->load_theme_dash("dashboard/index");
+            break;
+        }
+
     }
 
     public function masterdata()

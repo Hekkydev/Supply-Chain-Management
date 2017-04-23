@@ -37,7 +37,9 @@
                     increaseArea: '20%'
                 });
             });
-
+            function front_site() {
+              window.location = site_url;
+            }
             function login() {
             var width = 1;
             var id = setInterval(frame, 50);

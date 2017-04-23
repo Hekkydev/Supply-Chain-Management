@@ -19,8 +19,10 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
-
-            <div class="col-xs-offset-6 col-xs-6">
+          <div class="col-xs-6">
+              <button type="button" class="btn btn-danger btn-block btn-flat"  onClick="return front_site();">FRONT SITE</button>
+          </div><!-- /.col -->
+            <div class="col-xs-6">
                 <button type="button" class="btn btn-primary btn-block btn-flat"  onClick="return login();">LOGIN</button>
             </div><!-- /.col -->
         </div>

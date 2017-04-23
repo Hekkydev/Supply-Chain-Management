@@ -6,4 +6,19 @@ class App_model extends CI_Model{
   {
     return $this->db->insert('scm_inbox', $data);
   }
+
+  function about_application()
+  {
+    $page = $this->db->get('scm_about_page')->first_row();
+    if ($page == TRUE) {
+      return $page->about_page;
+    }else {
+      return NULL;
+    }
+  }
+
+  function about_application_update($data)
+  {
+    return $this->db->update('scm_about_page', $data);
+  }
 }

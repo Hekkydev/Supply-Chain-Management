@@ -46,7 +46,14 @@ class Auth extends MY_Controller{
 
     if($this->login($username,$password) == 1)
     {
-      echo "success";
+      $this->user = $this->authentikasi();
+      if ($this->user->id_group == 7) {
+        echo "error";
+        $this->session->unset_userdata('logged_in');
+      }else{
+        echo "success";
+      }
+
     }else{
       echo "error";
     }
@@ -62,7 +69,13 @@ class Auth extends MY_Controller{
 
     if($this->login($username,$password) == 1)
     {
-      echo json_encode(array('status'=>1,'url'=>'home',''));
+      $this->user = $this->authentikasi();
+      if ($this->user->id_group == 7) {
+        echo json_encode(array('status'=>1,'url'=>'home',''));
+      }else {
+        echo json_encode(array('status'=>0,'url'=>'client_area','message'=>'Gagal login!'));
+        $this->session->unset_userdata('logged_in');
+      }
     }else{
       echo json_encode(array('status'=>0,'url'=>'client_area','message'=>'Gagal login!'));
     }

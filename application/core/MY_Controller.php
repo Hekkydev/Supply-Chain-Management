@@ -38,7 +38,15 @@ class MY_Controller extends CI_Controller
 
 
     }
+    public function about_application()
+    {
+        return $page = $this->App_model->about_application();
+    }
 
+    public function about_application_update($data)
+    {
+        return $this->App_model->about_application_update($data);
+    }
     public function authentikasi()
     {
         $status = $this->session->userdata('logged_in');

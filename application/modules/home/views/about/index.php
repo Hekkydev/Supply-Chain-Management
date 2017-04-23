@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><?php echo "About | Supply Chain Management"?></title>
-  </head>
-  <body>
+<div class="container">
 
-  </body>
-</html>
+                <div class="" style="clear: both;">
+                  <?php echo $about; ?>
+                </div>
+</div>

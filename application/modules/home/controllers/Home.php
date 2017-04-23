@@ -7,17 +7,23 @@ class Home extends MY_Controller{
   {
     parent::__construct();
 
+
   }
 
   function index()
   {
+          
           $this->load_theme_frontend_home('home/index');
   }
 
   function about()
   {
-        $this->load->view("home/about/index");
+        $this->data['about'] = $this->about_application();
+        $this->title_page("About Supply Chain Management");
+        $this->load_theme_frontend_large("home/about/index",$this->data);
   }
+
+
 
   function error()
   {

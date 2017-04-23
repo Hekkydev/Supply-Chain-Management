@@ -30,4 +30,22 @@
          $('a#toggle').removeAttr('class');
     });
 </script>
+<?php elseif($this->uri->segment(1) == "about_page"):?>
+<script>
+    $(document).ready(function(){
+        $('body').addClass('sidebar-collapse');
+         $('a#toggle').removeAttr('data-toggle');
+         $('a#toggle').removeAttr('class');
+    });
+</script>
+<?php endif;?>
+
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url('assets/AdminLTE-2.0.5/')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<?php if($this->uri->segment(1) == "about_page"):?>
+<script>
+$(function () {
+  $(".textarea").wysihtml5();
+});
+</script>
 <?php endif;?>
