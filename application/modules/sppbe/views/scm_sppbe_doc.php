@@ -21,7 +21,7 @@
             <tr>
                 <th>No</th>
 		<th>Id User</th>
-		<th>Kode Spbbe</th>
+		<th>Kode Sppbe</th>
 		<th>Nama Sppbe</th>
 		<th>Alamat Sppbe</th>
 		<th>Telp Sppbe</th>
@@ -36,7 +36,7 @@
                 <tr>
 		      <td><?php echo ++$start ?></td>
 		      <td><?php echo $sppbe->id_user ?></td>
-		      <td><?php echo $sppbe->kode_spbbe ?></td>
+		      <td><?php echo $sppbe->kode_sppbe ?></td>
 		      <td><?php echo $sppbe->nama_sppbe ?></td>
 		      <td><?php echo $sppbe->alamat_sppbe ?></td>
 		      <td><?php echo $sppbe->telp_sppbe ?></td>

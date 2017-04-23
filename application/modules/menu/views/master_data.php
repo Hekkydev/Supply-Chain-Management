@@ -12,9 +12,10 @@
                 echo $this->scm_library->menu('stock_lpg','STOCK LPG','stock_lpg.svg');
                 echo $this->scm_library->menu('scm_barang','BARANG','barang.svg');
                 echo $this->scm_library->menu('kategori','KATEGORI BARANG','barang-kategori.svg');
+                echo $this->scm_library->menu('scm_barang_satuan','SATUAN BARANG','barang-kategori.svg');
               break;
             case '2':
-            
+
               break;
             default:
 

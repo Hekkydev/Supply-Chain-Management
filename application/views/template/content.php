@@ -7,6 +7,9 @@ $this->load->view('template/topbar');
 $this->load->view('template/sidebar');
 ?>
 <!-- Content Header (Page header) -->
+<section class="content-header" style="margin-bottom:10px;">
+
+</section>
 <section class="content-header" style="margin-bottom:20px;">
 
     <h1>

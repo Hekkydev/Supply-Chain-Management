@@ -18,7 +18,8 @@ class SCM_library
         $this->model_barang = '../modules/scm_barang/models/scm_barang_model';
         $this->model_sppbe = '../modules/sppbe/models/sppbe_model';
         $this->model_agen = '../modules/scm_agen/models/scm_agen_model';
-        $this->model_pangkalan = '../modules/scm_pangkalan/modles/scm_pangkalan_model';
+        $this->model_pangkalan = '../modules/scm_pangkalan/models/scm_pangkalan_model';
+        $this->model_satuan_barang = '../modules/scm_barang_satuan/models/scm_barang_satuan_model';
     }
 
 
@@ -48,6 +49,13 @@ class SCM_library
         $this->SCM->load->model($this->model_barang);
         $result = $this->SCM->scm_barang_model->generate_auto_kode();
         return $result;
+    }
+
+    public function satuan_barang()
+    {
+        $this->SCM->load->model($this->model_satuan_barang);
+        $satuan = $this->SCM->scm_barang_satuan_model->get_all();
+        return $satuan;
     }
 
 

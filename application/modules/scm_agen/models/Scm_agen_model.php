@@ -18,6 +18,7 @@ class Scm_agen_model extends CI_Model
     // get all
     function get_all()
     {
+
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,35 +32,22 @@ class Scm_agen_model extends CI_Model
 
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('id_agen', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_agen', $q);
-	$this->db->or_like('nama_agen', $q);
-	$this->db->or_like('no_telp_agen', $q);
-	$this->db->or_like('alamat_agen', $q);
-	$this->db->or_like('kota', $q);
-	$this->db->or_like('kelurahan', $q);
-	$this->db->or_like('created', $q);
-	$this->db->or_like('modified', $q);
-	$this->db->from($this->table);
-        return $this->db->count_all_results();
+
+        $this->db->where('deleted',NULL);
+        $this->db->where('nama_agen LIKE', '%'.$q.'%');
+      	$this->db->from($this->table);
+        return $this->db->get()->num_rows();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('deleted',NULL);
+      	$this->db->where('nama_agen LIKE', '%'.$q.'%');
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_agen', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_agen', $q);
-	$this->db->or_like('nama_agen', $q);
-	$this->db->or_like('no_telp_agen', $q);
-	$this->db->or_like('alamat_agen', $q);
-	$this->db->or_like('kota', $q);
-	$this->db->or_like('kelurahan', $q);
-	$this->db->or_like('created', $q);
-	$this->db->or_like('modified', $q);
-	$this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
+      	$this->db->limit($limit, $start);
+        return $this->db->get()->result();
     }
 
     // insert data
@@ -78,8 +66,11 @@ class Scm_agen_model extends CI_Model
     // delete data
     function delete($id)
     {
+        $data = array(
+          'deleted'=>date('Y-m-d H:i:s')
+        );
         $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
+        $this->db->update($this->table,$data);
     }
 
     public function generate_auto_kode()

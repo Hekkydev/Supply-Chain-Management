@@ -19,11 +19,11 @@ class Sppbe extends MY_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'sppbe/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'sppbe/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'sppbe/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'sppbe/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'sppbe/index.html';
-            $config['first_url'] = base_url() . 'sppbe/index.html';
+            $config['base_url'] = base_url() . 'sppbe/index';
+            $config['first_url'] = base_url() . 'sppbe/index';
         }
 
         $config['per_page'] = 10;
@@ -50,16 +50,14 @@ class Sppbe extends MY_Controller
         $row = $this->Sppbe_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_spbbe' => $row->id_spbbe,
-		'id_user' => $row->id_user,
-		'kode_spbbe' => $row->kode_spbbe,
-		'nama_sppbe' => $row->nama_sppbe,
-		'alamat_sppbe' => $row->alamat_sppbe,
-		'telp_sppbe' => $row->telp_sppbe,
-		'created' => $row->created,
-		'modified' => $row->modified,
-		'deleted' => $row->deleted,
-	    );
+        		'id_spbbe' => $row->id_spbbe,
+        		'id_user' => $row->id_user,
+        		'kode_sppbe' => $row->kode_sppbe,
+        		'nama_sppbe' => $row->nama_sppbe,
+        		'alamat_sppbe' => $row->alamat_sppbe,
+        		'telp_sppbe' => $row->telp_sppbe,
+        		'created' => $row->created,
+	         );
             $this->title_page('Data Sppbe');
             $this->load_theme('sppbe/scm_sppbe_read', $data);
         } else {
@@ -73,17 +71,14 @@ class Sppbe extends MY_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('sppbe/create_action'),
-	    'id_spbbe' => set_value('id_spbbe'),
-	    'id_user' => set_value('id_user'),
-	    'kode_spbbe' => set_value('kode_spbbe'),
-	    'nama_sppbe' => set_value('nama_sppbe'),
-	    'alamat_sppbe' => set_value('alamat_sppbe'),
-	    'telp_sppbe' => set_value('telp_sppbe'),
-	    'created' => set_value('created'),
-	    'modified' => set_value('modified'),
-	    'deleted' => set_value('deleted'),
-	);
-        $this->title_page('Data Sppbe');
+      	    'id_spbbe' => set_value('id_spbbe'),
+      	    'id_user' => set_value('id_user',$this->account->id_user),
+      	    'kode_sppbe' => set_value('kode_sppbe',$this->scm_library->kode_sppbe()),
+      	    'nama_sppbe' => set_value('nama_sppbe'),
+      	    'alamat_sppbe' => set_value('alamat_sppbe'),
+      	    'telp_sppbe' => set_value('telp_sppbe'),
+      	    'created' => set_value('created',$this->date_now()),
+      	);
         $this->load_theme('sppbe/scm_sppbe_form', $data);
     }
 
@@ -95,15 +90,13 @@ class Sppbe extends MY_Controller
             $this->create();
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_spbbe' => $this->input->post('kode_spbbe',TRUE),
-		'nama_sppbe' => $this->input->post('nama_sppbe',TRUE),
-		'alamat_sppbe' => $this->input->post('alamat_sppbe',TRUE),
-		'telp_sppbe' => $this->input->post('telp_sppbe',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-		'deleted' => $this->input->post('deleted',TRUE),
-	    );
+          		'id_user' => $this->input->post('id_user',TRUE),
+          		'kode_sppbe' => $this->input->post('kode_sppbe',TRUE),
+          		'nama_sppbe' => $this->input->post('nama_sppbe',TRUE),
+          		'alamat_sppbe' => $this->input->post('alamat_sppbe',TRUE),
+          		'telp_sppbe' => $this->input->post('telp_sppbe',TRUE),
+          		'created' => $this->input->post('created',TRUE),
+             );
 
             $this->Sppbe_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -119,16 +112,14 @@ class Sppbe extends MY_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('sppbe/update_action'),
-		'id_spbbe' => set_value('id_spbbe', $row->id_spbbe),
-		'id_user' => set_value('id_user', $row->id_user),
-		'kode_spbbe' => set_value('kode_spbbe', $row->kode_spbbe),
-		'nama_sppbe' => set_value('nama_sppbe', $row->nama_sppbe),
-		'alamat_sppbe' => set_value('alamat_sppbe', $row->alamat_sppbe),
-		'telp_sppbe' => set_value('telp_sppbe', $row->telp_sppbe),
-		'created' => set_value('created', $row->created),
-		'modified' => set_value('modified', $row->modified),
-		'deleted' => set_value('deleted', $row->deleted),
-	    );
+            		'id_spbbe' => set_value('id_spbbe', $row->id_spbbe),
+            		'id_user' => set_value('id_user', $row->id_user),
+            		'kode_sppbe' => set_value('kode_sppbe', $row->kode_sppbe),
+            		'nama_sppbe' => set_value('nama_sppbe', $row->nama_sppbe),
+            		'alamat_sppbe' => set_value('alamat_sppbe', $row->alamat_sppbe),
+            		'telp_sppbe' => set_value('telp_sppbe', $row->telp_sppbe),
+            		'created' => set_value('created', $this->date_now())
+           );
             $this->load_theme('sppbe/scm_sppbe_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -144,15 +135,13 @@ class Sppbe extends MY_Controller
             $this->update($this->input->post('id_spbbe', TRUE));
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_spbbe' => $this->input->post('kode_spbbe',TRUE),
-		'nama_sppbe' => $this->input->post('nama_sppbe',TRUE),
-		'alamat_sppbe' => $this->input->post('alamat_sppbe',TRUE),
-		'telp_sppbe' => $this->input->post('telp_sppbe',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-		'deleted' => $this->input->post('deleted',TRUE),
-	    );
+        		'id_user' => $this->input->post('id_user',TRUE),
+        		'kode_sppbe' => $this->input->post('kode_sppbe',TRUE),
+        		'nama_sppbe' => $this->input->post('nama_sppbe',TRUE),
+        		'alamat_sppbe' => $this->input->post('alamat_sppbe',TRUE),
+        		'telp_sppbe' => $this->input->post('telp_sppbe',TRUE),
+        		'modified' => $this->input->post('created',TRUE),
+        	  );
 
             $this->Sppbe_model->update($this->input->post('id_spbbe', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -176,18 +165,11 @@ class Sppbe extends MY_Controller
 
     public function _rules()
     {
-	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
-	$this->form_validation->set_rules('kode_spbbe', 'kode spbbe', 'trim|required');
-	$this->form_validation->set_rules('nama_sppbe', 'nama sppbe', 'trim|required');
-	$this->form_validation->set_rules('alamat_sppbe', 'alamat sppbe', 'trim|required');
-	$this->form_validation->set_rules('telp_sppbe', 'telp sppbe', 'trim|required');
-	$this->form_validation->set_rules('created', 'created', 'trim|required');
-	$this->form_validation->set_rules('modified', 'modified', 'trim|required');
-	$this->form_validation->set_rules('deleted', 'deleted', 'trim|required');
-
-	$this->form_validation->set_rules('id_spbbe', 'id_spbbe', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
+      	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
+      	$this->form_validation->set_rules('kode_sppbe', 'kode sppbe', 'trim|required');
+      	$this->form_validation->set_rules('nama_sppbe', 'nama sppbe', 'trim|required');
+      	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      }
 
     public function excel()
     {
@@ -212,7 +194,7 @@ class Sppbe extends MY_Controller
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
 	xlsWriteLabel($tablehead, $kolomhead++, "Id User");
-	xlsWriteLabel($tablehead, $kolomhead++, "Kode Spbbe");
+	xlsWriteLabel($tablehead, $kolomhead++, "Kode Sppbe");
 	xlsWriteLabel($tablehead, $kolomhead++, "Nama Sppbe");
 	xlsWriteLabel($tablehead, $kolomhead++, "Alamat Sppbe");
 	xlsWriteLabel($tablehead, $kolomhead++, "Telp Sppbe");
@@ -226,7 +208,7 @@ class Sppbe extends MY_Controller
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->id_user);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->kode_spbbe);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->kode_sppbe);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_sppbe);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat_sppbe);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->telp_sppbe);
@@ -252,7 +234,7 @@ class Sppbe extends MY_Controller
             'start' => 0
         );
 
-        $this->load->view('sppbe/scm_sppbe_doc',$data);
+        $this->load_theme('sppbe/scm_sppbe_doc',$data);
     }
 
 }
@@ -260,5 +242,5 @@ class Sppbe extends MY_Controller
 /* End of file Sppbe.php */
 /* Location: ./application/controllers/Sppbe.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2017-04-11 10:42:15 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2017-04-23 16:12:06 */
 /* http://harviacode.com */

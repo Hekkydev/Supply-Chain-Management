@@ -1,7 +1,7 @@
 
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('scm_barang/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('scm_barang/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -23,7 +23,7 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
+                          <button class="btn btn-primary btn-flat" type="submit">Search</button>
                         </span>
                     </div>
                 </form>
@@ -38,28 +38,28 @@
 		<th>Satuan</th>
 		<th>Harga Jual</th>
 		<th>Harga Beli</th>
-		<th>Id Kategori</th>
-		<th>Action</th>
+		<th>Kategori</th>
+		<th style="text-align:center">Action</th>
             </tr><?php
             foreach ($scm_barang_data as $scm_barang)
             {
                 ?>
-                <tr>
+    <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $scm_barang->kode_barang ?></td>
 			<td><?php echo $scm_barang->nama_barang ?></td>
 			<td><?php echo $scm_barang->stock ?></td>
-			<td><?php echo $scm_barang->satuan ?></td>
+			<td><?php echo $scm_barang->tipe_satuan ?></td>
 			<td><?php echo $scm_barang->harga_jual ?></td>
 			<td><?php echo $scm_barang->harga_beli ?></td>
-			<td><?php echo $scm_barang->id_kategori ?></td>
+			<td><?php echo $scm_barang->nama_kategori ?></td>
 			<td style="text-align:center" width="200px">
 				<?php
-				echo anchor(site_url('scm_barang/read/'.$scm_barang->id_barang),'Read');
+				echo anchor(site_url('scm_barang/read/'.$scm_barang->id_barang),'<i class="fa fa-search"></i>');
 				echo ' | ';
-				echo anchor(site_url('scm_barang/update/'.$scm_barang->id_barang),'Update');
+				echo anchor(site_url('scm_barang/update/'.$scm_barang->id_barang),'<i class="fa fa-edit"></i>');
 				echo ' | ';
-				echo anchor(site_url('scm_barang/delete/'.$scm_barang->id_barang),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+				echo anchor(site_url('scm_barang/delete/'.$scm_barang->id_barang),'<i class="fa fa-trash"></i>','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>
@@ -69,9 +69,9 @@
         </table>
         <div class="row">
             <div class="col-md-6" >
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-                <?php echo anchor(site_url('scm_barang/excel'), 'Excel', 'class="btn btn-primary btn-md"'); ?>
-                <?php echo anchor(site_url('scm_barang/word'), 'Word', 'class="btn btn-primary btn-md"'); ?>
+                <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
+                <?php echo anchor(site_url('scm_barang/excel'), 'Excel', 'class="btn btn-primary btn-flat btn-md"'); ?>
+                <?php echo anchor(site_url('scm_barang/word'), 'Word', 'class="btn btn-primary btn-flat btn-md"'); ?>
 	        </div>
             <div class="col-md-6 text-right">
                 <?php echo $pagination ?>

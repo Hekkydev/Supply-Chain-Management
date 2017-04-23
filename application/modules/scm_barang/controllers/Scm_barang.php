@@ -1,7 +1,5 @@
 <?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class Scm_barang extends MY_Controller
 {
@@ -50,23 +48,23 @@ class Scm_barang extends MY_Controller
         $row = $this->Scm_barang_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_barang' => $row->id_barang,
-		'id_user' => $row->id_user,
-		'kode_barang' => $row->kode_barang,
-		'nama_barang' => $row->nama_barang,
-		'stock' => $row->stock,
-		'satuan' => $row->satuan,
-		'harga_jual' => $row->harga_jual,
-		'harga_beli' => $row->harga_beli,
-		'diskon' => $row->diskon,
-		'id_kategori' => $row->id_kategori,
-		'keterangan' => $row->keterangan,
-		'gambar' => $row->gambar,
-		'created' => $row->created,
-		'modified' => $row->modified,
-	    );
-         $this->title_page('Data Barang');
-            $this->load_theme('scm_barang/scm_barang_read', $data);
+        		'id_barang' => $row->id_barang,
+        		'id_user' => $row->id_user,
+        		'kode_barang' => $row->kode_barang,
+        		'nama_barang' => $row->nama_barang,
+        		'stock' => $row->stock,
+        		'satuan' => $row->id_satuan,
+        		'harga_jual' => $row->harga_jual,
+        		'harga_beli' => $row->harga_beli,
+        		'diskon' => $row->diskon,
+        		'id_kategori' => $row->id_kategori,
+        		'keterangan' => $row->keterangan,
+        		'gambar' => $row->gambar,
+        		'created' => $row->created,
+        		'modified' => $row->modified,
+        	    );
+              $this->title_page('Data Barang');
+              $this->load_theme('scm_barang/scm_barang_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_barang'));
@@ -87,7 +85,7 @@ class Scm_barang extends MY_Controller
       	    'kode_barang' => $kode_barang,
       	    'nama_barang' => set_value('nama_barang'),
       	    'stock' => set_value('stock'),
-      	    'satuan' => set_value('satuan'),
+      	    'id_satuan' => set_value('id_satuan'),
       	    'harga_jual' => set_value('harga_jual'),
       	    'harga_beli' => set_value('harga_beli'),
       	    'diskon' => set_value('diskon'),
@@ -97,9 +95,10 @@ class Scm_barang extends MY_Controller
       	    'created' => set_value('created'),
       	    'modified' => set_value('modified'),
       	   );
+          $data['satuan']     =$this->scm_library->satuan_barang();
           $data['kategori_barang'] = $this->kategori_model->get_all();
           $this->title_page('Data Barang');
-          $this->load_theme('scm_barang/add', $data);
+          $this->load_theme('scm_barang/form', $data);
     }
 
     public function create_action()
@@ -120,15 +119,15 @@ class Scm_barang extends MY_Controller
     		'kode_barang' => $this->input->post('kode_barang',TRUE),
     		'nama_barang' => $this->input->post('nama_barang',TRUE),
     		'stock' => $this->input->post('stock',TRUE),
-    		'satuan' => $this->input->post('satuan',TRUE),
     		'harga_jual' => $this->input->post('harga_jual',TRUE),
     		'harga_beli' => $this->input->post('harga_beli',TRUE),
     		'diskon' => $this->input->post('diskon',TRUE),
     		'id_kategori' => $this->input->post('id_kategori',TRUE),
+        'id_satuan' => $this->input->post('id_satuan',TRUE),
     		'keterangan' => $this->input->post('keterangan',TRUE),
     		'gambar' => $gambar,
     		'created' => $this->date_now(),
-    	    );
+    	   );
 
         $this->Scm_barang_model->insert($data);
         $this->session->set_flashdata('message', 'Create Record Success');
@@ -180,7 +179,7 @@ class Scm_barang extends MY_Controller
                 if (move_uploaded_file($file["gambar"]["tmp_name"], $target_file)) {
                     // echo "The file ". basename( $file["gambar"]["name"]). " has been uploaded.";
                 } else {
-                    // echo "Sorry, there was an error uploading your file.";
+                  // echo "Sorry, there was an error uploading your file.";
                 }
             }
 
@@ -195,28 +194,30 @@ class Scm_barang extends MY_Controller
 
     public function update($id)
     {
+        $this->load->model('../modules/kategori/models/kategori_model');
         $row = $this->Scm_barang_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('scm_barang/update_action'),
-		'id_barang' => set_value('id_barang', $row->id_barang),
-		'id_user' => set_value('id_user', $row->id_user),
-		'kode_barang' => set_value('kode_barang', $row->kode_barang),
-		'nama_barang' => set_value('nama_barang', $row->nama_barang),
-		'stock' => set_value('stock', $row->stock),
-		'satuan' => set_value('satuan', $row->satuan),
-		'harga_jual' => set_value('harga_jual', $row->harga_jual),
-		'harga_beli' => set_value('harga_beli', $row->harga_beli),
-		'diskon' => set_value('diskon', $row->diskon),
-		'id_kategori' => set_value('id_kategori', $row->id_kategori),
-		'keterangan' => set_value('keterangan', $row->keterangan),
-		'gambar' => set_value('gambar', $row->gambar),
-		'created' => set_value('created', $row->created),
-		'modified' => set_value('modified', $row->modified),
-	    );
-            $this->load_theme('scm_barang/scm_barang_form', $data);
+            		'id_barang' => set_value('id_barang', $row->id_barang),
+            		'id_user' => set_value('id_user', $row->id_user),
+            		'kode_barang' => set_value('kode_barang', $row->kode_barang),
+            		'nama_barang' => set_value('nama_barang', $row->nama_barang),
+            		'stock' => set_value('stock', $row->stock),
+            		'id_satuan' => set_value('id_satuan', $row->id_satuan),
+            		'harga_jual' => set_value('harga_jual', $row->harga_jual),
+            		'harga_beli' => set_value('harga_beli', $row->harga_beli),
+            		'diskon' => set_value('diskon', $row->diskon),
+            		'id_kategori' => set_value('id_kategori', $row->id_kategori),
+            		'keterangan' => set_value('keterangan', $row->keterangan),
+            		'gambar' => set_value('gambar', $row->gambar),
+            		'created' => set_value('created', $this->date_now())
+            	    );
+            $data['satuan'] = $this->scm_library->satuan_barang();
+            $data['kategori_barang'] = $this->kategori_model->get_all();
+            $this->load_theme('scm_barang/form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_barang'));
@@ -225,26 +226,41 @@ class Scm_barang extends MY_Controller
 
     public function update_action()
     {
+        $upload_file = $_FILES;
         $this->_rules();
-
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_barang', TRUE));
         } else {
+          $id  = $this->input->post('id_barang', TRUE);
+          $row = $this->Scm_barang_model->get_by_id($id);
+
+          $upload = $this->uploaded_image($upload_file);
+
+          if ($_FILES['gambar']['name'] == TRUE) {
+            if ($upload->status == 1) {
+              $gambar = $upload->gambar;
+            }else{
+              $gambar = $upload->gambar;
+            }
+          }else{
+              $gambar = $row->gambar;
+          }
+
+
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_barang' => $this->input->post('kode_barang',TRUE),
-		'nama_barang' => $this->input->post('nama_barang',TRUE),
-		'stock' => $this->input->post('stock',TRUE),
-		'satuan' => $this->input->post('satuan',TRUE),
-		'harga_jual' => $this->input->post('harga_jual',TRUE),
-		'harga_beli' => $this->input->post('harga_beli',TRUE),
-		'diskon' => $this->input->post('diskon',TRUE),
-		'id_kategori' => $this->input->post('id_kategori',TRUE),
-		'keterangan' => $this->input->post('keterangan',TRUE),
-		'gambar' => $this->input->post('gambar',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
+            'id_user' => $this->input->post('id_user',TRUE),
+            'kode_barang' => $this->input->post('kode_barang',TRUE),
+            'nama_barang' => $this->input->post('nama_barang',TRUE),
+            'stock' => $this->input->post('stock',TRUE),
+            'id_satuan' => $this->input->post('id_satuan',TRUE),
+            'harga_jual' => $this->input->post('harga_jual',TRUE),
+            'harga_beli' => $this->input->post('harga_beli',TRUE),
+            'diskon' => $this->input->post('diskon',TRUE),
+            'id_kategori' => $this->input->post('id_kategori',TRUE),
+            'keterangan' => $this->input->post('keterangan',TRUE),
+            'gambar' => $gambar,
+            'modified' => $this->input->post('created',TRUE)
+            );
 
             $this->Scm_barang_model->update($this->input->post('id_barang', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -266,24 +282,13 @@ class Scm_barang extends MY_Controller
         }
     }
 
-    public function _rules()
-    {
-	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
-	$this->form_validation->set_rules('kode_barang', 'kode barang', 'trim|required');
-	$this->form_validation->set_rules('nama_barang', 'nama barang', 'trim|required');
-	$this->form_validation->set_rules('stock', 'stock', 'trim|required');
-	$this->form_validation->set_rules('satuan', 'satuan', 'trim|required');
-	$this->form_validation->set_rules('harga_jual', 'harga jual', 'trim|required|numeric');
-	$this->form_validation->set_rules('harga_beli', 'harga beli', 'trim|required|numeric');
-	$this->form_validation->set_rules('diskon', 'diskon', 'trim|required|numeric');
-	$this->form_validation->set_rules('id_kategori', 'id kategori', 'trim|required');
-	$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
-	$this->form_validation->set_rules('gambar', 'gambar', 'trim|required');
-	$this->form_validation->set_rules('created', 'created', 'trim|required');
-	$this->form_validation->set_rules('modified', 'modified', 'trim|required');
+    public function _rules(){
+      	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
+      	$this->form_validation->set_rules('kode_barang', 'kode barang', 'trim|required');
+      	$this->form_validation->set_rules('nama_barang', 'nama barang', 'trim|required');
 
-	$this->form_validation->set_rules('id_barang', 'id_barang', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      	$this->form_validation->set_rules('id_barang', 'id_barang', 'trim');
+      	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()
@@ -363,9 +368,3 @@ class Scm_barang extends MY_Controller
     }
 
 }
-
-/* End of file Scm_barang.php */
-/* Location: ./application/controllers/Scm_barang.php */
-/* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2017-04-07 12:26:54 */
-/* http://harviacode.com */

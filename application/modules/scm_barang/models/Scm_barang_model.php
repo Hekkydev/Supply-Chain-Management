@@ -31,44 +31,29 @@ class Scm_barang_model extends CI_Model
 
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('id_barang', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_barang', $q);
-	$this->db->or_like('nama_barang', $q);
-	$this->db->or_like('stock', $q);
-	$this->db->or_like('satuan', $q);
-	$this->db->or_like('harga_jual', $q);
-	$this->db->or_like('harga_beli', $q);
-	$this->db->or_like('diskon', $q);
-	$this->db->or_like('id_kategori', $q);
-	$this->db->or_like('keterangan', $q);
-	$this->db->or_like('gambar', $q);
-	$this->db->or_like('created', $q);
-	$this->db->or_like('modified', $q);
-	$this->db->from($this->table);
-        return $this->db->count_all_results();
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->join('scm_barang_kategori', 'scm_barang_kategori.id_kategori = scm_barang.id_kategori', 'left');
+        $this->db->join('scm_barang_satuan', 'scm_barang_satuan.id_satuan = scm_barang.id_satuan', 'left');
+        $this->db->where('deleted',NULL);
+        $this->db->where('nama_barang LIKE','%'.$q.'%');
+        $select =  $this->db->get()->result();
+        return count($select);
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->join('scm_barang_kategori', 'scm_barang_kategori.id_kategori = scm_barang.id_kategori', 'left');
+        $this->db->join('scm_barang_satuan', 'scm_barang_satuan.id_satuan = scm_barang.id_satuan', 'left');
+        $this->db->where('deleted',NULL);
+        $this->db->where('nama_barang LIKE','%'.$q.'%');
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_barang', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_barang', $q);
-	$this->db->or_like('nama_barang', $q);
-	$this->db->or_like('stock', $q);
-	$this->db->or_like('satuan', $q);
-	$this->db->or_like('harga_jual', $q);
-	$this->db->or_like('harga_beli', $q);
-	$this->db->or_like('diskon', $q);
-	$this->db->or_like('id_kategori', $q);
-	$this->db->or_like('keterangan', $q);
-	$this->db->or_like('gambar', $q);
-	$this->db->or_like('created', $q);
-	$this->db->or_like('modified', $q);
-	$this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
+        $this->db->limit($limit, $start);
+        return $this->db->get()->result();
     }
+
 
     // insert data
     function insert($data)
@@ -86,12 +71,16 @@ class Scm_barang_model extends CI_Model
     // delete data
     function delete($id)
     {
+        $data = array(
+          'deleted'=>date('Y-m-d H:i:s'),
+        );
         $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
+        $this->db->update($this->table,$data);
     }
 
     public function get_product()
     {
+      $this->db->where('deleted',NULL);
       $this->db->order_by($this->id, $this->order);
       return $this->db->get($this->table)->result_object();
     }
@@ -111,7 +100,7 @@ class Scm_barang_model extends CI_Model
     {
         $q = $this->db->query("select MAX(RIGHT(kode_barang,3)) as kd_max from scm_barang");
         $kd = "";
-        if($q->num_rows()>0)
+        if($q->num_rows() > 0)
         {
             foreach($q->result() as $k)
             {

@@ -33,7 +33,7 @@ class Sppbe_model extends CI_Model
     function total_rows($q = NULL) {
         $this->db->like('id_spbbe', $q);
 	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_spbbe', $q);
+	$this->db->or_like('kode_sppbe', $q);
 	$this->db->or_like('nama_sppbe', $q);
 	$this->db->or_like('alamat_sppbe', $q);
 	$this->db->or_like('telp_sppbe', $q);
@@ -49,7 +49,7 @@ class Sppbe_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id_spbbe', $q);
 	$this->db->or_like('id_user', $q);
-	$this->db->or_like('kode_spbbe', $q);
+	$this->db->or_like('kode_sppbe', $q);
 	$this->db->or_like('nama_sppbe', $q);
 	$this->db->or_like('alamat_sppbe', $q);
 	$this->db->or_like('telp_sppbe', $q);
@@ -76,28 +76,28 @@ class Sppbe_model extends CI_Model
     // delete data
     function delete($id)
     {
+        $data = array('deleted'=>date('Y-m-d H:i:s'));
         $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
+        $this->db->update($this->table,$data);
     }
-
 
     public function generate_auto_kode()
     {
-      $q = $this->db->query("select MAX(RIGHT(kode_sppbe,3)) as kd_max from scm_sppbe");
-      $kd = "";
-      if($q->num_rows()>0)
-      {
-          foreach($q->result() as $k)
-          {
-              $tmp = ((int)$k->kd_max)+1;
-              $kd = sprintf("%03s", $tmp);
-          }
-      }
-      else
-      {
-          $kd = "001";
-      }
-      return "SPPBE".$kd;
+        $q = $this->db->query("select MAX(RIGHT(kode_sppbe,3)) as kd_max from scm_sppbe");
+        $kd = "";
+        if($q->num_rows()>0)
+        {
+            foreach($q->result() as $k)
+            {
+                $tmp = ((int)$k->kd_max)+1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        }
+        else
+        {
+            $kd = "001";
+        }
+        return "SPPBE".$kd;
     }
 
 }

@@ -1,7 +1,5 @@
 <?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Scm_agen extends MY_Controller
 {
@@ -19,11 +17,11 @@ class Scm_agen extends MY_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'scm_agen/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'scm_agen/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'scm_agen/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'scm_agen/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'scm_agen/index.html';
-            $config['first_url'] = base_url() . 'scm_agen/index.html';
+            $config['base_url'] = base_url() . 'scm_agen/index';
+            $config['first_url'] = base_url() . 'scm_agen/index';
         }
 
         $config['per_page'] = 10;
@@ -50,17 +48,17 @@ class Scm_agen extends MY_Controller
         $row = $this->Scm_agen_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_agen' => $row->id_agen,
-		'id_user' => $row->id_user,
-		'kode_agen' => $row->kode_agen,
-		'nama_agen' => $row->nama_agen,
-		'no_telp_agen' => $row->no_telp_agen,
-		'alamat_agen' => $row->alamat_agen,
-		'kota' => $row->kota,
-		'kelurahan' => $row->kelurahan,
-		'created' => $row->created,
-		'modified' => $row->modified,
-	    );
+        		'id_agen' => $row->id_agen,
+        		'id_user' => $row->id_user,
+        		'kode_agen' => $row->kode_agen,
+        		'nama_agen' => $row->nama_agen,
+        		'no_telp_agen' => $row->no_telp_agen,
+        		'alamat_agen' => $row->alamat_agen,
+        		'kota' => $row->kota,
+        		'kelurahan' => $row->kelurahan,
+        		'created' => $row->created,
+        		'modified' => $row->modified,
+        	    );
             $this->title_page("Data Agen");
             $this->load_theme('scm_agen/scm_agen_read', $data);
         } else {
@@ -74,17 +72,16 @@ class Scm_agen extends MY_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('scm_agen/create_action'),
-	    'id_agen' => set_value('id_agen'),
-	    'id_user' => set_value('id_user'),
-	    'kode_agen' => set_value('kode_agen'),
-	    'nama_agen' => set_value('nama_agen'),
-	    'no_telp_agen' => set_value('no_telp_agen'),
-	    'alamat_agen' => set_value('alamat_agen'),
-	    'kota' => set_value('kota'),
-	    'kelurahan' => set_value('kelurahan'),
-	    'created' => set_value('created'),
-	    'modified' => set_value('modified'),
-	);
+      	    'id_agen' => set_value('id_agen'),
+      	    'id_user' => set_value('id_user',$this->account->id_user),
+      	    'kode_agen' => set_value('kode_agen',$this->scm_library->kode_agen()),
+      	    'nama_agen' => set_value('nama_agen'),
+      	    'no_telp_agen' => set_value('no_telp_agen'),
+      	    'alamat_agen' => set_value('alamat_agen'),
+      	    'kota' => set_value('kota'),
+      	    'kelurahan' => set_value('kelurahan'),
+      	    'created' => set_value('created',$this->date_now())
+      	);
         $this->title_page("Data Agen");
         $this->load_theme('scm_agen/scm_agen_form', $data);
     }
@@ -97,16 +94,15 @@ class Scm_agen extends MY_Controller
             $this->create();
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_agen' => $this->input->post('kode_agen',TRUE),
-		'nama_agen' => $this->input->post('nama_agen',TRUE),
-		'no_telp_agen' => $this->input->post('no_telp_agen',TRUE),
-		'alamat_agen' => $this->input->post('alamat_agen',TRUE),
-		'kota' => $this->input->post('kota',TRUE),
-		'kelurahan' => $this->input->post('kelurahan',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
+        		'id_user' => $this->input->post('id_user',TRUE),
+        		'kode_agen' => $this->input->post('kode_agen',TRUE),
+        		'nama_agen' => $this->input->post('nama_agen',TRUE),
+        		'no_telp_agen' => $this->input->post('no_telp_agen',TRUE),
+        		'alamat_agen' => $this->input->post('alamat_agen',TRUE),
+        		'kota' => $this->input->post('kota',TRUE),
+        		'kelurahan' => $this->input->post('kelurahan',TRUE),
+        		'created' => $this->input->post('created',TRUE),
+        	    );
 
             $this->Scm_agen_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -122,17 +118,16 @@ class Scm_agen extends MY_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('scm_agen/update_action'),
-		'id_agen' => set_value('id_agen', $row->id_agen),
-		'id_user' => set_value('id_user', $row->id_user),
-		'kode_agen' => set_value('kode_agen', $row->kode_agen),
-		'nama_agen' => set_value('nama_agen', $row->nama_agen),
-		'no_telp_agen' => set_value('no_telp_agen', $row->no_telp_agen),
-		'alamat_agen' => set_value('alamat_agen', $row->alamat_agen),
-		'kota' => set_value('kota', $row->kota),
-		'kelurahan' => set_value('kelurahan', $row->kelurahan),
-		'created' => set_value('created', $row->created),
-		'modified' => set_value('modified', $row->modified),
-	    );
+            		'id_agen' => set_value('id_agen', $row->id_agen),
+            		'id_user' => set_value('id_user', $row->id_user),
+            		'kode_agen' => set_value('kode_agen', $row->kode_agen),
+            		'nama_agen' => set_value('nama_agen', $row->nama_agen),
+            		'no_telp_agen' => set_value('no_telp_agen', $row->no_telp_agen),
+            		'alamat_agen' => set_value('alamat_agen', $row->alamat_agen),
+            		'kota' => set_value('kota', $row->kota),
+            		'kelurahan' => set_value('kelurahan', $row->kelurahan),
+            		'created' => set_value('created', $this->date_now())
+            	    );
             $this->title_page("Data Agen");
             $this->load_theme('scm_agen/scm_agen_form', $data);
         } else {
@@ -149,16 +144,15 @@ class Scm_agen extends MY_Controller
             $this->update($this->input->post('id_agen', TRUE));
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'kode_agen' => $this->input->post('kode_agen',TRUE),
-		'nama_agen' => $this->input->post('nama_agen',TRUE),
-		'no_telp_agen' => $this->input->post('no_telp_agen',TRUE),
-		'alamat_agen' => $this->input->post('alamat_agen',TRUE),
-		'kota' => $this->input->post('kota',TRUE),
-		'kelurahan' => $this->input->post('kelurahan',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-	    );
+        		'id_user' => $this->input->post('id_user',TRUE),
+        		'kode_agen' => $this->input->post('kode_agen',TRUE),
+        		'nama_agen' => $this->input->post('nama_agen',TRUE),
+        		'no_telp_agen' => $this->input->post('no_telp_agen',TRUE),
+        		'alamat_agen' => $this->input->post('alamat_agen',TRUE),
+        		'kota' => $this->input->post('kota',TRUE),
+        		'kelurahan' => $this->input->post('kelurahan',TRUE),
+        		'modified' => $this->input->post('created',TRUE)
+        	  );
 
             $this->Scm_agen_model->update($this->input->post('id_agen', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -182,18 +176,12 @@ class Scm_agen extends MY_Controller
 
     public function _rules()
     {
-	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
-	$this->form_validation->set_rules('kode_agen', 'kode agen', 'trim|required');
-	$this->form_validation->set_rules('nama_agen', 'nama agen', 'trim|required');
-	$this->form_validation->set_rules('no_telp_agen', 'no telp agen', 'trim|required');
-	$this->form_validation->set_rules('alamat_agen', 'alamat agen', 'trim|required');
-	$this->form_validation->set_rules('kota', 'kota', 'trim|required');
-	$this->form_validation->set_rules('kelurahan', 'kelurahan', 'trim|required');
-	$this->form_validation->set_rules('created', 'created', 'trim|required');
-	$this->form_validation->set_rules('modified', 'modified', 'trim|required');
+        	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
+        	$this->form_validation->set_rules('kode_agen', 'kode agen', 'trim|required');
+        	$this->form_validation->set_rules('nama_agen', 'nama agen', 'trim|required');
 
-	$this->form_validation->set_rules('id_agen', 'id_agen', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        	$this->form_validation->set_rules('id_agen', 'id_agen', 'trim');
+        	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()

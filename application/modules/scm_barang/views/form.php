@@ -1,4 +1,5 @@
 <?php echo form_open_multipart($action);?>
+<input type="hidden" name="id_user" value="<?php echo $id_user;?>">
         <div class="row">
           <div class="col-lg-12">
                 <div class="row">
@@ -21,7 +22,16 @@
 
                           <div class="form-group">
                                 <label for="int">Satuan <?php echo form_error('satuan') ?></label>
-                                <input type="text" class="form-control" name="satuan" id="satuan" placeholder="Satuan" value="<?php echo $satuan; ?>" />
+                                <select type="text" class="form-control" name="id_satuan" id="id_satuan">
+                                  <?php foreach ($satuan as $s): ?>
+                                    <?php if ($id_satuan == $s->id_satuan): ?>
+                                        <option value="<?php echo $s->id_satuan ?>" selected=""><?php echo $s->tipe_satuan ?></option>
+                                      <?php else: ?>
+                                        <option value="<?php echo $s->id_satuan ?>"><?php echo $s->tipe_satuan ?></option>
+                                    <?php endif; ?>
+
+                                  <?php endforeach; ?>
+                                </select>
                             </div>
 
                       </div>
@@ -65,10 +75,18 @@
                                 <label for="keterangan">Keterangan <?php echo form_error('keterangan') ?></label>
                                 <textarea class="form-control" rows="3" name="keterangan" id="keterangan" placeholder="Keterangan"><?php echo $keterangan; ?></textarea>
                             </div>
+
+                        <?php if ($gambar == TRUE): ?>
+                            <div class="form-group">
+                              <img src="<?php echo base_url('upload/'.$gambar.'')?>" alt="" class="img-responsive" style="width:150px;">
+                            </div>
+                        <?php endif; ?>
+
                       </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
+                    <input type="hidden" name="created" value="<?php echo $created; ?>" />
                     <input type="hidden" name="id_barang" value="<?php echo $id_barang; ?>" />
                    <button type="submit" class="btn btn-primary" name="submit"><?php echo $button ?></button>
                    <a href="<?php echo site_url('scm_barang') ?>" class="btn btn-default">Cancel</a>
