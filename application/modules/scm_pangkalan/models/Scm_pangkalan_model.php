@@ -9,6 +9,7 @@ class Scm_pangkalan_model extends CI_Model
     public $table = 'scm_pangkalan';
     public $id = 'id_pangkalan';
     public $order = 'DESC';
+    public $kode = 'kode_pangkalan';
 
     function __construct()
     {
@@ -21,7 +22,11 @@ class Scm_pangkalan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
-
+    function get_by_kode($kode)
+    {
+        $this->db->where($this->kode, $kode);
+        return $this->db->get($this->table)->row();
+    }
     // get data by id
     function get_by_id($id)
     {

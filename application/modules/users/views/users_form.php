@@ -12,6 +12,18 @@
 
     </select>
 </div>
+
+<div class="form-group">
+  <select class="form-control" name="kode_akses_posisition">
+    <?php
+
+    $this->akses = $this->scm_library->akses_posision();
+    foreach ($this->akses as $akses) {
+      echo '<option value="'.$akses['kode'].'"> '.$akses['posisi'].' - '.strtoupper($akses['nama_posisi']).' ('.$akses['kode'].') </option>';
+    }
+     ?>
+  </select>
+</div>
 <div class="form-group">
     <label for="varchar">Kode User <?php echo form_error('kode_user') ?></label>
     <input type="text" class="form-control" name="kode_user" id="kode_user" placeholder="Kode User" value="<?php echo $kode_user; ?>" />

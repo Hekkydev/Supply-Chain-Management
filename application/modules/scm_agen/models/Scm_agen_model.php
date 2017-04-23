@@ -9,7 +9,7 @@ class Scm_agen_model extends CI_Model
     public $table = 'scm_agen';
     public $id = 'id_agen';
     public $order = 'DESC';
-
+    public $kode  = 'kode_agen';
     function __construct()
     {
         parent::__construct();
@@ -19,6 +19,7 @@ class Scm_agen_model extends CI_Model
     function get_all()
     {
 
+        $this->db->where('deleted',NULL);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -29,6 +30,13 @@ class Scm_agen_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_by_kode($kode)
+    {
+        $this->db->where($this->kode, $kode);
+        return $this->db->get($this->table)->row();
+    }
+
 
     // get total rows
     function total_rows($q = NULL) {

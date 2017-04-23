@@ -9,7 +9,7 @@ class Sppbe_model extends CI_Model
     public $table = 'scm_sppbe';
     public $id = 'id_spbbe';
     public $order = 'DESC';
-
+    public $kode = 'kode_sppbe';
     function __construct()
     {
         parent::__construct();
@@ -21,7 +21,11 @@ class Sppbe_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
-
+    function get_by_kode($kode)
+    {
+        $this->db->where($this->kode, $kode);
+        return $this->db->get($this->table)->row();
+    }
     // get data by id
     function get_by_id($id)
     {

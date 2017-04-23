@@ -80,6 +80,101 @@ class SCM_library
         return $result;
     }
 
+    public function akses_posision()
+    {
+          $this->SCM->load->model($this->model_sppbe);
+          $this->SCM->load->model($this->model_pangkalan);
+          $this->SCM->load->model($this->model_agen);
+
+          $agen = $this->SCM->scm_agen_model->get_all();
+          $sppbe = $this->SCM->sppbe_model->get_all();
+          $pangkalan  = $this->SCM->scm_pangkalan_model->get_all();
+
+          foreach ($agen as $a) {
+              $result[] = array('kode'=>$a->kode_agen,'posisi'=>'AGEN','nama_posisi'=>$a->nama_agen);
+          }
+          foreach ($sppbe as $s) {
+              $result[] = array('kode'=>$s->kode_sppbe,'posisi'=>'SPPBE','nama_posisi'=>$s->nama_sppbe);
+          }
+          foreach ($pangkalan as $p) {
+              $result[] = array('kode'=>$p->kode_pangkalan,'posisi'=>'PANGKALAN','nama_posisi'=>$p->nama_pangkalan);
+          }
+          return  $result;
+    }
+
+    public function include_position($kode_akses)
+    {
+            $r = array();
+            foreach ($this->akses_posision() as $akses) {
+               $a =  $akses['kode'];
+               array_push($r,$a);
+            }
+
+            if (in_array($kode_akses,$r)) {
+              $result = 1;
+            }else{
+              $result = 0;
+            }
+
+            if ($result == 1) {
+               $value_akses = $this->search_posisition($kode_akses);
+               return $value_akses;
+            }else{
+              return NULL;
+            }
+
+    }
+
+    public function search_posisition($kode_akses)
+    {
+            $this->SCM->load->model($this->model_sppbe);
+            $this->SCM->load->model($this->model_pangkalan);
+            $this->SCM->load->model($this->model_agen);
+            $agen = $this->SCM->scm_agen_model->get_by_kode($kode_akses);
+            $sppbe = $this->SCM->sppbe_model->get_by_kode($kode_akses);
+            $pangkalan = $this->SCM->scm_pangkalan_model->get_by_kode($kode_akses);
+            if ($agen == TRUE) {
+                  return $data = array(
+                    'kode_usaha'=>$agen->kode_agen,
+                    'nama_usaha'=>$agen->nama_agen,
+                    'alamat'=>$agen->alamat_agen,
+                    'telephone'=>$agen->no_telp_agen,
+                    'kota'=>$agen->kota,
+                    'kelurahan'=>$agen->kelurahan,
+                    'terdaftar'=>$agen->created
+                  );
+            }
+
+            if ($sppbe == TRUE) {
+              return $data = array(
+                'kode_usaha'=>$sppbe->kode_sppbe,
+                'nama_usaha'=>$sppbe->nama_sppbe,
+                'alamat'=>$sppbe->alamat_sppbe,
+                'telephone'=>$sppbe->telp_sppbe,
+                'kota'=>'',
+                'kelurahan'=>'',
+                'terdaftar'=>$sppbe->created
+              );
+            }
+
+
+            if ($pangkalan == TRUE) {
+              return $data = array(
+                'kode_usaha'=>$pangkalan->kode_pangkalan,
+                'nama_usaha'=>$pangkalan->nama_pangkalan,
+                'alamat'=>$pangkalan->alamat_pangkalan,
+                'telephone'=>$pangkalan->no_telp,
+                'kota'=>'',
+                'kelurahan'=>$pangkalan->kelurahan,
+                'terdaftar'=>$pangkalan->created_date
+              );
+            }
+
+
+
+
+    }
+
 
     public function menu($link,$title,$icon)
     {
