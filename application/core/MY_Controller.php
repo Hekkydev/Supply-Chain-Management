@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller
     protected $helper = array('form','url','scm','rupiah');
     protected $library = array('session','scm_library','upload');
     protected $model   = array(
+        '../modules/home/models/App_model',
         '../modules/users/models/Users_model',
         '../modules/users_group/models/Users_group_model',
         '../modules/auth/models/auth_model',
@@ -48,6 +49,28 @@ class MY_Controller extends CI_Controller
             $account = $this->auth_model->account_login($this->session->userdata('kode_user'))->first_row();
             return $account;
         }
+    }
+
+    public function authentikasi_client()
+    {
+        $status = $this->session->userdata('logged_in');
+        if($status != 1)
+        {
+            return $account = array();
+        }else{
+            $account = $this->auth_model->account_login($this->session->userdata('kode_user'))->first_row();
+            return $account;
+        }
+    }
+
+    public function registrasi_konsumen_my_controller($data)
+    {
+        return $this->Users_model->insert($data);
+    }
+
+    public function sending_pesan($data)
+    {
+          return $simpan = $this->App_model->sending_pesan($data);
     }
 
     public function date_now()

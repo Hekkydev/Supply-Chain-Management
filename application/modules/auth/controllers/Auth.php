@@ -53,9 +53,31 @@ class Auth extends MY_Controller{
 
   }
 
+  function autorization_client()
+  {
+    $post = (object) $_POST;
+    $username = strip_tags($post->username);
+    $password = strip_tags($post->password);
+
+
+    if($this->login($username,$password) == 1)
+    {
+      echo json_encode(array('status'=>1,'url'=>'home',''));
+    }else{
+      echo json_encode(array('status'=>0,'url'=>'client_area','message'=>'Gagal login!'));
+    }
+
+  }
+
   function logout()
   {
     $this->session->unset_userdata('logged_in');
     redirect('auth');
+  }
+
+  function logout_client()
+  {
+    $this->session->unset_userdata('logged_in');
+    redirect('/');
   }
 }

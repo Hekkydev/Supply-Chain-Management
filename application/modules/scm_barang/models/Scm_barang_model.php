@@ -98,6 +98,9 @@ class Scm_barang_model extends CI_Model
 
     public function get_product_detail($num)
     {
+      $this->db->join('scm_barang_satuan', 'scm_barang_satuan.id_satuan = scm_barang_satuan.id_satuan', 'left');
+      $this->db->join('scm_status', 'scm_status.id_status = scm_barang.id_status', 'left');
+      $this->db->join('scm_barang_kategori', 'scm_barang_kategori.id_kategori = scm_barang.id_kategori', 'left');
       $this->db->where('id_barang', $num);
       return $this->db->get($this->table)->first_row();
     }

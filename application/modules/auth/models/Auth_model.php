@@ -11,8 +11,9 @@ class Auth_model extends CI_Model{
 
   public function cek_account($username,$password)
   {
-            $this->db->where('password', $password);
+            $this->db->where('password', md5($password));
             $this->db->where('username', $username);
+            $this->db->where('id_status',1);
     return $this->db->get($this->table);
   }
 

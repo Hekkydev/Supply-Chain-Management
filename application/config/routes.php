@@ -18,5 +18,7 @@ $route['product'] = "home/product";
 $route['product/(:num)'] = "home/product/product_detail/$1";
 $route['client_area'] = "home/client_area";
 $route['client_area/register'] = "home/client_area/register";
+$route['client_area/register_client'] = "home/client_area/register_client";
 $route['hubungi_kami'] = "home/hubungi_kami";
+$route['hubungi_kami/send_message'] = "home/hubungi_kami/send_message";
 $route['about'] = "home/home/about";

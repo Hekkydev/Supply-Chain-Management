@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="<?php echo base_url()?>/assets/bootstrap/css/bootstrap.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo base_url()?>/assets/front/css/main.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo base_url()?>/assets/front/css/scm-red.css" type="text/css" />
+        <script src="<?php echo base_url()?>assets/js/jquery.min.js" charset="utf-8"></script>
         <style media="screen">
           .btn-white{
             background: #FFF;

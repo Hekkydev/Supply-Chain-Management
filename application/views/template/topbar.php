@@ -45,8 +45,12 @@
                                 </li>
                             </ul>
                         </li>
-                         <li><a href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-sign-out"></i></a></li>
-                    </ul>
+                        <?php if ($account->id_group == 7): ?>
+                          <li><a href="<?php echo site_url('auth/logout_client') ?>"><i class="fa fa-sign-out"></i></a></li>
+                          <?php else: ?>
+                            <li><a href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-sign-out"></i></a></li>
+                        <?php endif; ?>
+                      </ul>
                 </div>
             </nav>
         </header>

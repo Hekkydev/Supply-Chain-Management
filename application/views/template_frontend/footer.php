@@ -4,7 +4,7 @@
             <div class="container">
 
                 <span class="copyright">
-                    Copyright 2017. Anissa Project Skripsi
+                    Copyright 2017  Supply Chain Management
                 </span>
 
                 <span class="links">
@@ -21,7 +21,7 @@
         <script type="text/javascript">
           function product_detail(num)
           {
-              window.location = "/product/"+num;
+              window.location.href = "<?php echo base_url('product')?>/"+num;
 
           }
         </script>

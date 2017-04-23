@@ -26,88 +26,60 @@
 
                          </div>
 
-                         <div class="row">
-                             <div class="col-xs-12 col-sm-6 col-lg-4 shopping-actions pull-right">
 
-
-                                 <div class="row">
-                                     <div class="col-xs-5">
-                                         <div class="form-group">
-                                             <label class="control-label">Quantity</label>
-                                         </div>
-                                     </div>
-                                     <div class="col-xs-7">
-                                         <input value="1" min="1" type="number" class="form-control input"/>
-                                     </div>
-                                 </div>
-
-                                 <div class="form-group">
-                                     <button class="btn btn-primary btn-block">
-                                         <i class="fa fa-shopping-cart"></i>
-                                         Tambahkan Ke Keranjang
-                                     </button>
-                                 </div>
-
-                             </div>
-
-                             <div class="col-xs-12 col-sm-6 col-lg-8 description">
-                                 <?php echo $item->keterangan ?>
-                             </div>
-                         </div><!-- Row / END -->
 
                          <div class="page-subheader">
-                             <h1>DETAIL BARANG</h1>
+                             <h1>INFORMASI PRODUK</h1>
                          </div>
 
                          <!-- Object info / START -->
                          <div class="block">
 
                              <div class="row datalist">
-
+                                <div class="col-lg-12">
+                                  <div class="info">
+                                    <span class="control-label">Keterangan:</span>
+                                    <br>
+                                    <p style="color:#333; font-weight:100;">
+                                      <?php echo $item->keterangan ?>
+                                    </p>
+                                  </div>
+                                </div>
                                  <div class="col-xs-12 col-sm-12 col-lg-6">
 
                                      <div class="info">
-                                         <span class="key">Color:</span>
-                                         <span class="value">Red</span>
+                                         <span class="key">Kode Barang:</span>
+                                         <span class="value"><?php echo $item->kode_barang; ?></span>
                                      </div>
 
                                      <div class="info">
-                                         <span class="key">Type:</span>
-                                         <span class="value">Rubbish</span>
+                                         <span class="key">Nama Barang:</span>
+                                         <span class="value"><?php echo $item->nama_barang ?></span>
                                      </div>
 
                                      <div class="info">
-                                         <span class="key">Year:</span>
-                                         <span class="value">1999</span>
+                                         <span class="key">Kategori Brang:</span>
+                                         <span class="value"><?php echo $item->nama_kategori ?></span>
                                      </div>
 
-                                     <div class="info">
-                                         <span class="key">Status:</span>
-                                         <span class="value">Used</span>
-                                     </div>
+
 
                                  </div><!-- Col / END -->
 
                                  <div class="col-xs-12 col-sm-12 col-lg-6">
 
                                      <div class="info">
-                                         <span class="key">Initial price:</span>
-                                         <span class="value">1,000 €</span>
+                                         <span class="key">Harga Barang:</span>
+                                         <span class="value"><?php echo rupiah($item->harga_jual) ?></span>
                                      </div>
 
                                      <div class="info">
-                                         <span class="key">Category:</span>
-                                         <span class="value">Things</span>
+                                         <span class="key">Satuan:</span>
+                                         <span class="value"><?php echo $item->tipe_satuan ?></span>
                                      </div>
-
                                      <div class="info">
-                                         <span class="key">Code:</span>
-                                         <span class="value">#29843657387</span>
-                                     </div>
-
-                                     <div class="info">
-                                         <span class="key">Focus:</span>
-                                         <span class="value">14</span>
+                                         <span class="key">Status:</span>
+                                         <span class="value"><?php echo ucfirst($item->tipe_status) ?></span>
                                      </div>
 
                                  </div><!-- Col / END -->
