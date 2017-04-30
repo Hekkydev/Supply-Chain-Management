@@ -12,12 +12,19 @@ class Menu extends MY_Controller
         parent::__construct();
         $this->account = $this->authentikasi();
         $this->account_posisition = $this->scm_library->include_position($this->account->kode_akses_position);
+
     }
 
     function index()
     {
         $group = $this->account->id_group;
         switch ($group) {
+          case '4':
+              $this->load_theme_dash("dashboard/index_admin_agen");
+            break;
+          case '5':
+              $this->load_theme_dash("dashboard/index_user_agen");
+            break;
           case '7':
               $this->load_theme_dash("dashboard/index_konsumen");
             break;

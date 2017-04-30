@@ -20,6 +20,8 @@ class SCM_library
         $this->model_agen = '../modules/scm_agen/models/scm_agen_model';
         $this->model_pangkalan = '../modules/scm_pangkalan/models/scm_pangkalan_model';
         $this->model_satuan_barang = '../modules/scm_barang_satuan/models/scm_barang_satuan_model';
+        $this->model_pembelian= '../modules/pembelian/models/pembelian_model';
+
     }
 
 
@@ -76,7 +78,14 @@ class SCM_library
     public function kode_pangkalan()
     {
         $this->SCM->load->model($this->model_pangkalan);
-        $result = $this->SCM->scm_pangkalan_model->generate_auto_kode();
+        $result = $this->SCM->pembelian_model->generate_auto_kode();
+        return $result;
+    }
+
+    public function kode_transaksi_pembelian()
+    {
+        $this->SCM->load->model($this->model_pembelian);
+        $result = $this->SCM->pembelian_model->generate_auto_kode();
         return $result;
     }
 

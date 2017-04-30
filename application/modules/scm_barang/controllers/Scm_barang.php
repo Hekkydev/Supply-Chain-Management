@@ -43,6 +43,12 @@ class Scm_barang extends MY_Controller
         $this->load_theme('scm_barang/scm_barang_list', $data);
     }
 
+
+    public function list_barang()
+    {
+        $data['item'] = $this->Scm_barang_model->get_product();
+        $this->load_theme('scm_barang/konsumen/list_item', $data);
+    }
     public function read($id)
     {
         $row = $this->Scm_barang_model->get_by_id($id);

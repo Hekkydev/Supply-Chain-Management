@@ -75,6 +75,7 @@ class Users extends MY_Controller
             'action' => site_url('users/create_action'),
       	    'id_user' => set_value('id_user'),
       	    'id_group' => set_value('id_group'),
+            'kode_akses_position'=>set_value('kode_akses_position'),
       	    'kode_user' => set_value('kode_user',$kode_user),
       	    'nama_lengkap' => set_value('nama_lengkap'),
       	    'no_telp' => set_value('no_telp'),
@@ -93,13 +94,15 @@ class Users extends MY_Controller
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
         		'kode_user' => $this->input->post('kode_user',TRUE),
+            'kode_akses_position'=>$this->input->post('kode_akses',TRUE),
         		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
         		'no_telp' => $this->input->post('no_telp',TRUE),
         		'username' => $this->input->post('username',TRUE),
-        		'password' => $this->input->post('password',TRUE),
+        		'password' => md5($this->input->post('password',TRUE)),
       	    'created' => $this->input->post('created',TRUE),
 	         );
 
+          //  print_r($data); die();
             $this->Users_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('users'));
@@ -116,6 +119,7 @@ class Users extends MY_Controller
                 'action' => site_url('users/update_action'),
             		'id_user' => set_value('id_user', $row->id_user),
             		'id_group' => set_value('id_group', $row->id_group),
+                'kode_akses_position'=>set_value('kode_akses_position',$row->kode_akses_position),
             		'kode_user' => set_value('kode_user', $row->kode_user),
             		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
             		'no_telp' => set_value('no_telp', $row->no_telp),
@@ -138,13 +142,14 @@ class Users extends MY_Controller
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
         		'kode_user' => $this->input->post('kode_user',TRUE),
+            'kode_akses_position'=>$this->input->post('kode_akses'),
         		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
         		'no_telp' => $this->input->post('no_telp',TRUE),
         		'username' => $this->input->post('username',TRUE),
         		'password' => $this->input->post('password',TRUE),
         		'created' => $this->input->post('created',TRUE),
         		'modified' => $this->date_now(),
-        	    );
+        	   );
 
             $this->Users_model->update($this->input->post('id_user', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -170,6 +175,7 @@ class Users extends MY_Controller
     {
 	$this->form_validation->set_rules('id_group', 'id group', 'trim|required');
 	$this->form_validation->set_rules('kode_user', 'kode user', 'trim|required');
+  $this->form_validation->set_rules('kode_akses_position', 'Management Rule', 'required|trim');
 	$this->form_validation->set_rules('nama_lengkap', 'nama lengkap', 'trim|required');
 	$this->form_validation->set_rules('no_telp', 'no telp', 'trim|required');
 	$this->form_validation->set_rules('username', 'username', 'trim|required');

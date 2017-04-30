@@ -14,8 +14,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
+
                 <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
+
+                    <ul class="nav navbar-nav ">
+
                         <li><a href="<?php echo site_url('about_page')?>"><i class="fa fa-info"></i></a></li>
                         <li><a href="<?php echo site_url('home')?>"><i class="fa fa-th"></i></a></li>
                         <li><a href="<?php echo site_url()?>" target="_blank"><i class="fa fa-desktop"></i></a></li>
@@ -32,7 +35,9 @@
                                     <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/avatar3.png') ?>" class="img-rounded" alt="User Image" />
                                     <p>
                                         <?php echo $account->nama_lengkap; ?>
-                                        <small>Member since Nov. 2012</small>
+                                        <?php if ($account_posisition['nama_usaha']): ?>
+                                            <small><i class="fa fa-map-marker"></i> <?php echo $account_posisition['nama_usaha']; ?></small>
+                                        <?php endif; ?>
                                     </p>
                                 </li>
 

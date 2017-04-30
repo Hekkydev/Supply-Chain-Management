@@ -10,7 +10,8 @@ class Pembelian extends MY_Controller
         parent::__construct();
         $this->account = $this->authentikasi();
         $this->load->model('Pembelian_model');
-        $this->load->library('form_validation');
+        $this->load->model('../modules/scm_barang/models/Scm_barang_model');
+        $this->load->library(array('form_validation','cart'));
     }
 
     public function index()
@@ -79,8 +80,143 @@ class Pembelian extends MY_Controller
             'deleted' => set_value('deleted'),
         );
         $this->title_page('Transaksi Pembelian');
+        $this->load_theme('pembelian/scm_pembelian_form', $data);
+        //$this->load_theme('pembelian/scm_pembelian_form', $data);
+    }
+
+
+    public function create_transaksi_pembelian_konsumen()
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('pembelian/create_action'),
+            'id_pembelian' => set_value('id_pembelian'),
+            'kode_pembelian' => set_value('kode_pembelian',$this->scm_library->kode_transaksi_pembelian()),
+            'tanggal_pembelian' => set_value('tanggal_pembelian'),
+            'keterangan' => set_value('keterangan'),
+            'created' => set_value('created'),
+            'modified' => set_value('modified'),
+            'deleted' => set_value('deleted'),
+        );
+        $data['account'] = $this->account;
+
+        $this->title_page('Transaksi Pembelian');
         $this->load_theme('pembelian/transaksi/add', $data);
         //$this->load_theme('pembelian/scm_pembelian_form', $data);
+    }
+
+    public function itemsList()
+    {
+
+          $data['item'] = $this->Scm_barang_model->get_product();
+          $this->load->view('pembelian/transaksi/list_item', $data);
+    }
+
+    public function cartlist()
+    {
+          $content = $this->load->view('pembelian/transaksi/list');
+    }
+
+
+    public function add_to_cart()
+    {
+
+       $id = $this->input->post('id_barang');
+       $qty = $this->input->post('qty');
+
+       $item = $this->Scm_barang_model->get_product_detail($id);
+       if ($item == TRUE) {
+         $data = array(
+          'id'      => $item->kode_barang,
+          'qty'     => $qty,
+          'price'   => $item->harga_jual,
+          'name'    => $item->nama_barang,
+          'options' => array()
+        );
+        $this->cart->insert($data);
+       }
+    }
+
+    public function remove_cart_id()
+    {
+      $id_barang =   $this->input->get('rowid');
+        $data = array(
+            'rowid' => $id_barang,
+            'qty'   => 0
+        );
+
+        $this->cart->update($data);
+    }
+
+
+    public function add_to_transaksi()
+    {
+          $data_transaksi_pembelian = array(
+            'id_user'=>$this->input->post('id_user'),
+            'kode_pembelian'=>$this->input->post('kode_pembelian'),
+            'tanggal_pembelian'=>$this->input->post('tanggal_pembelian'),
+            'keterangan'=>$this->input->post('keterangan'),
+            'created'=>$this->date_now(),
+          );
+
+
+          $data_transaksi_pengiriman = array(
+            'kode_pembelian'=>$this->input->post('kode_pembelian'),
+            'nama_penerima'=>$this->input->post('nama_penerima'),
+            'alamat_penerima'=>$this->input->post('alamat_penerima'),
+            'kota_penerima'=>$this->input->post('kota_penerima'),
+            'telp_penerima'=>$this->input->post('telp_penerima'),
+          );
+
+        $simpan_transaksi_pembelian = $this->db->insert('scm_pembelian', $data_transaksi_pembelian);
+        $simpan_transaksi_pengiriman = $this->db->insert('scm_pembelian_pengiriman', $data_transaksi_pengiriman);
+
+        foreach ($this->cart->contents() as $items):
+          $data_item_pembelian = array(
+              'kode_pembelian'=>$this->input->post('kode_pembelian'),
+              'kode_item'=>$items['id'],
+              'jumlah_item'=>$items['qty'],
+              'harga_item'=>$items['price'],
+              'created'=>$this->date_now(),
+          );
+
+          $simpan = $this->db->insert('scm_pembelian_item', $data_item_pembelian);
+        endforeach;
+        $this->cart->destroy();
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('pembelian/create_transaksi_pembelian_konsumen'));
+    }
+
+    public function laporan_for_konsumen()
+    {
+                $q = urldecode($this->input->get('q', TRUE));
+                $start = intval($this->input->get('start'));
+
+                if ($q <> '') {
+                    $config['base_url'] = base_url() . 'pembelian/laporan_for_konsumen?q=' . urlencode($q);
+                    $config['first_url'] = base_url() . 'pembelian/laporan_for_konsumen?q=' . urlencode($q);
+                } else {
+                    $config['base_url'] = base_url() . 'pembelian/laporan_for_konsumen';
+                    $config['first_url'] = base_url() . 'pembelian/laporan_for_konsumen';
+                }
+
+                $config['per_page'] = 10;
+                $config['page_query_string'] = TRUE;
+                $config['total_rows'] = $this->Pembelian_model->total_rows_pembelian($q,$this->account->id_user);
+                $pembelian = $this->Pembelian_model->get_limit_data_pembelian($config['per_page'], $start, $q,$this->account->id_user);
+
+                $this->load->library('pagination');
+                $this->pagination->initialize($config);
+
+                $data = array(
+                    'pembelian_data' => $pembelian,
+                    'q' => $q,
+                    'pagination' => $this->pagination->create_links(),
+                    'total_rows' => $config['total_rows'],
+                    'start' => $start,
+                );
+                $this->title_page("Laporan Pembelian");
+                $this->load_theme('pembelian/transaksi/list_laporan', $data);
     }
 
     public function create_action()

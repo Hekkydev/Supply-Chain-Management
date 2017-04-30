@@ -93,12 +93,16 @@ class MY_Controller extends CI_Controller
 
     public function app_menu()
     {
+        $this->scm_library->include_position($this->authentikasi()->kode_akses_position);
+        $id_group = $this->account->id_group;
+        $this->db->where('id_group', $id_group);
         return $this->db->get('scm_menu_link')->result_object();
     }
 
     public function load_theme($content,$data = null)
     {
         $this->data['account']          = $this->authentikasi();
+        $this->data['account_posisition'] = $this->scm_library->include_position($this->data['account']->kode_akses_position);
         $this->data['menu']             = $this->app_menu();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
@@ -110,6 +114,7 @@ class MY_Controller extends CI_Controller
     public function load_theme_dash($content,$data = null)
     {
         $this->data['account']          = $this->authentikasi();
+        $this->data['account_posisition'] = $this->scm_library->include_position($this->authentikasi()->kode_akses_position);
         $this->data['menu']             = $this->app_menu();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
