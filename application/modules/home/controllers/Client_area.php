@@ -55,6 +55,7 @@ class Client_area extends MY_Controller{
           }else{
             $data = array(
             'id_group' => $this->input->post('id_group'),
+            'id_status'=>7,
             'kode_user' => $this->input->post('kode_user'),
             'nama_lengkap' => $this->input->post('nama_lengkap'),
             'email' => $this->input->post('email'),
