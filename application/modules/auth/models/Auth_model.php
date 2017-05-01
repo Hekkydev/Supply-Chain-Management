@@ -13,7 +13,7 @@ class Auth_model extends CI_Model{
   {
             $this->db->where('password', md5($password));
             $this->db->where('username', $username);
-            $this->db->where('id_status',1);
+            $this->db->where('id_status',6);
     return $this->db->get($this->table);
   }
 

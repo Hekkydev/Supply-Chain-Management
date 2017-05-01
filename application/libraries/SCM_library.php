@@ -21,6 +21,9 @@ class SCM_library
         $this->model_pangkalan = '../modules/scm_pangkalan/models/scm_pangkalan_model';
         $this->model_satuan_barang = '../modules/scm_barang_satuan/models/scm_barang_satuan_model';
         $this->model_pembelian= '../modules/pembelian/models/pembelian_model';
+        $this->model_aplikasi = 'Aplikasi_model';
+
+        
 
     }
 
@@ -129,10 +132,11 @@ class SCM_library
                $value_akses = $this->search_posisition($kode_akses);
                return $value_akses;
             }else{
-              return NULL;
+               return  array('nama_usaha'=>NULL);
             }
 
     }
+    
 
     public function search_posisition($kode_akses)
     {
@@ -150,7 +154,8 @@ class SCM_library
                     'telephone'=>$agen->no_telp_agen,
                     'kota'=>$agen->kota,
                     'kelurahan'=>$agen->kelurahan,
-                    'terdaftar'=>$agen->created
+                    'terdaftar'=>$agen->created,
+                    'kategori'=>'AGEN',
                   );
             }
 
@@ -162,7 +167,8 @@ class SCM_library
                 'telephone'=>$sppbe->telp_sppbe,
                 'kota'=>'',
                 'kelurahan'=>'',
-                'terdaftar'=>$sppbe->created
+                'terdaftar'=>$sppbe->created,
+                'kategori'=>'SPPBE',
               );
             }
 
@@ -175,7 +181,8 @@ class SCM_library
                 'telephone'=>$pangkalan->no_telp,
                 'kota'=>'',
                 'kelurahan'=>$pangkalan->kelurahan,
-                'terdaftar'=>$pangkalan->created_date
+                'terdaftar'=>$pangkalan->created_date,
+                'kategori'=>'PANGKALAN',
               );
             }
 
@@ -195,6 +202,43 @@ class SCM_library
         $html .= '<h6 class="icon-title">'.$title.'</h6>';
         $html .= '</div></a></div>';
         return $html;
+    }
+
+    public function akun_status($tipe)
+    {
+
+        $this->SCM->load->model($this->model_aplikasi);
+
+        if($tipe == 'pengguna')
+        {
+            return $this->SCM->Aplikasi_model->status_pengguna();
+
+        }else{
+            return (object) array();
+        }
+
+    }
+
+
+    public function akses_group($tipe)
+    {
+                if($tipe == 3)
+                {
+                    return (object) array('2'=>'User SPPBE', '3'=>'Admin SPPBE');
+                }
+                else if($tipe == 4)
+                {
+                    return (object) array('4'=>'Admin Agen','5'=>'User Agen');
+                }else if($tipe == 5)
+                {
+                    return (object) array('5'=>'User Agen');
+                }else if($tipe == 6)
+                {
+                    return (object) array('6'=>'Pangkalan');
+                }else if($tipe == 7)
+                {
+                    return (object) array('7'=>'Konsumen');
+                }
     }
 
 

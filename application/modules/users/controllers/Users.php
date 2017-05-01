@@ -41,6 +41,7 @@ class Users extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        
         $this->title_page('Data Akun');
         $this->load_theme('users/users_list', $data);
     }
@@ -74,6 +75,7 @@ class Users extends MY_Controller
             'button' => 'Create',
             'action' => site_url('users/create_action'),
       	    'id_user' => set_value('id_user'),
+            'id_status'=>set_value('id_status'),
       	    'id_group' => set_value('id_group'),
             'kode_akses_position'=>set_value('kode_akses_position'),
       	    'kode_user' => set_value('kode_user',$kode_user),
@@ -83,6 +85,7 @@ class Users extends MY_Controller
       	    'password' => set_value('password'),
             'created'=>set_value('created',$this->date_now()),
       	);
+        $data['account'] = $this->account;
         $data['group'] = $this->Users_group_model->get_all();
         $this->title_page('Data Akun');
         $this->load_theme('users/users_form', $data);
@@ -94,12 +97,13 @@ class Users extends MY_Controller
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
         		'kode_user' => $this->input->post('kode_user',TRUE),
-            'kode_akses_position'=>$this->input->post('kode_akses',TRUE),
+                'id_status'=>$this->input->post('id_status',TRUE),
+                'kode_akses_position'=>$this->input->post('kode_akses',TRUE),
         		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
         		'no_telp' => $this->input->post('no_telp',TRUE),
         		'username' => $this->input->post('username',TRUE),
         		'password' => md5($this->input->post('password',TRUE)),
-      	    'created' => $this->input->post('created',TRUE),
+      	        'created' => $this->input->post('created',TRUE),
 	         );
 
           //  print_r($data); die();
@@ -119,7 +123,8 @@ class Users extends MY_Controller
                 'action' => site_url('users/update_action'),
             		'id_user' => set_value('id_user', $row->id_user),
             		'id_group' => set_value('id_group', $row->id_group),
-                'kode_akses_position'=>set_value('kode_akses_position',$row->kode_akses_position),
+                    'id_status'=>set_value('id_status',$row->id_status),
+                    'kode_akses_position'=>set_value('kode_akses_position',$row->kode_akses_position),
             		'kode_user' => set_value('kode_user', $row->kode_user),
             		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
             		'no_telp' => set_value('no_telp', $row->no_telp),
@@ -129,6 +134,7 @@ class Users extends MY_Controller
             	    );
                   $data['group'] = $this->Users_group_model->get_all();
                   $this->title_page('Data Akun');
+             $data['account'] = $this->account;     
             $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -141,8 +147,9 @@ class Users extends MY_Controller
 
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
+                'id_status'=>$this->input->post('id_status',TRUE),
         		'kode_user' => $this->input->post('kode_user',TRUE),
-            'kode_akses_position'=>$this->input->post('kode_akses'),
+                'kode_akses_position'=>$this->input->post('kode_akses'),
         		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
         		'no_telp' => $this->input->post('no_telp',TRUE),
         		'username' => $this->input->post('username',TRUE),

@@ -15,6 +15,7 @@
               <div class="form-group">
                   <label >Hak Akses</label>
                   <select class="form-control" name="id_group">
+                <?php if($account->id_group == 1):?>
                     <?php foreach ($group as $g): ?>
                         <?php if ($g->id_group == $id_group): ?>
                           <option value="<?php echo $id_group; ?>" selected=""><?php echo $g->form_access; ?></option>
@@ -22,7 +23,17 @@
                           <option value="<?php echo $g->id_group; ?>"><?php echo $g->form_access; ?></option>
                         <?php endif; ?>
                     <?php endforeach; ?>
+                <?php else: ?>
 
+                      <?php $akses_ini = $account->id_group;?>
+                      <?php foreach ($this->scm_library->akses_group($akses_ini) as $key => $val): ?>
+                         <?php if ($key == $id_group): ?>
+                              <option value="<?php echo $key; ?>" selected=""><?php echo $val; ?></option>
+                           <?php else: ?>  
+                              <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+                         <?php endif; ?>
+                      <?php endforeach; ?>
+                <?php endif; ?>   
                   </select>
               </div>
 
@@ -37,9 +48,35 @@
               <div class="form-group">
                 <label>Management Rule</label>
                 <select class="form-control" name="kode_akses">
-                  <?php foreach ($this->akses = $this->scm_library->akses_posision() as $a): ?>
-                      <option value="<?php echo $a['kode'] ?>"><?php echo $a['posisi'].' - '.$a['nama_posisi'] ?></option>
-                  <?php endforeach; ?>
+                   <?php if($account->id_group == 1):?>
+
+                            <?php if($kode_akses_position != TRUE):?>
+                            <option value="" selected="" disabled="">Pilih Area Management</option>
+                            <?php endif;?>
+                            <?php foreach ($this->akses = $this->scm_library->akses_posision() as $a): ?>
+                                <?php if($kode_akses_position == $a['kode']):?>
+                                <option value="<?php echo $a['kode'] ?>" selected=""><?php echo $a['posisi'].' - '.$a['nama_posisi'] ?></option>
+                                <?php else:?>
+                                <option value="<?php echo $a['kode'] ?>"><?php echo $a['posisi'].' - '.$a['nama_posisi'] ?></option>
+                                <?php endif;?>
+                            <?php endforeach; ?>
+
+                    <?php else:?>
+                          <?php $akses_ini = $account->kode_akses_position;?>
+                          <?php foreach ($this->akses = $this->scm_library->akses_posision() as $a): ?>
+                                <?php if( $a['kode'] == $akses_ini):?>
+                                    <?php if($kode_akses_position == $a['kode']):?>
+                                        <option value="<?php echo $a['kode'] ?>" selected=""><?php echo $a['posisi'].' - '.$a['nama_posisi'] ?></option>
+                                        <?php else:?>
+                                        <option value="<?php echo $a['kode'] ?>"><?php echo $a['posisi'].' - '.$a['nama_posisi'] ?></option>
+                                    <?php endif;?>
+                                <?php endif;?>
+                            <?php endforeach; ?>
+
+
+
+
+                   <?php endif;?>
                 </select>
               </div>
 
@@ -50,6 +87,25 @@
               <div class="form-group">
                   <label for="varchar">Password <?php echo form_error('password') ?></label>
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
+              </div>
+               <div class="form-group">
+                  <label for="varchar">Status Akun </label>
+                   <select class="form-control" name="id_status">
+                    <?php if($id_status == TRUE):?>
+                    <?php foreach ($this->scm_library->akun_status('pengguna') as $a): ?>
+                      <?php if($id_status == $a->id_status):?>
+                        <option value="<?php echo $a->id_status?>" selected=""><?php echo $a->tipe_status ?></option>
+                        <?php else:?>
+                        <option value="<?php echo $a->id_status?>"><?php echo $a->tipe_status ?></option>
+                      <?php endif;?>
+                    <?php endforeach; ?>
+                    <?php else:?>
+                    <option value="" selected="" disabled="">Pilih Status</option>>
+                    <?php foreach ($this->scm_library->akun_status('pengguna') as $a): ?>
+                      <option value="<?php echo $a->id_status?>"><?php echo $a->tipe_status ?></option>
+                    <?php endforeach; ?>
+                  <?php endif;?>
+                    </select>
               </div>
             </div>
             <div class="col-lg-12">
