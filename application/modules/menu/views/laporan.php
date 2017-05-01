@@ -12,6 +12,14 @@
            echo $this->scm_library->menu('penjualan','PENYALURAN BARANG KE AGEN','laporan-gas.svg');
            echo $this->scm_library->menu('penjualan','REALISASI  PENYALURAN ANTAR PANGKALAN','pangkalan.svg');
            break;
+         case '4':
+
+            // echo $this->scm_library->menu('pembelian','LAPORAN DATA PANGKALAN','pangkalan.svg');
+            // echo $this->scm_library->menu('penjualan','PENJUALAN','laporan-penjualan.svg');
+            // echo $this->scm_library->menu('penjualan','PENYALURAN BARANG KE AGEN','laporan-gas.svg');
+            // echo $this->scm_library->menu('penjualan','REALISASI  PENYALURAN ANTAR PANGKALAN','pangkalan.svg'); 
+            echo $this->scm_library->menu('pembelian','LAPORAN TRANSAKSI PEMBELIAN KONSUMEN','laporan-gas.svg');
+            break;   
          case '5':
 
             echo $this->scm_library->menu('pembelian','LAPORAN DATA PANGKALAN','pangkalan.svg');

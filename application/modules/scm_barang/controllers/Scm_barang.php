@@ -43,6 +43,14 @@ class Scm_barang extends MY_Controller
         $this->load_theme('scm_barang/scm_barang_list', $data);
     }
 
+    public function search_item()
+    {
+        $nama_barang = $this->input->post('nama_barang');
+        $data['item'] = $this->Scm_barang_model->search_item($nama_barang);
+        // ------------------------------------------------------------------------
+        $this->load->view('pembelian/transaksi/list_item',$data);
+        // ------------------------------------------------------------------------
+    }
 
     public function list_barang()
     {

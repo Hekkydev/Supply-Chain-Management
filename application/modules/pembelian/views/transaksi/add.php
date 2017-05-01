@@ -55,10 +55,16 @@
                   <div class="form-group">
                      <label class="control-label col-lg-4">Transaksi:</label>
                      <div class="col-lg-8">
-
-                        <button type="button" class="btn btn-md btn-warning btn-flat" data-toggle="modal" data-target="#item" onclick="return list_item();">PILIH BARANG</button>
-                        <button type="submit" class="btn btn-md btn-primary btn-flat" ><i class="fa fa-save"></i> SIMPAN TRANSAKSI</button>
-
+                          <div class="row">
+                            <div class="col-lg-5">
+                              <button type="button" class="btn btn-md btn-warning btn-flat" data-toggle="modal" data-target="#item" onclick="return list_item();">PILIH BARANG</button>
+                      
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="submit" class="btn btn-md btn-primary btn-flat" ><i class="fa fa-save"></i> SIMPAN TRANSAKSI</button>
+                        
+                            </div>
+                          </div>
                      </div>
                  </div>
                   <hr>
@@ -133,7 +139,7 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="form-group">
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="text" id="search_barang"  class="form-control" placeholder="cari nama item">
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -161,8 +167,24 @@
 <script type="application/javascript">
 
   $(function(){
+      $('#search_barang').keyup(function(){
+        var nama_barang = $('input[id=search_barang]').val();
+          $.ajax({
+            url:'<?php echo site_url('scm_barang/scm_barang/search_item')?>',
+            type:'POST',
+            cache:false,
+            data:{
+              nama_barang : nama_barang,
+            },
+            success:function(html){
+             $('.DaftarItems').html(html);
+            },
+          });
+  });
       listData();
   });
+
+
   function add_to_cart(id_barang) {
     var barang = $('#barangId-'+id_barang);
     var  nilai = barang.val();
@@ -186,6 +208,7 @@
     }
 
   }
+
 
 
   function listData()

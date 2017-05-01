@@ -132,3 +132,31 @@ if(!function_exists('active_link')){
 		}
 	}
 }
+
+if(!function_exists('cek_user'))
+{
+	function cek_user($id_user)
+	{
+		$CI =& get_instance();
+		$CI->load->database();
+		$CI->db->where('id_user',$id_user);
+		return $CI->db->get('users')->first_row();
+
+
+	}
+}
+
+
+
+if(!function_exists('cek_item'))
+{
+	function cek_item($kode_item)
+	{
+		$CI =& get_instance();
+		$CI->load->database();
+		$CI->db->where('kode_barang',$kode_item);
+		return $CI->db->get('scm_barang')->first_row();
+
+
+	}
+}

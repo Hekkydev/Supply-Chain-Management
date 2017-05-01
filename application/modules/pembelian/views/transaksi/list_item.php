@@ -34,7 +34,7 @@
 
   <?php endforeach; ?>
   <?php else: ?>
-    <div class="col-lg-12">
-
+    <div class="col-lg-12" align="center">
+            <h3>Tidak ada daftar nama item</h3>
     </div>
 <?php endif; ?>

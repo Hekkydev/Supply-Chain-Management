@@ -12,6 +12,7 @@ class Pembelian extends MY_Controller
         $this->load->model('Pembelian_model');
         $this->load->model('../modules/scm_barang/models/Scm_barang_model');
         $this->load->library(array('form_validation','cart'));
+        
     }
 
     public function index()
@@ -151,6 +152,7 @@ class Pembelian extends MY_Controller
 
     public function add_to_transaksi()
     {
+        if($this->cart->contents() == TRUE):
           $data_transaksi_pembelian = array(
             'id_user'=>$this->input->post('id_user'),
             'kode_pembelian'=>$this->input->post('kode_pembelian'),
@@ -167,7 +169,7 @@ class Pembelian extends MY_Controller
             'kota_penerima'=>$this->input->post('kota_penerima'),
             'telp_penerima'=>$this->input->post('telp_penerima'),
           );
-
+        
         $simpan_transaksi_pembelian = $this->db->insert('scm_pembelian', $data_transaksi_pembelian);
         $simpan_transaksi_pengiriman = $this->db->insert('scm_pembelian_pengiriman', $data_transaksi_pengiriman);
 
@@ -183,6 +185,7 @@ class Pembelian extends MY_Controller
           $simpan = $this->db->insert('scm_pembelian_item', $data_item_pembelian);
         endforeach;
         $this->cart->destroy();
+        endif;
         $this->session->set_flashdata('message', 'Create Record Success');
         redirect(site_url('pembelian/create_transaksi_pembelian_konsumen'));
     }
@@ -217,6 +220,38 @@ class Pembelian extends MY_Controller
                 );
                 $this->title_page("Laporan Pembelian");
                 $this->load_theme('pembelian/transaksi/list_laporan', $data);
+    }
+
+    public function read_permintaan($id = null)
+    {
+                $this->load->helper(array('scm'));
+                $row = $this->Pembelian_model->get_by_id($id);
+                 
+                 
+                if ($row) {
+                    $penerima = $this->Pembelian_model->get_penerima_by_kode_pembelian($row->kode_pembelian);
+                    $data = array(
+                    'id_pembelian' => $row->id_pembelian,
+                    'kode_pembelian' => $row->kode_pembelian,
+                    'tanggal_pembelian' => $row->tanggal_pembelian,
+                    'nama_pelanggan'=>cek_user($row->id_user)->nama_lengkap,
+                    'id_user'=>$row->id_user,
+                    'keterangan' => $row->keterangan,
+                    'created' => $row->created,
+                    'modified' => $row->modified,
+                    'deleted' => $row->deleted,
+                    'nama_penerima'=>$penerima->nama_penerima,
+                    'alamat_penerima'=>$penerima->alamat_penerima,
+                    'kota_penerima'=>$penerima->kota_penerima,
+                    'telp_penerima' =>$penerima->telp_penerima,
+                    'list_pembelian'=>$this->Pembelian_model->list_item($row->kode_pembelian),
+                    );
+                   
+                    $this->load_theme('pembelian/transaksi/read_permintaan', $data);
+                } else {
+                    $this->session->set_flashdata('message', 'Record Not Found');
+                    redirect(site_url('pembelian'));
+                }
     }
 
     public function create_action()
@@ -272,13 +307,13 @@ class Pembelian extends MY_Controller
             $this->update($this->input->post('id_pembelian', TRUE));
         } else {
             $data = array(
-		'kode_pembelian' => $this->input->post('kode_pembelian',TRUE),
-		'tanggal_pembelian' => $this->input->post('tanggal_pembelian',TRUE),
-		'keterangan' => $this->input->post('keterangan',TRUE),
-		'created' => $this->input->post('created',TRUE),
-		'modified' => $this->input->post('modified',TRUE),
-		'deleted' => $this->input->post('deleted',TRUE),
-	    );
+            'kode_pembelian' => $this->input->post('kode_pembelian',TRUE),
+            'tanggal_pembelian' => $this->input->post('tanggal_pembelian',TRUE),
+            'keterangan' => $this->input->post('keterangan',TRUE),
+            'created' => $this->input->post('created',TRUE),
+            'modified' => $this->input->post('modified',TRUE),
+            'deleted' => $this->input->post('deleted',TRUE),
+            );
 
             $this->Pembelian_model->update($this->input->post('id_pembelian', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -297,6 +332,20 @@ class Pembelian extends MY_Controller
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pembelian'));
+        }
+    }
+
+     public function delete_laporan_konsumen($id)
+    {
+        $row = $this->Pembelian_model->get_by_id($id);
+
+        if ($row) {
+            $this->Pembelian_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('pembelian/laporan_for_konsumen'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('pembelian/laporan_for_konsumen'));
         }
     }
 
@@ -335,31 +384,31 @@ class Pembelian extends MY_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Kode Pembelian");
-	xlsWriteLabel($tablehead, $kolomhead++, "Tanggal Pembelian");
-	xlsWriteLabel($tablehead, $kolomhead++, "Keterangan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Created");
-	xlsWriteLabel($tablehead, $kolomhead++, "Modified");
-	xlsWriteLabel($tablehead, $kolomhead++, "Deleted");
+        xlsWriteLabel($tablehead, $kolomhead++, "Kode Pembelian");
+        xlsWriteLabel($tablehead, $kolomhead++, "Tanggal Pembelian");
+        xlsWriteLabel($tablehead, $kolomhead++, "Keterangan");
+        xlsWriteLabel($tablehead, $kolomhead++, "Created");
+        xlsWriteLabel($tablehead, $kolomhead++, "Modified");
+        xlsWriteLabel($tablehead, $kolomhead++, "Deleted");
 
 	foreach ($this->Pembelian_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->kode_pembelian);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->tanggal_pembelian);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->keterangan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->created);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->modified);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->deleted);
+            xlsWriteLabel($tablebody, $kolombody++, $data->kode_pembelian);
+            xlsWriteLabel($tablebody, $kolombody++, $data->tanggal_pembelian);
+            xlsWriteLabel($tablebody, $kolombody++, $data->keterangan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->created);
+            xlsWriteLabel($tablebody, $kolombody++, $data->modified);
+            xlsWriteLabel($tablebody, $kolombody++, $data->deleted);
 
-	    $tablebody++;
-            $nourut++;
-        }
+            $tablebody++;
+                $nourut++;
+            }
 
-        xlsEOF();
-        exit();
+            xlsEOF();
+            exit();
     }
 
     public function word()
@@ -376,9 +425,3 @@ class Pembelian extends MY_Controller
     }
 
 }
-
-/* End of file Pembelian.php */
-/* Location: ./application/controllers/Pembelian.php */
-/* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2017-04-12 19:10:48 */
-/* http://harviacode.com */

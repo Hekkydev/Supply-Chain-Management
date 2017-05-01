@@ -19,7 +19,9 @@
 
                     <ul class="nav navbar-nav ">
 
+                        <?php if($account->id_group == 1):?>
                         <li><a href="<?php echo site_url('about_page')?>"><i class="fa fa-info"></i></a></li>
+                        <?php endif;?>
                         <li><a href="<?php echo site_url('home')?>"><i class="fa fa-th"></i></a></li>
                         <li><a href="<?php echo site_url()?>" target="_blank"><i class="fa fa-desktop"></i></a></li>
                         <!-- User Account: style can be found in dropdown.less -->

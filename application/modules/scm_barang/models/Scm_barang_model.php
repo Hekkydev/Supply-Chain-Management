@@ -94,6 +94,14 @@ class Scm_barang_model extends CI_Model
       return $this->db->get($this->table)->first_row();
     }
 
+    public function search_item($nama_barang)
+    {
+        $this->db->where('deleted',NULL);
+        $this->db->like('nama_barang',$nama_barang);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result_object();
+    }
+
 
 
     public function generate_auto_kode()

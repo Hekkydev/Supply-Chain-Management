@@ -126,4 +126,17 @@ class Pembelian_model extends CI_Model
            }
        return $randomString;
    }
+
+   public function get_penerima_by_kode_pembelian($kode_pembelian)
+   {
+      $this->db->where('kode_pembelian',$kode_pembelian);
+      $query =  $this->db->get('scm_pembelian_pengiriman');
+      return $query->first_row();
+   }
+
+   public function list_item($kode_pembelian)
+   {
+       $this->db->where('kode_pembelian',$kode_pembelian);
+       return $this->db->get('scm_pembelian_item')->result_array();
+   }
 }
