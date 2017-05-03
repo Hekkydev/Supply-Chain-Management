@@ -145,6 +145,14 @@ class Users extends MY_Controller
     public function update_action()
     {
 
+             
+            if($this->input->post('password',TRUE) ==  TRUE)
+            {
+                $password = md5($this->input->post('password',TRUE));
+            }else{
+                $password  = $this->input->post('last_password',TRUE);
+            }
+            
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
                 'id_status'=>$this->input->post('id_status',TRUE),
@@ -153,7 +161,7 @@ class Users extends MY_Controller
         		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
         		'no_telp' => $this->input->post('no_telp',TRUE),
         		'username' => $this->input->post('username',TRUE),
-        		'password' => $this->input->post('password',TRUE),
+        		'password' => $password,
         		'created' => $this->input->post('created',TRUE),
         		'modified' => $this->date_now(),
         	   );
@@ -182,7 +190,7 @@ class Users extends MY_Controller
     {
 	$this->form_validation->set_rules('id_group', 'id group', 'trim|required');
 	$this->form_validation->set_rules('kode_user', 'kode user', 'trim|required');
-  $this->form_validation->set_rules('kode_akses_position', 'Management Rule', 'required|trim');
+    $this->form_validation->set_rules('kode_akses_position', 'Management Rule', 'required|trim');
 	$this->form_validation->set_rules('nama_lengkap', 'nama lengkap', 'trim|required');
 	$this->form_validation->set_rules('no_telp', 'no telp', 'trim|required');
 	$this->form_validation->set_rules('username', 'username', 'trim|required');
