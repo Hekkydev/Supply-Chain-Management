@@ -12,6 +12,7 @@ class Menu extends MY_Controller
         parent::__construct();
         $this->account = $this->authentikasi();
         $this->account_posisition = $this->scm_library->include_position($this->account->kode_akses_position);
+  
 
     }
 

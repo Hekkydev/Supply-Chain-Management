@@ -23,7 +23,7 @@ class SCM_library
         $this->model_pembelian= '../modules/pembelian/models/pembelian_model';
         $this->model_aplikasi = 'Aplikasi_model';
 
-        
+
 
     }
 
@@ -136,7 +136,7 @@ class SCM_library
             }
 
     }
-    
+
 
     public function search_posisition($kode_akses)
     {
@@ -239,6 +239,25 @@ class SCM_library
                 {
                     return (object) array('7'=>'Konsumen');
                 }
+    }
+
+    function select_bulan() {
+          $data = array(
+            '1'=>'January',
+            '2'=>'February',
+            '3'=>'Maret',
+            '4'=>'April',
+            '5'=>'Mei',
+            '6'=>'Juni',
+            '7'=>'Juli',
+            '8'=>'Agustus',
+            '9'=>'September',
+            '10'=>'Oktober',
+            '11'=>'November',
+            '12'=>'Desember'
+          );
+
+          return (object) $data;
     }
 
 
