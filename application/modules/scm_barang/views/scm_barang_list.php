@@ -34,7 +34,7 @@
                 <th>No</th>
 		<th>Kode Barang</th>
 		<th>Nama Barang</th>
-		<th>Stock</th>
+		<th>Stock Awal</th>
 		<th>Satuan</th>
 		<th>Harga Jual</th>
 		<th>Harga Beli</th>

@@ -40,49 +40,50 @@
             </tr><?php
             foreach ($users_data as $users)
             {
-           
-              if($account->id_group != 1){
-                if($account->kode_akses_position == $users->kode_akses_position){
-                ?>
-                <tr>
-                    <td width="80px"><?php echo ++$start ?></td>
-                    <td><?php echo $users->form_access ?></td>
-                    <td><?php echo $users->kode_user ?></td>
-                    <td><?php echo $users->nama_lengkap ?></td>
-                    <td><?php echo $users->no_telp ?></td>
-                    <td><?php echo $users->username ?></td>
-                    <td style="text-align:center" width="200px">
-                        <?php
-                        echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
-                        echo ' &nbsp; ';
-                        echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
-                        echo ' &nbsp;  ';
-                        echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                        ?>
-                    </td>
-		        </tr>
-                <?php
+                if ($users->id_group != 7) {
+                  if($account->id_group != 1){
+                    if($account->kode_akses_position == $users->kode_akses_position){
+                    ?>
+                    <tr>
+                        <td width="80px"><?php echo ++$start ?></td>
+                        <td><?php echo $users->form_access ?></td>
+                        <td><?php echo $users->kode_user ?></td>
+                        <td><?php echo $users->nama_lengkap ?></td>
+                        <td><?php echo $users->no_telp ?></td>
+                        <td><?php echo $users->username ?></td>
+                        <td style="text-align:center" width="200px">
+                            <?php
+                            echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
+                            echo ' &nbsp; ';
+                            echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
+                            echo ' &nbsp;  ';
+                            echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                            ?>
+                        </td>
+                </tr>
+                    <?php
+                    }
+                  }else{?>
+                  <tr>
+                        <td width="80px"><?php echo ++$start ?></td>
+                        <td><?php echo $users->form_access ?></td>
+                        <td><?php echo $users->kode_user ?></td>
+                        <td><?php echo $users->nama_lengkap ?></td>
+                        <td><?php echo $users->no_telp ?></td>
+                        <td><?php echo $users->username ?></td>
+                        <td style="text-align:center" width="200px">
+                            <?php
+                            echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
+                            echo ' &nbsp; ';
+                            echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
+                            echo ' &nbsp;  ';
+                            echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                            ?>
+                        </td>
+                </tr>
+                  <?php
+                  }
                 }
-              }else{?>
-              <tr>
-                    <td width="80px"><?php echo ++$start ?></td>
-                    <td><?php echo $users->form_access ?></td>
-                    <td><?php echo $users->kode_user ?></td>
-                    <td><?php echo $users->nama_lengkap ?></td>
-                    <td><?php echo $users->no_telp ?></td>
-                    <td><?php echo $users->username ?></td>
-                    <td style="text-align:center" width="200px">
-                        <?php
-                        echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
-                        echo ' &nbsp; ';
-                        echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
-                        echo ' &nbsp;  ';
-                        echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                        ?>
-                    </td>
-		        </tr>
-              <?php 
-              }
             }
             ?>
         </table>

@@ -18,9 +18,30 @@ class Scm_barang_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('deleted',NULL);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+
+    function get_all_stock() {
+      $this->db->select('*');
+      $this->db->from('scm_barang_stock');
+      $this->db->join('scm_agen', 'scm_agen.id_agen = scm_barang_stock.id_agen', 'left');
+      $this->db->join('scm_barang', 'scm_barang.id_barang = scm_barang_stock.id_barang', 'left');
+      $this->db->where('scm_barang.deleted',NULL);
+      return $this->db->get();
+    }
+    // insert data
+    function insert_stock($data)
+    {
+        return $this->db->insert('scm_barang_stock', $data);
+    }
+
+    function deleted_stock($id) {
+        $this->db->where('id_stock', $id);
+        return $this->db->delete('scm_barang_stock');
+    }
+
 
     // get data by id
     function get_by_id($id)

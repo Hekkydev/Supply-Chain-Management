@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <div class="form-group form-group-sm">
                 <label for="kode_user">KODE AKUN</label>
                 <input type="text" name="kode_user" value="<?php echo $account->kode_user; ?>" class="form-control" readonly="">
@@ -40,7 +40,7 @@
         </div>
     </div>
     <?php if($account_position->nama_usaha == TRUE):?>
-       <div class="col-lg-6">
+       <div class="col-lg-8">
        <div class="panel panel-danger" style="margin-top:10px;">
            <div class="panel panel-body">
                 <legend>INFORMASI MANAGEMENT PERUSAHAAN</legend>

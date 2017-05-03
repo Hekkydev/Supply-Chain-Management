@@ -41,9 +41,42 @@ class Users extends MY_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        
+
         $this->title_page('Data Akun');
         $this->load_theme('users/users_list', $data);
+    }
+
+    public function konsumen()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'users/users/konsumen/?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'users/users/konsumen/?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'users/users/konsumen';
+            $config['first_url'] = base_url() . 'users/users/konsumen';
+        }
+
+        $config['per_page'] = 5;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Users_model->total_rows($q);
+        $users = $this->Users_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'users_data' => $users,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+
+        $this->title_page('Data Akun Konsumen');
+        $this->load_theme('users/konsumen/users_list', $data);
     }
 
     public function read($id)
@@ -134,7 +167,7 @@ class Users extends MY_Controller
             	    );
                   $data['group'] = $this->Users_group_model->get_all();
                   $this->title_page('Data Akun');
-             $data['account'] = $this->account;     
+             $data['account'] = $this->account;
             $this->load_theme('users/users_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -145,14 +178,14 @@ class Users extends MY_Controller
     public function update_action()
     {
 
-             
+
             if($this->input->post('password',TRUE) ==  TRUE)
             {
                 $password = md5($this->input->post('password',TRUE));
             }else{
                 $password  = $this->input->post('last_password',TRUE);
             }
-            
+
             $data = array(
         		'id_group' => $this->input->post('id_group',TRUE),
                 'id_status'=>$this->input->post('id_status',TRUE),

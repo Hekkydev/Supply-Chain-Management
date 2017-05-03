@@ -45,7 +45,12 @@
                 <h5 style="text-align:center;color:#FFF; font-weight:300;">TRANSAKSI</h5>
             </div>
             </a>
-
+            <a href="<?php echo site_url('menu/management');?>">
+            <div class="col-lg-2" style="background:#DC1111; padding:10px; border: 1px solid #dc1111;text-align:center; border-radius:2px; margin:10px;cursor:pointer;" >
+               <?php echo '<img src="'.base_url().'assets/icon-scm/management.svg" style="width:70px; text-align:center;">';?>
+               <h5 style="text-align:center;color:#FFF; font-weight:300;">MANAGEMENT</h5>
+           </div>
+           </a>
 
         </div>
     </div>

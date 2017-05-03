@@ -95,6 +95,7 @@ class MY_Controller extends CI_Controller
     {
         $account =  $this->authentikasi();
         $this->db->where('id_group', $account->id_group);
+        $this->db->order_by('position','ASC');
         return $this->db->get('scm_menu_link')->result_object();
     }
 
