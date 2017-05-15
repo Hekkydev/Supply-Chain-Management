@@ -49,3 +49,15 @@ $(function () {
 });
 </script>
 <?php endif;?>
+<?php if ($this->uri->segment(2) == 'add_realisasi'): ?>
+  <script src="<?php echo site_url('assets/AdminLTE-2.0.5/plugins/datepicker/bootstrap-datepicker.js')?>" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function(){
+        $('#tanggal_penyaluran').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+  </script>
+<?php endif; ?>

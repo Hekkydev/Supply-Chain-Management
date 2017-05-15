@@ -11,6 +11,7 @@ class Penyaluran extends MY_Controller{
     $this->load->model('../modules/scm_pangkalan/models/scm_pangkalan_model');
     $this->load->model('../modules/scm_barang/models/scm_barang_model');
     $this->load->model('../modules/scm_agen/models/scm_agen_model');
+    $this->load->model(array('penyaluran_model'));
     $this->bulan = $this->scm_library->select_bulan();
 
   }
@@ -32,8 +33,62 @@ class Penyaluran extends MY_Controller{
 
 
   function add_realisasi() {
+      $kode_penyaluran = $this->penyaluran_model->kode_penyaluran();
+      $kode_agen = $this->account_posisition->kode_usaha;
+      $data = array(
+        'agen'=>$this->scm_agen_model->get_all(),
+        'kode_penyaluran'=>set_value('kode_penyaluran',$kode_penyaluran),
+        'tanggal_penyaluran'=>set_value('tanggal_penyaluran',date('Y-m-d')),
+        'kode_agen'=>set_value('kode_agen',$kode_agen),
+        'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+        'barang'=>$this->scm_barang_model->get_all(),
+        'id_penyaluran_kondisi'=>set_value('id_penyaluran_kondisi',1),
+      );
       $this->title_page('INPUT REALISASI PENYALURAN');
-      $this->load_theme('penyaluran/realisasi/form_realisasi');
+      $this->load_theme('penyaluran/realisasi/form_realisasi',$data);
+  }
+
+  function add_realisasi_proses() {
+    $this->_rules_add_penyaluran();
+    if ($this->form_validation->run() == FALSE) {
+      $proses = array(
+        'error'=>1,
+        'message'=>'Error Menyimpan Realisasi'
+      );
+      echo json_encode($proses);
+    }else{
+      $data  = array(
+        'kode_penyaluran'=>$this->input->post('kode_penyaluran'),
+        'tanggal_penyaluran'=>$this->input->post('tanggal_penyaluran'),
+        'kode_agen'=>$this->input->post('kode_agen'),
+        'kode_barang'=>$this->input->post('kode_barang'),
+        'kode_pangkalan'=>$this->input->post('kode_pangkalan'),
+        'jumlah_penyaluran'=>$this->input->post('jumlah_penyaluran'),
+        'id_penyaluran_kondisi'=>$this->input->post('id_penyaluran_kondisi'),
+        'id_user'=>$this->input->post('id_user'),
+      );
+      $simpan = $this->penyaluran_model->insert_penyaluran_data($data);
+      if ($simpan == TRUE) {
+        $proses = array(
+          'error'=>0,
+          'message'=>'Berhasil menyimpan realisasi'
+        );
+        echo json_encode($proses);
+      }else{
+        $proses = array(
+          'error'=>1,
+          'message'=>'Error Menyimpan Realisasi'
+        );
+        echo json_encode($proses);
+      }
+    }
+
+  }
+
+  function _rules_add_penyaluran() {
+    $this->form_validation->set_rules('kode_penyaluran', 'KODE PENYALURAN', 'required|trim');
+    $this->form_validation->set_rules('tanggal_penyaluran', 'TANGGAL PENYALURAN', 'required|trim');
+    $this->form_validation->set_rules('kode_barang', 'KODE BARANG', 'required|trim');
   }
 
   function realisasi() {
