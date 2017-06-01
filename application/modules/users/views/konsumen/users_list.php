@@ -52,13 +52,14 @@
                       <td><?php echo $users->no_telp ?></td>
                       <td><?php echo $users->username ?></td>
                       <td style="text-align:center" width="200px">
+                        <a style="cursor:pointer;" class="btn btn-xs btn-flat btn-primary" onclick="read('<?php echo $users->id_user; ?>')"><i class="fa fa-search"></i> Read</a>
                           <?php
-                          echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
-                          echo ' &nbsp; ';
-                          echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
-                          echo ' &nbsp;  ';
-                          echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                          ?>
+
+                                  echo ' &nbsp; ';
+                                  echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
+                                  echo ' &nbsp;  ';
+                                  echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger" ');
+                                  ?>
                       </td>
               </tr>
                   <?php
@@ -72,13 +73,14 @@
                       <td><?php echo $users->no_telp ?></td>
                       <td><?php echo $users->username ?></td>
                       <td style="text-align:center" width="200px">
+                        <a style="cursor:pointer;" class="btn btn-xs btn-flat btn-primary" onclick="read('<?php echo $users->id_user; ?>')"><i class="fa fa-search"></i> Read</a>
                           <?php
-                          echo anchor(site_url('users/read/'.$users->id_user),'<i class="fa fa-search"></i> Read');
-                          echo ' &nbsp; ';
-                          echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update');
-                          echo ' &nbsp;  ';
-                          echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                          ?>
+
+                                  echo ' &nbsp; ';
+                                  echo anchor(site_url('users/update/'.$users->id_user),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
+                                  echo ' &nbsp;  ';
+                                  echo anchor(site_url('users/delete/'.$users->id_user),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger" ');
+                                  ?>
                       </td>
               </tr>
                 <?php
@@ -97,3 +99,22 @@
               <?php echo $pagination ?>
           </div>
       </div>
+
+
+      <script type="text/javascript">
+          var BASE_URL = "<?php echo base_url('users'); ?>";
+
+          function read(id_user) {
+              var id_user = id_user;
+              $.ajax({
+                  url: BASE_URL + '/read/' + id_user,
+                  type: 'POST',
+                  dataType: 'html',
+                  cache: false,
+                  success: function(result) {
+                      $('#read_view').modal('show');
+                      $('#info_read').html(result);
+                  },
+              });
+          }
+      </script>

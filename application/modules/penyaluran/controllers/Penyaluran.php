@@ -13,6 +13,7 @@ class Penyaluran extends MY_Controller{
     $this->load->model('../modules/scm_agen/models/scm_agen_model');
     $this->load->model(array('penyaluran_model'));
     $this->bulan = $this->scm_library->select_bulan();
+    $this->load->library('form_validation');
 
   }
 
@@ -26,8 +27,19 @@ class Penyaluran extends MY_Controller{
 
 
   function add_rencana() {
+      $kode_penyaluran = $this->penyaluran_model->kode_penyaluran();
+      $kode_agen = $this->account_posisition->kode_usaha;
+      $data = array(
+        'agen'=>$this->scm_agen_model->get_all(),
+        'kode_penyaluran'=>set_value('kode_penyaluran',$kode_penyaluran),
+        'tanggal_penyaluran'=>set_value('tanggal_penyaluran',date('Y-m-d')),
+        'kode_agen'=>set_value('kode_agen',$kode_agen),
+        'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+        'barang'=>$this->scm_barang_model->get_all(),
+        'id_penyaluran_kondisi'=>set_value('id_penyaluran_kondisi',2),
+      );
       $this->title_page('INPUT RENCANA PENYALURAN');
-      $this->load_theme('penyaluran/rencana/form_rencana');
+      $this->load_theme('penyaluran/rencana/form_rencana',$data);
   }
 
 
@@ -60,12 +72,12 @@ class Penyaluran extends MY_Controller{
       $data  = array(
         'kode_penyaluran'=>$this->input->post('kode_penyaluran'),
         'tanggal_penyaluran'=>$this->input->post('tanggal_penyaluran'),
-        'kode_agen'=>$this->input->post('kode_agen'),
         'kode_barang'=>$this->input->post('kode_barang'),
         'kode_pangkalan'=>$this->input->post('kode_pangkalan'),
         'jumlah_penyaluran'=>$this->input->post('jumlah_penyaluran'),
         'id_penyaluran_kondisi'=>$this->input->post('id_penyaluran_kondisi'),
-        'id_user'=>$this->input->post('id_user'),
+        'id_user'=>$this->account->id_user,
+        'created'=>$this->date_now(),
       );
       $simpan = $this->penyaluran_model->insert_penyaluran_data($data);
       if ($simpan == TRUE) {
@@ -104,7 +116,9 @@ class Penyaluran extends MY_Controller{
   }
 
   function cari_data_laporan_realisasi() {
+
         $data = array(
+          'post'=>$_POST,
           'agen'=>$this->scm_agen_model->get_all(),
           'barang'=>$this->scm_barang_model->get_all(),
           'informasi'=>$this->account_posisition,

@@ -60,7 +60,7 @@ class Scm_agen extends MY_Controller
         		'modified' => $row->modified,
         	    );
             $this->title_page("Data Agen");
-            $this->load_theme('scm_agen/scm_agen_read', $data);
+            $this->load->view('scm_agen/scm_agen_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_agen'));

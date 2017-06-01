@@ -125,7 +125,7 @@ if ( ! function_exists('hitung_mundur'))
 if(!function_exists('active_link')){
 	function active_link($url)
 	{
-		
+
 		if($url == $_SERVER['REQUEST_URI'])
 		{
 			return "active";
@@ -156,7 +156,55 @@ if(!function_exists('cek_item'))
 		$CI->load->database();
 		$CI->db->where('kode_barang',$kode_item);
 		return $CI->db->get('scm_barang')->first_row();
+	}
+}
 
 
+if (! function_exists('kategori'))
+{
+	function kategori($id)
+	{
+		$CI =& get_instance();
+		$CI->load->database();
+		$CI->db->where('id_kategori',$id);
+		$query = $CI->db->get('scm_barang_kategori')->first_row();
+		if ($query == TRUE) {
+			return $query->nama_kategori;
+		}else{
+			return FALSE;
+		}
+	}
+}
+
+
+if (! function_exists('satuan'))
+{
+	function satuan($id)
+	{
+				$CI =& get_instance();
+				$CI->load->database();
+				$CI->db->where('id_satuan',$id);
+				$query = $CI->db->get('scm_barang_satuan')->first_row();
+				if ($query == TRUE) {
+					return $query->tipe_satuan;
+				}else{
+					return FALSE;
+				}
+	}
+}
+
+if (! function_exists('users_group'))
+{
+	function users_group($id)
+	{
+				$CI =& get_instance();
+				$CI->load->database();
+				$CI->db->where('id_group',$id);
+				$query = $CI->db->get('users_group')->first_row();
+				if ($query == TRUE) {
+					return $query->form_access;
+				}else{
+					return FALSE;
+				}
 	}
 }

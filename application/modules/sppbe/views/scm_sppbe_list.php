@@ -49,12 +49,11 @@
       <td><?php echo $sppbe->telp_sppbe ?></td>
       <td><?php echo $sppbe->created ?></td>
       <td style="text-align:center" width="200px">
+        <a style="cursor:pointer;" class="btn btn-xs btn-flat btn-primary" onclick="read('<?php echo $sppbe->id_spbbe; ?>')"><i class="fa fa-search"></i> Read</a>
       <?php
-      echo anchor(site_url('sppbe/read/'.$sppbe->id_spbbe),'<i class="fa fa-search"></i>');
-      echo ' | ';
-      echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'<i class="fa fa-edit"></i>');
-      echo ' | ';
-      echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'<i class="fa fa-trash"></i>','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+      echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
+      echo ' ';
+      echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger"');
       ?>
       </td>
 </tr>
@@ -73,3 +72,44 @@
         <?php echo $pagination ?>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="read_view" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Informasi Detail SPPBE</h4>
+            </div>
+            <div class="modal-body">
+                <div id="info_read">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    var BASE_URL = "<?php echo base_url('sppbe'); ?>";
+    function read(id_sppbe) {
+        var id_sppbe = id_sppbe;
+        $.ajax({
+            url: BASE_URL + '/read/' + id_sppbe,
+            type: 'POST',
+            dataType: 'html',
+            cache: false,
+            success: function(result) {
+                $('#read_view').modal('show');
+                $('#info_read').html(result);
+            },
+        });
+    }
+</script>

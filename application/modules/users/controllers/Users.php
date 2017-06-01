@@ -26,7 +26,7 @@ class Users extends MY_Controller
             $config['first_url'] = base_url() . 'users/index';
         }
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 100;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Users_model->total_rows($q);
         $users = $this->Users_model->get_limit_data($config['per_page'], $start, $q);
@@ -59,7 +59,7 @@ class Users extends MY_Controller
             $config['first_url'] = base_url() . 'users/users/konsumen';
         }
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 100;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Users_model->total_rows($q);
         $users = $this->Users_model->get_limit_data($config['per_page'], $start, $q);
@@ -94,7 +94,7 @@ class Users extends MY_Controller
         		'created' => $row->created,
         		'modified' => $row->modified,
     	    );
-            $this->load_theme('users/users_read', $data);
+            $this->load->view('users/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));

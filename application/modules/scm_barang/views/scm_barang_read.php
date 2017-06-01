@@ -1,15 +1,44 @@
-<table class="table">
-<tr><td>Kode Barang</td><td><?php echo $kode_barang; ?></td></tr>
-<tr><td>Nama Barang</td><td><?php echo $nama_barang; ?></td></tr>
-<tr><td>Stock</td><td><?php echo $stock; ?></td></tr>
-<tr><td>Satuan</td><td><?php echo $satuan; ?></td></tr>
-<tr><td>Harga Jual</td><td><?php echo $harga_jual; ?></td></tr>
-<tr><td>Harga Beli</td><td><?php echo $harga_beli; ?></td></tr>
-<tr><td>Diskon</td><td><?php echo $diskon; ?></td></tr>
-<tr><td>Id Kategori</td><td><?php echo $id_kategori; ?></td></tr>
-<tr><td>Keterangan</td><td><?php echo $keterangan; ?></td></tr>
-<tr><td>Gambar</td><td><?php echo $gambar; ?></td></tr>
-<tr><td>Created</td><td><?php echo $created; ?></td></tr>
-<tr><td>Modified</td><td><?php echo $modified; ?></td></tr>
-<tr><td></td><td><a href="<?php echo site_url('scm_barang') ?>" class="btn btn-default">Cancel</a></td></tr>
-</table>
+<div class="row">
+  <div class="col-lg-4">
+      <div class="form-group">
+        <label class="control-label">Kode Barang</label>
+        <input type="text" name="" value="<?php echo $kode_barang?>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Nama Barang</label>
+        <input type="text" name="" value="<?php echo $nama_barang?>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Harga Beli</label>
+        <input type="text" name="" value="<?php echo $harga_beli?>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Keterangan</label>
+        <textarea name="" class="form-control"><?php echo $keterangan; ?></textarea>
+      </div>
+
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="control-label">Satuan</label>
+      <input type="text" name="" value="<?php echo satuan($satuan)?>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Stock</label>
+      <input type="text" name="" value="<?php echo $stock?>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Harga Jual</label>
+      <input type="text" name="" value="<?php echo $harga_jual?>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Kategori</label>
+      <input type="text" name="" value="<?php echo kategori($id_kategori)?>" class="form-control">
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group" align="center">
+      <img src="<?php echo site_url('upload/'.$gambar.'')?>" alt="" class="img-responsive">
+    </div>
+  </div>
+</div>

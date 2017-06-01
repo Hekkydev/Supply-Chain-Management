@@ -30,14 +30,14 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
-		<th>Kode Pembelian</th>
-		<th>Tanggal Pembelian</th>
-		<th>Keterangan</th>
-		<th>Created</th>
-		<th>Modified</th>
-		<th>Deleted</th>
-		<th>Action</th>
+            <th>No</th>
+            <th>Kode Pembelian</th>
+            <th>Tanggal Pembelian</th>
+            <th>Keterangan</th>
+            <th>Created</th>
+            <th>Modified</th>
+            <th>Deleted</th>
+            <th>Action</th>
             </tr><?php
             foreach ($pembelian_data as $pembelian)
             {

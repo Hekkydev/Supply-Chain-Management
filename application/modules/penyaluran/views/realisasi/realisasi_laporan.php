@@ -12,7 +12,7 @@
             <div class="form-group">
               <label for="">Tahun</label>
                 <select class="form-control" name="tahun">
-                      <?php for($i = 1990 ; $i <= date('Y'); $i++): ?>
+                      <?php for($i = 2015 ; $i <= date('Y'); $i++): ?>
                         <option value="<?php echo $i;?>"><?php echo $i ?></option>
                       <?php endfor; ?>
                 </select>
@@ -26,12 +26,15 @@
                       <?php endforeach; ?>
                   </select>
                 <?php else: ?>
-                  <input type="text" name="kode_agen" value="<?php echo $informasi->nama_usaha?>" class="form-control" readonly="">
+                  <input type="text"  value="<?php echo $informasi->nama_usaha?>" class="form-control" readonly="">
+                  <input type="hidden" name="kode_agen" value="<?php echo $informasi->kode_usaha?>" class="form-control" readonly="">
                 <?php endif; ?>
             </div>
+
             <div class="form-group">
               <label for="">SUB PENYALUR / PANGKALAN</label>
               <select class="form-control" name="kode_pangkalan">
+                      <option value="">Semua Pangkalan</option>
                   <?php foreach ($pangkalan as $v): ?>
                       <option value="<?php echo $v->kode_pangkalan ?>"><?php echo $v->nama_pangkalan ?></option>
                   <?php endforeach; ?>
@@ -46,7 +49,8 @@
                 </select>
             </div>
             <div class="form-group">
-              <button type="submit">LIHAT LAPORAN REALISASI</button>
+              <button type="submit" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-search"></i> LIHAT LAPORAN REALISASI</button>
+              <a style="cursor:pointer" class="btn btn-xs btn-default btn-flat" onclick="window.location.reload();"><i class="fa fa-reload"></i>REFRESH</a>
             </div>
       </form>
   </div>
@@ -56,43 +60,37 @@
   <?php if ($informasi->nama_usaha == TRUE): ?>
     <div class="col-lg-8">
       <h4>INFORMASI AGEN</h4>
-      <table class="table">
+      <table class="table" >
         <thead>
           <tr>
-            <th>NAMA AGEN</th>
+            <th style="text-align:left;">NAMA AGEN</th>
             <th>:</th>
-            <th><?php echo $informasi->nama_usaha; ?></th>
+            <th style="text-align:left;"><?php echo $informasi->nama_usaha; ?></th>
           </tr>
           <tr>
-            <th>ALAMAT AGEN</th>
+            <th style="text-align:left;">ALAMAT AGEN</th>
             <th>:</th>
-            <th><?php echo $informasi->alamat; ?></th>
+            <th style="text-align:left;"><?php echo $informasi->alamat; ?></th>
           </tr>
           <tr>
-            <th>EMAIl</th>
+            <th style="text-align:left;">EMAIl</th>
             <th>:</th>
-            <th></th>
+            <th style="text-align:left;"></th>
           </tr>
           <tr>
-            <th>KONTAK</th>
+            <th style="text-align:left;">KONTAK</th>
             <th>:</th>
-            <th><?php echo $informasi->telephone; ?></th>
+            <th style="text-align:left;"><?php echo $informasi->telephone; ?></th>
           </tr>
           <tr>
-            <th>KOTA</th>
+            <th style="text-align:left;">KOTA</th>
             <th>:</th>
-            <th><?php echo $informasi->kota; ?></th>
+            <th style="text-align:left;"><?php echo $informasi->kota; ?></th>
           </tr>
         </thead>
       </table>
     </div>
   <?php endif; ?>
-</div>
-<div class="row">
-  <div class="col-lg-12">
-    <button  class="sidebar-toggle btn btn-sm btn-primary" data-toggle="offcanvas" role="button" id="toggle" name="button"><i class="fa fa-chevron-left"></i>   Toggle</button>
-    <hr>
-  </div>
 </div>
 <div id="data-realisasi"></div>
 <script src="<?php echo site_url('assets/jquery/external/jquery/jquery.js')?>"></script>
@@ -107,6 +105,10 @@ $(function(){
         {
           $('#data-realisasi').html(html);
         }
+      }).done(function(){
+          $('body').addClass('sidebar-collapse');
+          $('a#toggle').removeAttr('data-toggle');
+          $('a#toggle').removeAttr('class');
       });
     return false;
   });

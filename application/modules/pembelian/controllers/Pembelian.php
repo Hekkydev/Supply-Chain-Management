@@ -12,7 +12,7 @@ class Pembelian extends MY_Controller
         $this->load->model('Pembelian_model');
         $this->load->model('../modules/scm_barang/models/Scm_barang_model');
         $this->load->library(array('form_validation','cart'));
-        
+
     }
 
     public function index()
@@ -21,11 +21,11 @@ class Pembelian extends MY_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pembelian/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pembelian/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pembelian/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pembelian/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pembelian/index.html';
-            $config['first_url'] = base_url() . 'pembelian/index.html';
+            $config['base_url'] = base_url() . 'pembelian/index';
+            $config['first_url'] = base_url() . 'pembelian/index';
         }
 
         $config['per_page'] = 10;
@@ -47,19 +47,51 @@ class Pembelian extends MY_Controller
         $this->load_theme('pembelian/scm_pembelian_list', $data);
     }
 
+
+    function pemesanan_konsumen() {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'pemesanan_konsumen?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pemesanan_konsumen?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'pemesanan_konsumen';
+            $config['first_url'] = base_url() . 'pemesanan_konsumen';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Pembelian_model->total_rows($q);
+        $pembelian = $this->Pembelian_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'pembelian_data' => $pembelian,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $this->title_page('Laporan Transaksi Pemesanan Konsumen');
+        $this->load_theme('pembelian/pemesanan/list',$data);
+    }
+
     public function read($id)
     {
         $row = $this->Pembelian_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_pembelian' => $row->id_pembelian,
-		'kode_pembelian' => $row->kode_pembelian,
-		'tanggal_pembelian' => $row->tanggal_pembelian,
-		'keterangan' => $row->keterangan,
-		'created' => $row->created,
-		'modified' => $row->modified,
-		'deleted' => $row->deleted,
-	    );
+        		'id_pembelian' => $row->id_pembelian,
+        		'kode_pembelian' => $row->kode_pembelian,
+        		'tanggal_pembelian' => $row->tanggal_pembelian,
+        		'keterangan' => $row->keterangan,
+        		'created' => $row->created,
+        		'modified' => $row->modified,
+        		'deleted' => $row->deleted,
+        	    );
             $this->load_theme('pembelian/scm_pembelian_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -169,7 +201,7 @@ class Pembelian extends MY_Controller
             'kota_penerima'=>$this->input->post('kota_penerima'),
             'telp_penerima'=>$this->input->post('telp_penerima'),
           );
-        
+
         $simpan_transaksi_pembelian = $this->db->insert('scm_pembelian', $data_transaksi_pembelian);
         $simpan_transaksi_pengiriman = $this->db->insert('scm_pembelian_pengiriman', $data_transaksi_pengiriman);
 
@@ -226,8 +258,8 @@ class Pembelian extends MY_Controller
     {
                 $this->load->helper(array('scm'));
                 $row = $this->Pembelian_model->get_by_id($id);
-                 
-                 
+
+
                 if ($row) {
                     $penerima = $this->Pembelian_model->get_penerima_by_kode_pembelian($row->kode_pembelian);
                     $data = array(
@@ -246,8 +278,41 @@ class Pembelian extends MY_Controller
                     'telp_penerima' =>$penerima->telp_penerima,
                     'list_pembelian'=>$this->Pembelian_model->list_item($row->kode_pembelian),
                     );
-                   
+
                     $this->load_theme('pembelian/transaksi/read_permintaan', $data);
+                } else {
+                    $this->session->set_flashdata('message', 'Record Not Found');
+                    redirect(site_url('pembelian'));
+                }
+    }
+
+    public function read_permintaan_konsumen($id = null)
+    {
+                $this->load->helper(array('scm'));
+                $row = $this->Pembelian_model->get_by_id($id);
+
+
+                if ($row) {
+                    $penerima = $this->Pembelian_model->get_penerima_by_kode_pembelian($row->kode_pembelian);
+                    $nama_pelanggan = isset(cek_user($row->id_user)->nama_lengkap) ? cek_user($row->id_user)->nama_lengkap : '';
+                    $data = array(
+                    'id_pembelian' => $row->id_pembelian,
+                    'kode_pembelian' => $row->kode_pembelian,
+                    'tanggal_pembelian' => $row->tanggal_pembelian,
+                    'nama_pelanggan'=>$nama_pelanggan,
+                    'id_user'=>$row->id_user,
+                    'keterangan' => $row->keterangan,
+                    'created' => $row->created,
+                    'modified' => $row->modified,
+                    'deleted' => $row->deleted,
+                    'nama_penerima'=>$penerima->nama_penerima,
+                    'alamat_penerima'=>$penerima->alamat_penerima,
+                    'kota_penerima'=>$penerima->kota_penerima,
+                    'telp_penerima' =>$penerima->telp_penerima,
+                    'list_pembelian'=>$this->Pembelian_model->list_item($row->kode_pembelian),
+                    );
+
+                    $this->load->view('pembelian/transaksi/read_permintaan', $data);
                 } else {
                     $this->session->set_flashdata('message', 'Record Not Found');
                     redirect(site_url('pembelian'));

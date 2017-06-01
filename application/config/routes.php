@@ -11,6 +11,7 @@ $route['administrator'] = "menu";
 $route['logout'] = "auth/auth/logout";
 $route['account'] = "users/account";
 $route['account/history'] = "users/account/history";
+$route['pemesanan_konsumen'] = 'pembelian/pembelian/pemesanan_konsumen';
 
 
 // Halaman Frontend

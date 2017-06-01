@@ -22,11 +22,11 @@ class Scm_pangkalan extends MY_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'scm_pangkalan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'scm_pangkalan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'scm_pangkalan/index?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'scm_pangkalan/index?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'scm_pangkalan/index.html';
-            $config['first_url'] = base_url() . 'scm_pangkalan/index.html';
+            $config['base_url'] = base_url() . 'scm_pangkalan/index';
+            $config['first_url'] = base_url() . 'scm_pangkalan/index';
         }
 
         $config['per_page'] = 10;
@@ -65,7 +65,7 @@ class Scm_pangkalan extends MY_Controller
         		'created_date' => $row->created_date,
         		'deleted_date' => $row->deleted_date,
 	    );
-            $this->load_theme('scm_pangkalan/scm_pangkalan_read', $data);
+            $this->load->view('scm_pangkalan/scm_pangkalan_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_pangkalan'));

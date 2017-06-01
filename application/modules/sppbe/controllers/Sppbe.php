@@ -59,7 +59,7 @@ class Sppbe extends MY_Controller
         		'created' => $row->created,
 	         );
             $this->title_page('Data Sppbe');
-            $this->load_theme('sppbe/scm_sppbe_read', $data);
+            $this->load->view('sppbe/scm_sppbe_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('sppbe'));

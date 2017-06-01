@@ -2,12 +2,12 @@
 <link rel="stylesheet" href="<?php echo site_url('assets/AdminLTE-2.0.5/plugins/datepicker/datepicker3.css')?>">
 <div class="row">
     <div class="col-lg-6">
-      <legend>FORM REALIASI</legend>
+      <legend>FORM REALISASI</legend>
         <form id="form-penyaluran" class="form-horizontal" action="<?php echo site_url('penyaluran/add_realisasi_proses')?>" method="post">
             <div class="form-group">
                     <label class="control-label col-lg-4 small">KODE REALISASI</label>
                     <div class="col-lg-8">
-                        <input type="text" name="tanggal_penyaluran" value="<?php echo $kode_penyaluran?>" class="form-control">
+                        <input type="text" name="kode_penyaluran" value="<?php echo $kode_penyaluran?>" class="form-control">
                     </div>
             </div>
             <div class="form-group">
@@ -77,6 +77,7 @@ $(function(){
     $.post($('#form-penyaluran').attr('action'), $('#form-penyaluran').serialize(), function(json) {
       if (json.error == 0) {
         alert(json.message);
+        window.location.reload();
       }
     },'json');
     return false;

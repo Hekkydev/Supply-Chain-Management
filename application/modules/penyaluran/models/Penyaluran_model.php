@@ -41,7 +41,22 @@ class Penyaluran_model extends CI_Model{
  }
 
  function insert_penyaluran_data($data) {
-  return $this->db->get($this->table);
+  return $this->db->insert($this->table,$data);
+ }
+
+
+ function jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan) {
+    $this->db->select('SUM(jumlah_penyaluran) AS jumlah_penyaluran');
+    $this->db->from('scm_penyaluran_barang');
+    $this->db->where('kode_barang', $kode_barang);
+    $this->db->where('tanggal_penyaluran', $tanggal);
+    $this->db->where('kode_pangkalan', $kode_pangkalan);
+    $this->db->where('id_penyaluran_kondisi',1);
+    $query = $this->db->get();
+    if ($query == TRUE) {
+      $jumlah =  $query->first_row();
+      return $jumlah->jumlah_penyaluran;
+    }
  }
 
 }

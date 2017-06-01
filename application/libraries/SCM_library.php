@@ -22,6 +22,7 @@ class SCM_library
         $this->model_satuan_barang = '../modules/scm_barang_satuan/models/scm_barang_satuan_model';
         $this->model_pembelian= '../modules/pembelian/models/pembelian_model';
         $this->model_aplikasi = 'Aplikasi_model';
+        $this->model_penyaluran = '../modules/penyaluran/models/penyaluran_model';
 
 
 
@@ -262,5 +263,10 @@ class SCM_library
 
 
 
+    function penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan) {
+          $this->SCM->load->model($this->model_penyaluran);
+          $jumlah_penyaluran = $this->SCM->penyaluran_model->jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan);
+          return $jumlah_penyaluran;
+    }
 
 }

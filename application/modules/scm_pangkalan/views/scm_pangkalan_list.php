@@ -39,7 +39,7 @@
                 <th>Alamat Pangkalan</th>
                 <th>Kelurahan</th>
                 <th>No Telp</th>
-                <th>Action</th>
+                <th style="text-align:center;">Action</th>
             </tr>
 
             <?php
@@ -55,12 +55,11 @@
                       <td><?php echo $scm_pangkalan->kelurahan ?></td>
                       <td><?php echo $scm_pangkalan->no_telp ?></td>
                       <td style="text-align:center" width="200px">
+                      <a style="cursor:pointer" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-search"></i> Read</a>
                       <?php
-                      echo anchor(site_url('scm_pangkalan/read/'.$scm_pangkalan->id_pangkalan),'Read');
-                      echo ' | ';
-                      echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update');
-                      echo ' | ';
-                      echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                      echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-edit"></i> Update','class="btn  btn-xs btn-success btn-flat"');
+                      echo "&nbsp;";
+                      echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-flat btn-xs btn-danger"');
                       ?>
                       </td>
               </tr>
@@ -93,8 +92,8 @@
                             <td><?php echo $scm_pangkalan->kelurahan ?></td>
                             <td><?php echo $scm_pangkalan->no_telp ?></td>
                             <td style="text-align:center" width="200px">
+                            <a href="#" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')">Read</a>
                             <?php
-                            echo anchor(site_url('scm_pangkalan/read/'.$scm_pangkalan->id_pangkalan),'Read');
                             echo ' | ';
                             echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update');
                             echo ' | ';
@@ -119,3 +118,43 @@
         <?php echo $pagination ?>
     </div>
 </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="read_view" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informasi Detail Pangkalan</h4>
+        </div>
+        <div class="modal-body">
+          <div id="info_read">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<script type="text/javascript">
+  var BASE_URL = "<?php echo base_url('scm_pangkalan'); ?>";
+  function read_pangkalan(id_pangkalan) {
+    var id_pangkalan = id_pangkalan;
+    $.ajax({
+      url: BASE_URL+'/read/'+id_pangkalan,
+      type: 'POST',
+      dataType: 'html',
+      cache:false,
+      success:function(result)
+      {
+            $('#read_view').modal('show');
+            $('#info_read').html(result);
+      },
+    });
+  }
+</script>

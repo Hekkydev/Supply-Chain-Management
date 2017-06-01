@@ -78,7 +78,7 @@ class Scm_barang extends MY_Controller
         		'modified' => $row->modified,
         	    );
               $this->title_page('Data Barang');
-              $this->load_theme('scm_barang/scm_barang_read', $data);
+              $this->load->view('scm_barang/scm_barang_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('scm_barang'));
