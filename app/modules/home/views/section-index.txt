@@ -1,0 +1,295 @@
+<section id="pricing">
+    <div class="bg-gray lg-padding-top lg-padding-bottom lg-margin-bottom">
+
+        <div class="container">
+
+            <!-- Pricing plans / START -->
+            <div class="lg-block text-center">
+
+                <div class="title-big">
+                    <h1>DAPATKAN PRODUK UNGGULAN KAMI</h1>
+                </div>
+
+                <div class="description">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                    by injected humour, or randomised words which don't look even slightly believable.
+                </div>
+
+            </div><!-- Pricing plans / END -->
+
+
+            <div class="lg-block pricing-plans no-margin-bottom">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-md-4">
+
+                        <!-- Pricing plan / START -->
+                        <div class="plan">
+                            <div class="title">
+                                <span>Basic</span>
+                            </div>
+
+                            <div class="price">49.99<span class="currency">€</span></div>
+
+                            <ul class="features">
+                                <li>1000 items</li>
+                                <li>Limited usage</li>
+                                <li>Up to 100 users</li>
+                                <li>Free setup</li>
+                            </ul>
+
+                            <div class="actions">
+                                <a class="btn">Order</a>
+                            </div>
+
+                        </div><!-- Pricing plan / END -->
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+
+                        <!-- Pricing plan / START -->
+                        <div class="plan highlight">
+                            <div class="title">
+                                <span>Mega</span>
+                            </div>
+
+                            <div class="price">249.99<span class="currency">€</span></div>
+
+                            <ul class="features">
+                                <li>3000 items</li>
+                                <li>Unlimited usage</li>
+                                <li>Up to 500 users</li>
+                                <li>Free setup</li>
+                            </ul>
+
+                            <div class="actions">
+                                <a class="btn">Order</a>
+                            </div>
+
+                        </div><!-- Pricing plan / END -->
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+
+                        <!-- Pricing plan / START -->
+                        <div class="plan">
+                            <div class="title">
+                                <span>Ultra</span>
+                            </div>
+
+                            <div class="price">
+                                549.99<span class="currency">€</span>
+                                <!--<div class="extra">hourly</div>-->
+                            </div>
+
+                            <ul class="features">
+                                <li>7000 items</li>
+                                <li>Limited usage</li>
+                                <li>Up to 100 users</li>
+                                <li>Free setup</li>
+                            </ul>
+
+                            <div class="actions">
+                                <a class="btn">Order</a>
+                            </div>
+
+                        </div><!-- Pricing plan / END -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!-- Container / END -->
+
+    </div><!-- Bg gray / END -->
+</section>
+
+<section id="testimonials">
+    <div class="container">
+
+        <!-- Testimonials / START -->
+        <div class="block text-center">
+
+            <div class="title-big">
+                <h1>Testimonials</h1>
+            </div>
+
+        </div><!-- Testimonials / END -->
+
+        <div class="lg-block testimonials">
+
+            <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+
+                        <div class="row">
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/1.jpg" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Marketing, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/2.jpg" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Programming, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-12 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/3.jpg" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Customer satisfaction, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                        </div><!-- Row / END -->
+
+                    </div><!-- Item / END -->
+
+                    <div class="item">
+
+                        <div class="row">
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/4.jpg" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Food chain, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/5.jpg" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Service industry, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                            <!-- Testimonial / START -->
+                            <div class="col-xs-12 col-sm-12 col-md-4 testimonial">
+
+                                <div class="comment">
+                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,
+                                    by injected humour, or randomised words which don't look even slightly believable.
+                                </div>
+
+                                <div class="person">
+
+                                    <img src="../image/testimonials/6.png" alt="Person" class="pull-left"/>
+
+                                    <div class="description pull-left">
+                                        <div class="name">John Doe</div>
+                                        <div class="organization">Management, inc.</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                            </div><!-- Testimonial / END -->
+
+                        </div><!-- Row / END -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!-- Content / END -->
+
+    </div><!-- Container / END -->
+</section>
