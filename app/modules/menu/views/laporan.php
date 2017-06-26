@@ -19,8 +19,7 @@
 
 
          case '3':
-           echo $this->scm_library->menu('/','INPUT PENGIRIMAN ISI LPG','laporan-gas.svg');
-           echo $this->scm_library->menu('/','PENGIRIMAN ISI LPG','laporan-gas.svg');
+           echo $this->scm_library->menu('/pengiriman','PENGIRIMAN ISI LPG','laporan-gas.svg');
            break;
 
 
