@@ -5,8 +5,8 @@
           $id_group = $this->account->id_group;
           switch ($id_group) {
                 case '1':
-                      echo $this->scm_library->menu('penjualan/create','TRANSAKSI PENJUALAN','laporan-penjualan.svg');
-                      echo $this->scm_library->menu('pembelian/create','TRANSAKSI PEMBELIAN','laporan-pembelian.svg');
+                      //echo $this->scm_library->menu('penjualan/create','TRANSAKSI PENJUALAN','laporan-penjualan.svg');
+                      //echo $this->scm_library->menu('pembelian/create','TRANSAKSI PEMBELIAN','laporan-pembelian.svg');
                       break;
 
                 case '5':
