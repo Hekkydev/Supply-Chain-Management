@@ -1,4 +1,5 @@
 <a href="<?php echo site_url('pengiriman')?>" class="btn btn-primary btn-sm"><i class="fa fa-chevron-left"></i>  KEMBALI</a>
+<a target="_blank" href="<?php echo site_url('pengiriman/pengiriman/pdf?tanggal_pengiriman='.$tanggal_pengiriman.'&kode_sppbe='.$kode_sppbe.'&kode_agen='.$kode_agen.'')?>" class="btn btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i>   PDF</a>
 <br><br>
 <div class="row">
   <div class="col-lg-6">

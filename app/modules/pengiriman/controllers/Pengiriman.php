@@ -89,7 +89,30 @@ class Pengiriman extends MY_Controller{
 
   function pdf()
   {
-    # code...
+      $tanggal = $this->input->get('tanggal_pengiriman');
+      $kode_agen = $this->input->get('kode_agen');
+      $kode_sppbe = $this->input->get('kode_sppbe');
+      $data = array(
+        'tanggal_pengiriman'=>$this->input->get('tanggal_pengiriman'),
+        'kode_sppbe'=>$this->input->get('kode_sppbe'),
+        'kode_agen'=>$this->input->get('kode_agen'),
+        'pengiriman'=>$this->pengiriman_model->rekapitulasi($tanggal,$kode_sppbe,$kode_agen),
+      );
+      $report = [
+        'footer' =>'Supply Chain Management',
+        'title'=>'Rekapitulasi Pengiriman LPG',
+        'body'=>$this->load->view('pengiriman/pdf', $data,TRUE),
+        'filename'=>'Rekapitulasi Pengiriman LPG',
+      ];
+
+
+      // print_r($report); die();
+      $this->load->library('pdf');
+      $pdf = $this->pdf->load();
+      $pdf->SetHeader($report['footer'].'|'.$report['title'].'|'.date(DATE_RFC822));
+      $pdf->SetFooter($report['footer'].'|{PAGENO}|'.date(DATE_RFC822));
+      $pdf->WriteHTML($report['body']);
+      $pdf->Output(''.$report['filename'].'_report.pdf','D');
   }
 
   function rekapitulasi() {
