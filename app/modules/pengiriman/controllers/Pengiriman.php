@@ -8,9 +8,13 @@ class Pengiriman extends MY_Controller{
   {
           parent::__construct();
           $this->account = $this->authentikasi();
+          $this->account_posisition = (object) $this->scm_library->include_position($this->account->kode_akses_position);
           $this->load->model(array(
-              'pengiriman_model'
+              'pengiriman_model',
+              '../modules/scm_agen/models/scm_agen_model'
           ));
+          $this->agen = $this->scm_agen_model->get_all();
+
   }
 
   function index()
@@ -35,6 +39,11 @@ class Pengiriman extends MY_Controller{
             $this->pagination->initialize($config);
 
             $data = array(
+                'action'=>site_url('pengiriman/pengiriman/rekapitulasi'),
+                'kode_sppbe'=>$this->account_posisition->kode_usaha,
+                'nama_usaha'=>$this->account_posisition->nama_usaha,
+                'agen'=>$this->agen,
+                'tanggal_pengiriman'=>set_value('tanggal_pengiriman',date('Y-m-d')),
                 'pengiriman' => $pengiriman,
                 'q' => $q,
                 'pagination' => $this->pagination->create_links(),
@@ -48,16 +57,13 @@ class Pengiriman extends MY_Controller{
 
   function create()
   {
+
       $data = array(
-          'button' => 'Create',
-          'action' => site_url('pengiriman/submit'),
-          'id_pembelian' => set_value('id_pembelian'),
-          'kode_pembelian' => set_value('kode_pembelian'),
-          'tanggal_pembelian' => set_value('tanggal_pembelian'),
-          'keterangan' => set_value('keterangan'),
-          'created' => set_value('created'),
-          'modified' => set_value('modified'),
-          'deleted' => set_value('deleted'),
+          'action' => site_url('pengiriman/pengiriman/submit'),
+          'kode_sppbe'=>$this->account_posisition->kode_usaha,
+          'nama_usaha'=>$this->account_posisition->nama_usaha,
+          'agen'=>$this->agen,
+          'tanggal_pengiriman'=>set_value('tanggal_pengiriman',date('Y-m-d')),
       );
       $this->title_page('Input Pengiriman LPG');
       $this->load_theme('pengiriman/create', $data);
@@ -68,14 +74,15 @@ class Pengiriman extends MY_Controller{
     $pengiriman_data = array(
       'tanggal_pengiriman'=>$this->input->post('tanggal_pengiriman'),
       'kode_sppbe'=>$this->input->post('kode_sppbe'),
+      'kode_agen'=>$this->input->post('kode_agen'),
       'plant'=>$this->input->post('plat'),
       'no_lo'=>$this->input->post('no_lo'),
       'qty_pcs'=>$this->input->post('qty_pcs'),
       'qty_kg'=>$this->input->post('qty_kg'),
     );
-
+    //print_r($pengiriman_data); die();
     $simpan = $this->pengiriman_model->insert($pengiriman_data);
-    if ($simpan) {
+    if ($simpan == TRUE) {
       redirect('pengiriman');
     }
   }
@@ -85,8 +92,19 @@ class Pengiriman extends MY_Controller{
     # code...
   }
 
-  function search() {
-    # code...
+  function rekapitulasi() {
+    $tanggal = $this->input->post('tanggal_pengiriman');
+    $kode_sppbe = $this->input->post('kode_sppbe');
+    $kode_agen = $this->input->post('kode_agen');
+    $pengiriman = $this->pengiriman_model->rekapitulasi($tanggal,$kode_sppbe,$kode_agen);
+    $this->data = array(
+      'tanggal_pengiriman'=>$this->input->post('tanggal_pengiriman'),
+      'kode_sppbe'=>$this->input->post('kode_sppbe'),
+      'kode_agen'=>$this->input->post('kode_agen'),
+      'pengiriman'=>$pengiriman,
+    );
+    $this->title_page('Rekapitulasi Pengiriman Produk');
+    $this->load_theme('pengiriman/rekapitulasi', $this->data);
   }
 
 

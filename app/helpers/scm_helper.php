@@ -208,3 +208,35 @@ if (! function_exists('users_group'))
 				}
 	}
 }
+
+if (! function_exists('sppbe'))
+{
+	function sppbe($kode_sppbe)
+	{
+				$CI =& get_instance();
+				$CI->load->database();
+				$CI->db->where('kode_sppbe',$kode_sppbe);
+				$query = $CI->db->get('scm_sppbe')->first_row();
+				if ($query == TRUE) {
+					return $query;
+				}else{
+					return FALSE;
+				}
+	}
+}
+
+if (! function_exists('agen'))
+{
+	function agen($kode_sppbe)
+	{
+				$CI =& get_instance();
+				$CI->load->database();
+				$CI->db->where('kode_agen',$kode_sppbe);
+				$query = $CI->db->get('scm_agen')->first_row();
+				if ($query == TRUE) {
+					return $query;
+				}else{
+					return FALSE;
+				}
+	}
+}

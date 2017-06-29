@@ -1,5 +1,6 @@
-
-<table class="table table-striped table-hover table-bordered">
+<?php include 'form-search.php'; ?>
+<br>
+<!-- <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
       <th>No</th>
@@ -31,4 +32,4 @@
 
 <div class="pagination">
   <?php echo $pagination ?>
-</div>
+</div> -->

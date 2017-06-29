@@ -47,9 +47,6 @@
                                     <div class="pull-left">
                                         <a href="<?php echo site_url('account')?>" class="btn btn-default btn-flat btn-block">Profile</a>
                                     </div>
-                                    <div class="pull-right">
-                                        <a href="<?php echo site_url('account/history')?>" class="btn btn-default btn-flat">History</a>
-                                    </div>
                                 </li>
                             </ul>
                         </li>
