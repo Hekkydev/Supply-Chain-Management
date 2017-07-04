@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2017 at 11:37 AM
+-- Generation Time: Jul 04, 2017 at 11:47 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -209,9 +209,6 @@ CREATE TABLE `scm_menu_link` (
 --
 
 INSERT INTO `scm_menu_link` (`id_menu_link`, `id_status`, `nama_menu`, `icon`, `link`, `id_group`, `position`) VALUES
-(1, 1, 'Transaksi', 'fa fa-calendar', 'menu/transaksi', 1, 0),
-(2, 1, 'Penyaluran', 'fa fa-refresh', 'menu/penyaluran', 1, 0),
-(3, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 1, 0),
 (4, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 1, 0),
 (5, 1, 'Management', 'fa fa-users', 'menu/management', 1, 0),
 (6, 1, 'Transaksi', 'fa fa-calendar', 'pembelian/create_transaksi_pembelian_konsumen', 7, 0),
@@ -227,7 +224,10 @@ INSERT INTO `scm_menu_link` (`id_menu_link`, `id_status`, `nama_menu`, `icon`, `
 (17, 1, 'Management', 'fa fa-users', 'menu/management', 3, 5),
 (18, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 2, 1),
 (19, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 2, 2),
-(20, 1, 'Input Pengiriman', 'fa fa-truck', 'pengiriman/create', 3, 2);
+(20, 1, 'Input Pengiriman', 'fa fa-truck', 'pengiriman/create', 3, 2),
+(21, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 6, 1),
+(22, 1, 'Management', 'fa fa-users', 'menu/management', 6, 3),
+(23, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -728,7 +728,7 @@ ALTER TABLE `scm_inbox`
 -- AUTO_INCREMENT for table `scm_menu_link`
 --
 ALTER TABLE `scm_menu_link`
-  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `scm_pangkalan`
 --
@@ -748,7 +748,7 @@ ALTER TABLE `scm_pembelian_item`
 -- AUTO_INCREMENT for table `scm_pengiriman`
 --
 ALTER TABLE `scm_pengiriman`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `scm_penjualan`
 --

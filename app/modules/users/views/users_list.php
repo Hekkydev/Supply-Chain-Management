@@ -115,12 +115,8 @@
             ?>
 </table>
 <div class="row">
-    <div class="col-md-6">
-        <a href="#" class="btn btn-primary btn-md btn-flat">Total Record : <?php echo $total_rows ?></a>
-        <?php echo anchor(site_url('users/excel'), 'Excel', 'class="btn btn-primary btn-md btn-flat"'); ?>
-        <?php echo anchor(site_url('users/word'), 'Word', 'class="btn btn-primary btn-md btn-flat"'); ?>
-    </div>
-    <div class="col-md-6 text-right">
+
+    <div class="col-md-12 text-right">
         <?php echo $pagination ?>
     </div>
 </div>

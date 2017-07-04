@@ -40,6 +40,9 @@
             echo $this->scm_library->menu('penjualan','PENYALURAN BARANG KE AGEN','laporan-gas.svg');
             echo $this->scm_library->menu('penjualan','REALISASI  PENYALURAN ANTAR PANGKALAN','pangkalan.svg');
             break;
+          case '6':
+            echo $this->scm_library->menu('penyaluran/realisasi','LAPORAN PENYALURAN LPG','laporan-gas.svg');
+          break;
    default:
 
      break;
