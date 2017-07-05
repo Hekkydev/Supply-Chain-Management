@@ -14,6 +14,10 @@
           echo $this->scm_library->menu('menu/order_agen','PEMESANAN KE AGEN','agen.svg');
           echo $this->scm_library->menu('menu/order_sppbe','PEMESANAN KE SPPBE','sppbe.svg');
           break;
+    case '5':
+    break;
+    case:'6':
+    break;
  default:
 
    break;
