@@ -32,13 +32,13 @@
               echo $this->scm_library->menu('scm_barang','BARANG','barang.svg');
               break;
             case '5':
-              echo $this->scm_library->menu('sppbe','SPPBE','sppbe.svg');
+              // echo $this->scm_library->menu('sppbe','SPPBE','sppbe.svg');
               echo $this->scm_library->menu('scm_agen','AGEN','agen.svg');
-              echo $this->scm_library->menu('scm_pangkalan','PANGKALAN','pangkalan.svg');
-              echo $this->scm_library->menu('stock_lpg','STOCK LPG','stock_lpg.svg');
-              echo $this->scm_library->menu('scm_barang','BARANG','barang.svg');
-              echo $this->scm_library->menu('kategori','KATEGORI BARANG','barang-kategori.svg');
-              echo $this->scm_library->menu('scm_barang_satuan','SATUAN BARANG','barang-kategori.svg');
+              // echo $this->scm_library->menu('scm_pangkalan','PANGKALAN','pangkalan.svg');
+              // echo $this->scm_library->menu('stock_lpg','STOCK LPG','stock_lpg.svg');
+              // echo $this->scm_library->menu('scm_barang','BARANG','barang.svg');
+              // echo $this->scm_library->menu('kategori','KATEGORI BARANG','barang-kategori.svg');
+              // echo $this->scm_library->menu('scm_barang_satuan','SATUAN BARANG','barang-kategori.svg');
               break;
 
             case '6':

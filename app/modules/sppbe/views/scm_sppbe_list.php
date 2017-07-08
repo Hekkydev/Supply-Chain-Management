@@ -1,6 +1,8 @@
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
-        <?php echo anchor(site_url('sppbe/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
+        <?php if ($account->id_group == 1 || $account->id_group == 3): ?>
+          <?php echo anchor(site_url('sppbe/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
+        <?php endif; ?>
     </div>
     <div class="col-md-4 text-center">
         <div style="margin-top: 8px" id="message">
@@ -30,19 +32,20 @@
 </div>
 <table class="table table-bordered" style="margin-bottom: 10px">
     <tr>
-        <th>No</th>
+        <th style="width:20px;">No</th>
         <th>Kode</th>
         <th>Nama</th>
         <th>Alamat</th>
         <th>Telephone</th>
         <th>Terdaftar</th>
-        <th style="text-align:center">Action</th>
-      </tr><?php
-    foreach ($sppbe_data as $sppbe)
-    {
+        <th style="text-align:center; width:300px;">Action</th>
+      </tr>
+        <?php
+        foreach ($sppbe_data as $sppbe)
+        {
         ?>
         <tr>
-      <td width="80px"><?php echo ++$start ?></td>
+      <td width="20px"><?php echo ++$start ?></td>
       <td><?php echo $sppbe->kode_sppbe ?></td>
       <td><?php echo $sppbe->nama_sppbe ?></td>
       <td><?php echo $sppbe->alamat_sppbe ?></td>
@@ -51,23 +54,21 @@
       <td style="text-align:center" width="200px">
         <a style="cursor:pointer;" class="btn btn-xs btn-flat btn-primary" onclick="read('<?php echo $sppbe->id_spbbe; ?>')"><i class="fa fa-search"></i> Read</a>
       <?php
-      echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
-      echo ' ';
-      echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger"');
-      ?>
+      if ($account->id_group == 1 || $account->id_group == 3) {
+        echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
+        echo ' ';
+        echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger"');
+      }
+          ?>
       </td>
-</tr>
-        <?php
-    }
-    ?>
+      </tr>
+      <?php
+      }
+      ?>
 </table>
 <div class="row">
     <div class="col-md-6">
-        <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
-<?php echo anchor(site_url('sppbe/excel'), 'Excel', 'class="btn btn-primary btn-flat"'); ?>
-<?php echo "&nbsp;" ?>
-<?php echo anchor(site_url('sppbe/word'), 'Word', 'class="btn btn-primary btn-flat"'); ?>
-</div>
+    </div>
     <div class="col-md-6 text-right">
         <?php echo $pagination ?>
     </div>

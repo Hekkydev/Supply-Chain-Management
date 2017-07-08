@@ -1,7 +1,9 @@
 
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
+      <?php if ($account->id_group == 1 || $account->id_group == 6): ?>
         <?php echo anchor(site_url('scm_pangkalan/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
+      <?php endif; ?>
     </div>
     <div class="col-md-4 text-center">
         <div style="margin-top: 8px" id="message">
@@ -29,7 +31,7 @@
         </form>
     </div>
 </div>
-      <?php if ($account->id_group == 1): ?>
+      <?php if ($account->id_group == 1 || $account->id_group == 5): ?>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
@@ -56,10 +58,11 @@
                       <td><?php echo $scm_pangkalan->no_telp ?></td>
                       <td style="text-align:center" width="200px">
                       <a style="cursor:pointer" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-search"></i> Read</a>
-                      <?php
+                    <?php if ($account->id_group == 1 || $account->id_group == 6):
                       echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-edit"></i> Update','class="btn  btn-xs btn-success btn-flat"');
                       echo "&nbsp;";
                       echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-flat btn-xs btn-danger"');
+                    endif;
                       ?>
                       </td>
               </tr>
@@ -67,52 +70,52 @@
                   }
                   ?>
             </table>
-            <?php else: ?>
-              <table class="table table-bordered" style="margin-bottom: 10px">
-                  <tr>
-                      <th>No</th>
-                      <th>Kode Pangkalan</th>
-                      <th>Nama Pangkalan</th>
-                      <th>Alamat Pangkalan</th>
-                      <th>Kelurahan</th>
-                      <th>No Telp</th>
-                      <th>Action</th>
-                  </tr>
 
-                  <?php
-                  foreach ($scm_pangkalan_data as $scm_pangkalan)
-                  {
-                    if ($account_position->kode_usaha == $scm_pangkalan->kode_agen) {
+      <?php else: ?>
+        <table class="table table-bordered" style="margin-bottom: 10px">
+            <tr>
+                <th>No</th>
+                <th>Kode Pangkalan</th>
+                <th>Nama Pangkalan</th>
+                <th>Alamat Pangkalan</th>
+                <th>Kelurahan</th>
+                <th>No Telp</th>
+                <th>Action</th>
+            </tr>
+
+            <?php
+            foreach ($scm_pangkalan_data as $scm_pangkalan)
+            {
+                  ?>
+                <tr>
+                      <td width="80px"><?php echo ++$start ?></td>
+                      <td><?php echo $scm_pangkalan->kode_pangkalan ?></td>
+                      <td><?php echo $scm_pangkalan->nama_pangkalan ?></td>
+                      <td><?php echo $scm_pangkalan->alamat_pangkalan ?></td>
+                      <td><?php echo $scm_pangkalan->kelurahan ?></td>
+                      <td><?php echo $scm_pangkalan->no_telp ?></td>
+                      <td style="text-align:center" width="200px">
+                      <a href="#" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-flat btn-primary">Read</a>
+                    <?php if ($account->id_group == 1 || $account->id_group == 6):
+                      echo ' | ';
+                      echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update');
+                      echo ' | ';
+                      echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                    endif;
                       ?>
-                      <tr>
-                            <td width="80px"><?php echo ++$start ?></td>
-                            <td><?php echo $scm_pangkalan->kode_pangkalan ?></td>
-                            <td><?php echo $scm_pangkalan->nama_pangkalan ?></td>
-                            <td><?php echo $scm_pangkalan->alamat_pangkalan ?></td>
-                            <td><?php echo $scm_pangkalan->kelurahan ?></td>
-                            <td><?php echo $scm_pangkalan->no_telp ?></td>
-                            <td style="text-align:center" width="200px">
-                            <a href="#" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')">Read</a>
-                            <?php
-                            echo ' | ';
-                            echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update');
-                            echo ' | ';
-                            echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-                            ?>
-                            </td>
-                    </tr>
-                      <?php
+                      </td>
+              </tr>
+                <?php
 
-                      }
-                        }
-                        ?>
-                  </table>
+                  }
+                  ?>
+            </table>
       <?php endif; ?>
 <div class="row">
     <div class="col-md-6">
-        <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
+        <!-- <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
         <?php echo anchor(site_url('scm_pangkalan/excel'), 'Excel', 'class="btn btn-primary btn-flat"'); ?>
-        <?php echo anchor(site_url('scm_pangkalan/word'), 'Word', 'class="btn btn-primary btn-flat"'); ?>
+        <?php echo anchor(site_url('scm_pangkalan/word'), 'Word', 'class="btn btn-primary btn-flat"'); ?> -->
       </div>
     <div class="col-md-6 text-right">
         <?php echo $pagination ?>

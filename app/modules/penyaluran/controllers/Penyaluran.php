@@ -97,6 +97,43 @@ class Penyaluran extends MY_Controller{
 
   }
 
+  function add_rencana_proses() {
+    $this->_rules_add_penyaluran();
+    if ($this->form_validation->run() == FALSE) {
+      $proses = array(
+        'error'=>1,
+        'message'=>'Error Menyimpan Realisasi'
+      );
+      echo json_encode($proses);
+    }else{
+      $data  = array(
+        'kode_penyaluran'=>$this->input->post('kode_penyaluran'),
+        'tanggal_penyaluran'=>$this->input->post('tanggal_penyaluran'),
+        'kode_barang'=>$this->input->post('kode_barang'),
+        'kode_pangkalan'=>$this->input->post('kode_pangkalan'),
+        'jumlah_penyaluran'=>$this->input->post('jumlah_penyaluran'),
+        'id_penyaluran_kondisi'=>$this->input->post('id_penyaluran_kondisi'),
+        'id_user'=>$this->account->id_user,
+        'created'=>$this->date_now(),
+      );
+      $simpan = $this->penyaluran_model->insert_penyaluran_data($data);
+      if ($simpan == TRUE) {
+        $proses = array(
+          'error'=>0,
+          'message'=>'Berhasil menyimpan realisasi'
+        );
+        echo json_encode($proses);
+      }else{
+        $proses = array(
+          'error'=>1,
+          'message'=>'Error Menyimpan Realisasi'
+        );
+        echo json_encode($proses);
+      }
+    }
+
+  }
+
   function _rules_add_penyaluran() {
     $this->form_validation->set_rules('kode_penyaluran', 'KODE PENYALURAN', 'required|trim');
     $this->form_validation->set_rules('tanggal_penyaluran', 'TANGGAL PENYALURAN', 'required|trim');
@@ -127,5 +164,9 @@ class Penyaluran extends MY_Controller{
         );
       $this->load->view('penyaluran/realisasi/list_laporan',$data);
   }
+
+
+
+
 
 }

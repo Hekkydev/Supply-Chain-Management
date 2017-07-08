@@ -1,6 +1,8 @@
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-4">
-        <?php echo anchor(site_url('scm_agen/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
+        <?php if ($account->id_group == 4): ?>
+          <?php echo anchor(site_url('scm_agen/create'),'Create', 'class="btn btn-primary btn-flat"'); ?>
+        <?php endif; ?>
     </div>
     <div class="col-md-4 text-center">
         <div style="margin-top: 8px" id="message">
@@ -68,11 +70,13 @@
             </td>
             <td style="text-align:center" width="200px">
               <a style="cursor:pointer" class="btn btn-xs btn-flat btn-primary" onclick="read_agen('<?php echo $scm_agen->id_agen?>')"><i class="fa fa-search"></i> Read</a>
-                <?php
-				echo anchor(site_url('scm_agen/update/'.$scm_agen->id_agen),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
-				echo '  ';
-				echo anchor(site_url('scm_agen/delete/'.$scm_agen->id_agen),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"class="btn btn-xs btn-flat btn-danger" ');
-				?>
+                <?php if ($account->id_group == 1 || $account->id_group == 4): ?>
+                  <?php
+          				echo anchor(site_url('scm_agen/update/'.$scm_agen->id_agen),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
+          				echo '  ';
+          				echo anchor(site_url('scm_agen/delete/'.$scm_agen->id_agen),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"class="btn btn-xs btn-flat btn-danger" ');
+  	              ?>
+                <?php endif; ?>
             </td>
         </tr>
         <?php
@@ -81,9 +85,9 @@
 </table>
 <div class="row">
     <div class="col-md-6">
-        <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
+        <!-- <a href="#" class="btn btn-primary btn-flat">Total Record : <?php echo $total_rows ?></a>
         <?php echo anchor(site_url('scm_agen/excel'), 'Excel', 'class="btn btn-primary btn-flat"'); ?> &nbsp;
-        <?php echo anchor(site_url('scm_agen/word'), 'Word', 'class="btn btn-primary btn-flat"'); ?>
+        <?php echo anchor(site_url('scm_agen/word'), 'Word', 'class="btn btn-primary btn-flat"'); ?> -->
     </div>
     <div class="col-md-6 text-right">
         <?php echo $pagination ?>

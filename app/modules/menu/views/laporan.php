@@ -14,7 +14,7 @@
            break;
 
          case '2': // User SPPBE
-           echo $this->scm_library->menu('/','PENGIRIMAN ISI LPG','laporan-gas.svg');
+           echo $this->scm_library->menu('pengiriman/','PENGIRIMAN ISI LPG','laporan-gas.svg');
           break;
 
 
@@ -32,14 +32,13 @@
             echo $this->scm_library->menu('penyaluran/rencana','LAPORAN RENCANA PENYALURAN','rencana-penyaluran.svg');
             echo $this->scm_library->menu('penyaluran/realisasi','LAPORAN REALISASI PENYALURAN','realisasi-penyaluran.svg');
             echo $this->scm_library->menu('pemesanan_konsumen','LAPORAN TRANSAKSI PEMESANAN KONSUMEN','laporan-gas.svg');
+            echo $this->scm_library->menu('pengiriman/using_agen','PENGIRIMAN ISI LPG','laporan-gas.svg');
             break;
          case '5':
-
-            echo $this->scm_library->menu('pembelian','LAPORAN DATA PANGKALAN','pangkalan.svg');
-            echo $this->scm_library->menu('penjualan','PENJUALAN','laporan-penjualan.svg');
-            echo $this->scm_library->menu('penjualan','PENYALURAN BARANG KE AGEN','laporan-gas.svg');
-            echo $this->scm_library->menu('penjualan','REALISASI  PENYALURAN ANTAR PANGKALAN','pangkalan.svg');
-            break;
+            echo $this->scm_library->menu('pemesanan_lpg/using_uagen','PEMESANAN ISI LPG','laporan-gas.svg');
+            echo $this->scm_library->menu('penyaluran/rencana','LAPORAN RENCANA PENYALURAN','rencana-penyaluran.svg');
+            echo $this->scm_library->menu('penyaluran/realisasi','LAPORAN REALISASI PENYALURAN','realisasi-penyaluran.svg');
+          break;
           case '6':
             echo $this->scm_library->menu('penyaluran/realisasi','LAPORAN PENYALURAN LPG','laporan-gas.svg');
           break;

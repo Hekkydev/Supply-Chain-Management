@@ -42,6 +42,7 @@
                         <input type="text" name="jumlah_penyaluran"  class="form-control">
                     </div>
             </div>
+
             <?php if ($this->account_posisition->kode_usaha == FALSE): ?>
                     <div class="form-group">
                           <label class="control-label col-lg-4 small">AGEN</label>
@@ -53,6 +54,7 @@
                             </select>
                           </div>
                     </div>
+
                 <?php else: ?>
                   <input type="hidden" name="kode_agen" value="<?php echo $this->account_posisition->kode_usaha?>">
             <?php endif; ?>

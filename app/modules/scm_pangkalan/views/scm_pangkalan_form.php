@@ -9,7 +9,7 @@
         <label for="varchar">Kode Sub Penyalur / Pangkalan <?php echo form_error('kode_pangkalan') ?></label>
         <input type="text" class="form-control" name="kode_pangkalan" id="kode_pangkalan" placeholder="Kode Pangkalan" value="<?php echo $kode_pangkalan; ?>" />
     </div>
-    <?php if ($account->id_group == 1): ?>
+    <?php if ($account->id_group == 1 || $account->id_group == 6): ?>
         <div class="form-group">
           <label for="">Pilih Agen</label>
           <select class="form-control" name="kode_agen">

@@ -15,7 +15,26 @@ class Users_group_model extends CI_Model
         parent::__construct();
     }
 
+    function remove_menu($id)
+    {
+      $this->db->where('id_menu_link',$id);
+      return $this->db->delete('scm_menu_link');
+    }
+
+    function created_menu($data)
+    {
+      return $this->db->insert('scm_menu_link',$data);
+    }
     // get all
+    function get_all_menu()
+    {
+        $this->db->select('*');
+        $this->db->from('scm_menu_link');
+        $this->db->join('users_group', 'users_group.id_group = scm_menu_link.id_group', 'left');
+        $this->db->order_by('id_menu_link','DESC');
+        return $this->db->get()->result();
+    }
+
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
@@ -28,7 +47,7 @@ class Users_group_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_group', $q);

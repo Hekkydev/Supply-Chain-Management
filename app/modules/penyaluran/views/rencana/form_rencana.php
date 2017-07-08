@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="<?php echo site_url('assets/AdminLTE-2.0.5/plugins/datepicker/datepicker3.css')?>">
 <div class="row">
     <div class="col-lg-6">
-      <legend>FORM REALISASI</legend>
-        <form id="form-penyaluran" class="form-horizontal" action="<?php echo site_url('penyaluran/add_realisasi_proses')?>" method="post">
+      <legend>FORM RENCANA</legend>
+        <form id="form-penyaluran" class="form-horizontal" action="<?php echo site_url('penyaluran/add_rencana_proses')?>" method="post">
             <div class="form-group">
                     <label class="control-label col-lg-4 small">KODE REALISASI</label>
                     <div class="col-lg-8">

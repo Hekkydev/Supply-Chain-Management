@@ -57,11 +57,7 @@
             ?>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-flat btn-primary btn-sm">Total Record : <?php echo $total_rows ?></a>
-            		<?php echo anchor(site_url('pembelian/excel'), 'Excel', 'class="btn btn-flat btn-primary btn-sm"'); ?>
-            		<?php echo anchor(site_url('pembelian/word'), 'Word', 'class="btn btn-flat btn-primary btn-sm"'); ?>
-      	    </div>
+            
             <div class="col-md-6 text-right">
                 <?php echo $pagination ?>
             </div>

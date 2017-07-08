@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <label for="">SP AGEN</label>
-                <?php if ($account->id_group == 1): ?>
+                <?php if ($account->id_group == 1 || $account->id_group == 6): ?>
                   <select class="form-control" name="kode_agen">
                       <?php foreach ($agen as $var): ?>
                           <option value="<?php echo $var->kode_agen; ?>"><?php echo $var->kode_agen.' - '.$var->nama_agen ?></option>

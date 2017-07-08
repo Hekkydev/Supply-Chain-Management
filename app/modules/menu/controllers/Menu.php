@@ -13,9 +13,38 @@ class Menu extends MY_Controller
         $this->account = $this->authentikasi();
         $this->account_posisition = $this->scm_library->include_position($this->account->kode_akses_position);
 
-
+        $this->load->model(array('../modules/users_group/models/users_group_model'));
     }
 
+    function created()
+    {
+
+      $menu = [
+        'nama_menu'=>$this->input->post('nama_menu'),
+        'link'=>$this->input->post('link'),
+        'icon'=>$this->input->post('icon'),
+        'id_group'=>$this->input->post('id_group'),
+        'id_status'=>1,
+      ];
+
+      $post = $this->users_group_model->created_menu($menu);
+      redirect('menu/setting');
+
+    }
+    function remove($id = null)
+    {
+      $post = $this->users_group_model->remove_menu($id);
+      redirect('menu/setting');
+    }
+    function setting()
+    {
+        $data = [
+          'group'=>$this->users_group_model->get_all(),
+          'menu'=>$this->users_group_model->get_all_menu()
+        ];
+        $this->title_page('Menu Setting');
+        $this->load_theme('menu/setting',$data);
+    }
     function index()
     {
         $group = $this->account->id_group;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2017 at 11:47 AM
+-- Generation Time: Jul 08, 2017 at 01:42 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -216,8 +216,8 @@ INSERT INTO `scm_menu_link` (`id_menu_link`, `id_status`, `nama_menu`, `icon`, `
 (8, 1, 'Master Data', 'fa fa-inbox', 'scm_barang/list_barang', 7, 0),
 (9, 1, 'Profile', 'fa fa-user', 'account', 7, 0),
 (11, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 4, 4),
-(12, 1, 'Penyaluran', 'fa fa-refresh', 'menu/penyaluran', 4, 3),
-(13, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 4, 2),
+(12, 1, 'Penyaluran', 'fa fa-refresh', 'menu/penyaluran', 4, 2),
+(13, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 4, 3),
 (14, 1, 'Management', 'fa fa-users', 'menu/management', 4, 5),
 (15, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 3, 1),
 (16, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 3, 2),
@@ -227,7 +227,9 @@ INSERT INTO `scm_menu_link` (`id_menu_link`, `id_status`, `nama_menu`, `icon`, `
 (20, 1, 'Input Pengiriman', 'fa fa-truck', 'pengiriman/create', 3, 2),
 (21, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 6, 1),
 (22, 1, 'Management', 'fa fa-users', 'menu/management', 6, 3),
-(23, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 6, 2);
+(23, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 6, 2),
+(24, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 5, 4),
+(25, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -440,7 +442,8 @@ INSERT INTO `scm_penyaluran_barang` (`id_penyaluran_barang`, `id_penyaluran_kond
 (12, 1, 'P09P97-20170528004', '316841493009', 'K001', '2017-05-03', 50, 20, '2017-05-28 11:34:45', NULL, NULL),
 (13, 1, 'PJH9KA-20170528005', '316841493008', 'K001', '2017-05-01', 90, 20, '2017-05-28 11:35:10', NULL, NULL),
 (14, 2, 'PPSVDU-20170613006', '316841493009', 'K003', '2017-06-13', 0, 20, '2017-06-13 13:17:45', NULL, NULL),
-(15, 2, 'PLPMIS-20170629007', '316841493009', 'K003', '2017-06-29', 0, 20, '2017-06-29 09:46:15', NULL, NULL);
+(15, 2, 'PLPMIS-20170629007', '316841493009', 'K003', '2017-06-29', 0, 20, '2017-06-29 09:46:15', NULL, NULL),
+(16, 2, 'PBP0LV-20170708008', '316841493009', 'K003', '2017-07-08', 20, 20, '2017-07-08 08:24:38', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -728,7 +731,7 @@ ALTER TABLE `scm_inbox`
 -- AUTO_INCREMENT for table `scm_menu_link`
 --
 ALTER TABLE `scm_menu_link`
-  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `scm_pangkalan`
 --
@@ -763,7 +766,7 @@ ALTER TABLE `scm_penjualan_item`
 -- AUTO_INCREMENT for table `scm_penyaluran_barang`
 --
 ALTER TABLE `scm_penyaluran_barang`
-  MODIFY `id_penyaluran_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_penyaluran_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `scm_penyaluran_kondisi`
 --

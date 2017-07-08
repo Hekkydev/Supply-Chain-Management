@@ -11,14 +11,31 @@ class Pengiriman extends MY_Controller{
           $this->account_posisition = (object) $this->scm_library->include_position($this->account->kode_akses_position);
           $this->load->model(array(
               'pengiriman_model',
-              '../modules/scm_agen/models/scm_agen_model'
+              '../modules/scm_agen/models/scm_agen_model',
+              '../modules/sppbe/models/sppbe_model',
           ));
           $this->agen = $this->scm_agen_model->get_all();
+          $this->sppbe_data = $this->sppbe_model->get_all();
 
   }
-
+  function using_agen()
+  {
+        $data = array(
+            'action'=>site_url('pengiriman/pengiriman/rekapitulasi'),
+            'kode_sppbe'=>$this->sppbe_data,
+            'kode_agen'=>$this->account_posisition->kode_usaha,
+            'nama_usaha'=>$this->account_posisition->nama_usaha,
+            'agen'=>$this->agen,
+            'tanggal_pengiriman'=>set_value('tanggal_pengiriman',date('Y-m-d')),
+        );
+        $this->title_page("Laporan Pengiriman LPG");
+        $this->load_theme('pengiriman/form-search-for-agen', $data);
+  }
   function index()
   {
+            if ($this->account->id_group == 1 || $this->account->id_group == 4 || $this->account->id_group == 5 ) {
+              redirect('pengiriman/using_agen');
+            }else{
             $q = urldecode($this->input->get('q', TRUE));
             $start = intval($this->input->get('start'));
 
@@ -52,6 +69,7 @@ class Pengiriman extends MY_Controller{
             );
             $this->title_page("Laporan Pengiriman LPG");
             $this->load_theme('pengiriman/laporan', $data);
+            }
   }
 
 

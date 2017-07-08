@@ -35,7 +35,13 @@
             </li>
           <?php endif; ?>
           <?php endforeach; ?>
-
+          <?php if ($account->id_group == 1): ?>
+            <li class="<?php echo active_link('/menu/setting')?>">
+              <a href="<?php echo site_url('menu/setting')?>">
+                <i class="fa fa-cog"></i><span>Menu Setting</span><i class="fa fa-caret-square-o-right pull-right"></i>
+              </a>
+            </li>
+          <?php endif; ?>
         </ul>
     </section>
     <!-- /.sidebar -->
