@@ -81,5 +81,10 @@
             <?php endforeach; ?>
           </tbody>
         </table>
+
+         <a class="btn btn-danger btn-xs btn-flat" onClick="pdf()" style="text-align:center">Export to PDF</a>
+         
+    <br> <br> 
   </div>
 </div>
+

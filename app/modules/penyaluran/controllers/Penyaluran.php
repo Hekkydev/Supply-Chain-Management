@@ -186,4 +186,58 @@ class Penyaluran extends MY_Controller{
   }
 
 
+  function realisasi_pdf()
+  {
+       $data = array(
+          'post'=>$_POST,
+          'agen'=>$this->scm_agen_model->get_all(),
+          'barang'=>$this->scm_barang_model->get_all(),
+          'informasi'=>$this->account_posisition,
+          'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+          'bulan'=>$this->bulan,
+        );
+        $report = [
+          'footer' =>'Supply Chain Management',
+          'title'=>'Laporan Realisasi',
+          'body'=>$this->load->view('penyaluran/rencana/list_laporan', $data,TRUE),
+          'filename'=>'Laporan Realisasi',
+        ];
+
+        //print_r($report);
+        $this->load->library('pdf');
+        $pdf = $this->pdf->load();
+        $pdf->SetHeader($report['footer'].'|'.$report['title'].'|'.date(DATE_RFC822));
+        $pdf->SetFooter($report['footer'].'|{PAGENO}|'.date(DATE_RFC822));
+        $pdf->WriteHTML($report['body']);
+        $pdf->Output(''.$report['filename'].'_report.pdf','D');
+  }
+
+    function rencana_pdf()
+  {
+       $data = array(
+          'post'=>$_POST,
+          'agen'=>$this->scm_agen_model->get_all(),
+          'barang'=>$this->scm_barang_model->get_all(),
+          'informasi'=>$this->account_posisition,
+          'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+          'bulan'=>$this->bulan,
+        );
+        $report = [
+          'footer' =>'Supply Chain Management',
+          'title'=>'Laporan Rencana',
+          'body'=>$this->load->view('penyaluran/rencana/list_laporan', $data,TRUE),
+          'filename'=>'Laporan Rencana',
+        ];
+
+        //print_r($report);
+        $this->load->library('pdf');
+        $pdf = $this->pdf->load();
+        $pdf->SetHeader($report['footer'].'|'.$report['title'].'|'.date(DATE_RFC822));
+        $pdf->SetFooter($report['footer'].'|{PAGENO}|'.date(DATE_RFC822));
+        $pdf->WriteHTML($report['body']);
+        $pdf->Output(''.$report['filename'].'_report.pdf','D');
+  }
+
+
+
 }

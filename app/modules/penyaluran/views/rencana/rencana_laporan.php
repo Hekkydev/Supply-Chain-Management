@@ -93,6 +93,7 @@
   <?php endif; ?>
 </div>
 <div id="data-rencana"></div>
+<div id="data-rencana-pdf"></div>
 <script src="<?php echo site_url('assets/jquery/external/jquery/jquery.js')?>"></script>
 <script type="text/javascript">
 $(function(){
@@ -113,4 +114,17 @@ $(function(){
     return false;
   });
 });
+
+ function pdf()
+  {
+    $.ajax({
+        url: '<?php echo site_url('penyaluran/penyaluran/rencana_pdf')?>',
+        type: 'POST',
+        data: $('#form_rencana').serialize(),
+        success:function(html)
+        {
+          $('#data-rencana-pdf').html(html);
+        }
+      });
+  }
 </script>

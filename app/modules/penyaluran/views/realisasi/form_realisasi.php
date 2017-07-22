@@ -65,6 +65,7 @@
                     <div class="col-lg-8">
                         <button type="submit" class="btn btn-sm btn-primary btn-flat">SIMPAN</button>
                         <a class="btn btn-sm btn-default btn-flat">KEMBALI</a>
+                         
                     </div>
             </div>
         </form>
@@ -85,4 +86,6 @@ $(function(){
     return false;
   });
 });
+
+ 
 </script>

@@ -51,7 +51,7 @@
             <div class="form-group">
               <button type="submit" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-search"></i> LIHAT LAPORAN REALISASI</button>
               <a style="cursor:pointer" class="btn btn-xs btn-default btn-flat" onclick="window.location.reload();"><i class="fa fa-reload"></i>REFRESH</a>
-            </div>
+               </div>
       </form>
   </div>
   <div class="col-lg-1">
@@ -93,6 +93,7 @@
   <?php endif; ?>
 </div>
 <div id="data-realisasi"></div>
+<div id="data-realisasi-pdf"></div>
 <script src="<?php echo site_url('assets/jquery/external/jquery/jquery.js')?>"></script>
 <script type="text/javascript">
 $(function(){
@@ -113,4 +114,17 @@ $(function(){
     return false;
   });
 });
+
+ function pdf()
+  {
+    $.ajax({
+        url: '<?php echo site_url('penyaluran/penyaluran/realisasi_pdf')?>',
+        type: 'POST',
+        data: $('#form_realisasi').serialize(),
+        success:function(html)
+        {
+          $('#data-realisasi-pdf').html(html);
+        }
+      });
+  }
 </script>
