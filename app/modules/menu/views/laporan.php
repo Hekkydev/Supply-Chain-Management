@@ -32,6 +32,7 @@
             echo $this->scm_library->menu('penyaluran/rencana','LAPORAN RENCANA PENYALURAN','rencana-penyaluran.svg');
             echo $this->scm_library->menu('penyaluran/realisasi','LAPORAN REALISASI PENYALURAN','realisasi-penyaluran.svg');
             echo $this->scm_library->menu('pemesanan_konsumen','LAPORAN TRANSAKSI PEMESANAN KONSUMEN','laporan-gas.svg');
+             echo $this->scm_library->menu('pembelian/laporan_pembelian_pangkalan','LAPORAN PEMBELIAN PANGKALAN','pangkalan.svg');
             echo $this->scm_library->menu('pengiriman/using_agen','PENGIRIMAN ISI LPG','laporan-gas.svg');
             break;
          case '5':

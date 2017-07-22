@@ -19,9 +19,15 @@ class Penyaluran extends MY_Controller{
 
   function rencana()
   {
-
+        $data = array(
+          'agen'=>$this->scm_agen_model->get_all(),
+          'barang'=>$this->scm_barang_model->get_all(),
+          'informasi'=>$this->account_posisition,
+          'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+          'bulan'=>$this->bulan,
+        );
         $this->title_page('LAPORAN RENCANA PENYALURAN');
-        $this->load_theme('penyaluran/rencana/rencana_laporan');
+        $this->load_theme('penyaluran/rencana/rencana_laporan',$data);
   }
 
 
@@ -166,7 +172,18 @@ class Penyaluran extends MY_Controller{
   }
 
 
+  function cari_data_laporan_rencana() {
 
+        $data = array(
+          'post'=>$_POST,
+          'agen'=>$this->scm_agen_model->get_all(),
+          'barang'=>$this->scm_barang_model->get_all(),
+          'informasi'=>$this->account_posisition,
+          'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+          'bulan'=>$this->bulan,
+        );
+      $this->load->view('penyaluran/rencana/list_laporan',$data);
+  }
 
 
 }
