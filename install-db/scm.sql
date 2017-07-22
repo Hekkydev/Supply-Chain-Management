@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2017 at 01:42 PM
+-- Generation Time: Jul 22, 2017 at 08:35 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -229,7 +229,8 @@ INSERT INTO `scm_menu_link` (`id_menu_link`, `id_status`, `nama_menu`, `icon`, `
 (22, 1, 'Management', 'fa fa-users', 'menu/management', 6, 3),
 (23, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 6, 2),
 (24, 1, 'Master Data', 'fa fa-inbox', 'menu/masterdata', 5, 4),
-(25, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 5, 2);
+(25, 1, 'Laporan', 'fa fa-history', 'menu/laporan', 5, 2),
+(26, 1, 'Transaksi', 'fa fa-calendar', 'menu/transaksi', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -325,6 +326,30 @@ INSERT INTO `scm_pembelian_item` (`id_pembelian_item`, `kode_pembelian`, `kode_i
 (10, 'DJAGT-20170501-001', 'K001', 10, '16000', '2017-05-01 14:28:17', NULL, NULL),
 (11, 'POXGV-20170501-002', 'K001', 20, '16000', '2017-05-01 14:48:07', NULL, NULL),
 (12, 'INUKN-20170529-003', 'K001', 10, '16000', '2017-05-29 11:19:55', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scm_pembelian_pangkalan`
+--
+
+CREATE TABLE `scm_pembelian_pangkalan` (
+  `Id` int(11) NOT NULL,
+  `kode_pembelian` varchar(255) DEFAULT NULL,
+  `kode_pangkalan` varchar(255) DEFAULT NULL,
+  `tanggal_pembelian` varchar(255) DEFAULT NULL,
+  `harga_barang` decimal(10,2) DEFAULT NULL,
+  `jumlah_barang` int(11) DEFAULT NULL,
+  `harga_total` decimal(10,2) DEFAULT NULL,
+  `harga_bayar` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `scm_pembelian_pangkalan`
+--
+
+INSERT INTO `scm_pembelian_pangkalan` (`Id`, `kode_pembelian`, `kode_pangkalan`, `tanggal_pembelian`, `harga_barang`, `jumlah_barang`, `harga_total`, `harga_bayar`) VALUES
+(1, 'POB6N-20170722-004', '316841493009', '2017-07-22 07:21:59', '8000.00', 90, '720000.00', '1000000.00');
 
 -- --------------------------------------------------------
 
@@ -640,6 +665,12 @@ ALTER TABLE `scm_pembelian_item`
   ADD PRIMARY KEY (`id_pembelian_item`);
 
 --
+-- Indexes for table `scm_pembelian_pangkalan`
+--
+ALTER TABLE `scm_pembelian_pangkalan`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `scm_pengiriman`
 --
 ALTER TABLE `scm_pengiriman`
@@ -731,7 +762,7 @@ ALTER TABLE `scm_inbox`
 -- AUTO_INCREMENT for table `scm_menu_link`
 --
 ALTER TABLE `scm_menu_link`
-  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_menu_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `scm_pangkalan`
 --
@@ -747,6 +778,11 @@ ALTER TABLE `scm_pembelian`
 --
 ALTER TABLE `scm_pembelian_item`
   MODIFY `id_pembelian_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `scm_pembelian_pangkalan`
+--
+ALTER TABLE `scm_pembelian_pangkalan`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `scm_pengiriman`
 --
