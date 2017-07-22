@@ -263,9 +263,9 @@ class SCM_library
 
 
 
-    function penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan) {
+    function penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan,$kondisi) {
           $this->SCM->load->model($this->model_penyaluran);
-          $jumlah_penyaluran = $this->SCM->penyaluran_model->jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan);
+          $jumlah_penyaluran = $this->SCM->penyaluran_model->jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan,$kondisi);
           return $jumlah_penyaluran;
     }
 

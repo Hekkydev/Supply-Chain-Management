@@ -51,7 +51,7 @@ class Penyaluran_model extends CI_Model{
     $this->db->where('kode_barang', $kode_barang);
     $this->db->where('tanggal_penyaluran', $tanggal);
     $this->db->where('kode_pangkalan', $kode_pangkalan);
-    $this->db->where('id_penyaluran_kondisi',1);
+    $this->db->where('id_penyaluran_kondisi',$kondisi);
     $query = $this->db->get();
     if ($query == TRUE) {
       $jumlah =  $query->first_row();

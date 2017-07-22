@@ -53,7 +53,7 @@
                   $kode_barang = $post['kode_barang'];
                   $kode_pangkalan = $p->kode_pangkalan;
                   $kode_agen = $post['kode_agen'];
-                  $jumlah_penyaluran = $this->scm_library->penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan);
+                  $jumlah_penyaluran = $this->scm_library->penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan,2);
                   ?>
                   <th><?php echo ($jumlah_penyaluran == 0) ? '-' : $jumlah_penyaluran; ?></th>
                   <?php endfor;?>
@@ -71,7 +71,7 @@
                     $kode_barang = $post['kode_barang'];
                     $kode_pangkalan = $p->kode_pangkalan;
                     $kode_agen = $post['kode_agen'];
-                    $jumlah_penyaluran = $this->scm_library->penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan);
+                    $jumlah_penyaluran = $this->scm_library->penyaluran_data($tanggal,$kode_barang,$kode_agen,$kode_pangkalan,2);
                     ?>
                     <th><?php echo ($jumlah_penyaluran == 0) ? '-' : $jumlah_penyaluran; ?></th>
                     <?php endfor;?>
