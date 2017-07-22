@@ -45,7 +45,7 @@ class Penyaluran_model extends CI_Model{
  }
 
 
- function jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan) {
+ function jumlah_penyaluran($tanggal,$kode_barang,$kode_agen,$kode_pangkalan,$kondisi) {
     $this->db->select('SUM(jumlah_penyaluran) AS jumlah_penyaluran');
     $this->db->from('scm_penyaluran_barang');
     $this->db->where('kode_barang', $kode_barang);
@@ -58,5 +58,6 @@ class Penyaluran_model extends CI_Model{
       return $jumlah->jumlah_penyaluran;
     }
  }
+ 
 
 }
