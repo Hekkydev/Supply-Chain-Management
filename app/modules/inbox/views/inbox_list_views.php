@@ -22,7 +22,6 @@
       <td><?php echo substr($i->message,0,30) ?></td>
       <td>
         <a href="<?php echo site_url('inbox/read/'.$i->id_inbox.'')?>" class="btn btn-xs btn-flat btn-success"><i class="fa fa-eye"></i> Read</a>
-        <a href="#" class="btn btn-xs btn-flat btn-danger"><i class="fa fa-trash"></i> Delete</a>
       </td>
     </tr>
   <?php $no++; endforeach; ?>

@@ -9,8 +9,9 @@ class Pembelian extends MY_Controller
     {
         parent::__construct();
         $this->account = $this->authentikasi();
-        $this->load->model('Pembelian_model');
-        $this->load->model('../modules/scm_barang/models/Scm_barang_model');
+        $this->load->model('Pembelian_model')
+                   ->model('../modules/scm_barang/models/Scm_barang_model')
+                   ->model('../modules/scm_pangkalan/models/scm_pangkalan_model');
         $this->load->library(array('form_validation','cart'));
 
     }
@@ -137,6 +138,119 @@ class Pembelian extends MY_Controller
         $this->load_theme('pembelian/transaksi/add', $data);
         //$this->load_theme('pembelian/scm_pembelian_form', $data);
     }
+
+
+
+
+    function create_transaksi_pembelian_pangkalan()
+    {
+      $data = array(
+        'account'=>$this->account,
+        'action'=>site_url('pembelian/create_action_pembelian_pangkalan'),
+        'kode_pembelian'=>set_value('kode_pembelian',$this->scm_library->kode_transaksi_pembelian()),
+        'pangkalan'=>$this->scm_pangkalan_model->get_all(),
+        'tanggal_pembelian'=>set_value('tanggal_pembelian',$this->date_now())
+      );
+      $this->title_page('Transaksi Pembelian');
+      $this->load_theme('pembelian/pangkalan/add',$data);
+    }
+
+
+    function create_action_pembelian_pangkalan()
+    {
+
+        $this->_rules_pembelian_pangkalan();
+        if ($this->form_validation->run() == FALSE) {
+              print(validation_errors());
+              redirect('pembelian/create_transaksi_pembelian_pangkalan');
+        }else{
+          $kode_pembelian = $this->input->post('kode_pembelian');
+          $tanggal_pembelian = $this->input->post('tanggal_pembelian');
+          $kode_pangkalan = $this->input->post('pangkalan');
+          $jumlah_barang = $this->input->post('jumlah_barang');
+          $harga_beli = $this->input->post('harga_beli');
+          $harga_sub_total = $this->input->post('harga_sub_total');
+          $uang_bayar = $this->input->post('uang_bayar');
+
+          if ($uang_bayar < $harga_sub_total) {
+            redirect('pembelian/create_transaksi_pembelian_pangkalan');
+          }else{
+            $simpan  = array(
+
+                'kode_pembelian'=>$kode_pembelian,
+                'kode_pangkalan'=>$kode_pangkalan,
+                'tanggal_pembelian'=>$tanggal_pembelian,
+                'harga_barang'=>$harga_beli,
+                'jumlah_barang'=>$jumlah_barang,
+                'harga_total'=>$harga_sub_total,
+                'harga_bayar'=>$uang_bayar
+
+            );
+            $this->Pembelian_model->insert_pembelian_pangkalan($simpan);
+            redirect('pembelian/laporan_pembelian_pangkalan');
+          }
+
+
+        }
+    }
+
+
+    function _rules_pembelian_pangkalan()
+    {
+            $this->form_validation->set_rules('kode_pembelian', 'Kode Pembelian', 'required');
+            $this->form_validation->set_rules('tanggal_pembelian', 'Tanggal Pembelian', 'required');
+            $this->form_validation->set_rules('pangkalan', 'Pangkalan', 'required');
+            $this->form_validation->set_rules('jumlah_barang', 'Jumlah Barang', 'required');
+            $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required');
+            $this->form_validation->set_rules('uang_bayar', 'Total Bayar', 'required');
+    }
+
+
+    function laporan_pembelian_pangkalan($id = null)
+    {
+
+      if ($id == null) {
+
+        $data = array(
+          'pembelian'=>$this->Pembelian_model->pembelian_barang_pangkalan(),
+        );
+        $this->title_page('Pembelian Pangkalan');
+        $this->load_theme('pembelian/pangkalan/list',$data);
+      }else {
+        $data = array(
+          'pembelian'=>$this->Pembelian_model->pembelian_barang_pangkalan_detail($id),
+        );
+        $this->title_page('Pembelian Pangkalan');
+        $this->load_theme('pembelian/pangkalan/detail',$data);
+      }
+    }
+
+    function laporan_pembelian_pangkalan_pdf($id = null)
+    {
+      if ($id == TRUE) {
+        $data['pembelian'] = $this->Pembelian_model->pembelian_barang_pangkalan_detail($id);
+        $report = [
+          'footer' =>'Supply Chain Management',
+          'title'=>'Transaksi Pembelian',
+          'body'=>$this->load->view('pembelian/pangkalan/report', $data,TRUE),
+          'filename'=>'Transaksi Pembelian',
+        ];
+
+        //print_r($report);
+        $this->load->library('pdf');
+        $pdf = $this->pdf->load();
+        $pdf->SetHeader($report['footer'].'|'.$report['title'].'|'.date(DATE_RFC822));
+        $pdf->SetFooter($report['footer'].'|{PAGENO}|'.date(DATE_RFC822));
+        $pdf->WriteHTML($report['body']);
+        $pdf->Output(''.$report['filename'].'_report.pdf','D');
+      }else {
+        redirect('pembelian/laporan_pembelian_pangkalan');
+      }
+    }
+
+
+
+
 
     public function itemsList()
     {

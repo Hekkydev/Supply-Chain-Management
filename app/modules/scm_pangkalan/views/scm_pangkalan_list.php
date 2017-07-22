@@ -97,10 +97,10 @@
                       <td style="text-align:center" width="200px">
                       <a href="#" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-flat btn-primary">Read</a>
                     <?php if ($account->id_group == 1 || $account->id_group == 6):
-                      echo ' | ';
-                      echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update');
-                      echo ' | ';
-                      echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                      echo ' &nbsp; ';
+                      echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update', 'class="btn btn-xs btn-flat btn-success"');
+                      echo ' &nbsp; ';
+                      echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'Delete','class="btn btn-xs btn-flat btn-danger" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
                     endif;
                       ?>
                       </td>

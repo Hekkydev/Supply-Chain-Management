@@ -15,6 +15,28 @@ class Pembelian_model extends CI_Model
         parent::__construct();
     }
 
+    function insert_pembelian_pangkalan($simpan)
+    {
+        $table = 'scm_pembelian_pangkalan';
+        $this->db->insert($table,$simpan);
+    }
+
+    function pembelian_barang_pangkalan()
+    {
+        $table = 'scm_pembelian_pangkalan';
+        $this->db->join('scm_pangkalan', 'scm_pangkalan.kode_pangkalan = scm_pembelian_pangkalan.kode_pangkalan', 'left');
+        return $this->db->get($table)->result();
+    }
+
+    function pembelian_barang_pangkalan_detail($Id)
+    {
+        $table = 'scm_pembelian_pangkalan';
+        $this->db->where('Id', $Id);
+        $this->db->join('scm_pangkalan', 'scm_pangkalan.kode_pangkalan = scm_pembelian_pangkalan.kode_pangkalan', 'left');
+        return $this->db->get($table)->first_row();
+    }
+
+
     // get all
     function get_all()
     {
