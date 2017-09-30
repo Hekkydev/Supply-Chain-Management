@@ -18,6 +18,11 @@
             </div>
         <?php
       }
+
+      if($this->session->flashdata('kode_pembelian') == TRUE){
+        $kode_pembelian = $this->session->flashdata('kode_pembelian');
+        redirect(site_url('pembelian/invoicePembelian/'.$kode_pembelian.''));
+      }
        ?>
     </div>
     <form class="" action="<?php echo site_url('pembelian/pembelian/add_to_transaksi')?>" method="post">
@@ -196,14 +201,15 @@
         type: 'POST',
         cache:false,
         data: {id_barang:id_barang,qty:nilai},
-        success:function(html)
+        dataType:'json',
+        success:function(response)
         {
+            alert(response.message);
             listData();
 
         }
       }).done(function (){
         var  nilai = barang.val('');
-        alert('Berhasil menambahkan ke daftar pemesanan !');
       });
     }
 

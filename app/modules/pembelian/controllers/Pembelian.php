@@ -272,16 +272,37 @@ class Pembelian extends MY_Controller
        $qty = $this->input->post('qty');
 
        $item = $this->Scm_barang_model->get_product_detail($id);
-       if ($item == TRUE) {
-         $data = array(
-          'id'      => $item->kode_barang,
-          'qty'     => $qty,
-          'price'   => $item->harga_jual,
-          'name'    => $item->nama_barang,
-          'options' => array()
-        );
-        $this->cart->insert($data);
+       $cek = $this->Scm_barang_model->get_product_stock($id);
+       if($cek->total > $qty){
+        if ($item == TRUE) {
+            $data = array(
+             'id'      => $item->kode_barang,
+             'qty'     => $qty,
+             'price'   => $item->harga_jual,
+             'name'    => $item->nama_barang,
+             'options' => array()
+           );
+           $this->cart->insert($data);
+           $response = [
+            'status'=>'success',
+            'message'=>'Berhasil menambahkan ke list',
+       ];
+       echo json_encode($response);
+        }else{
+            $response = [
+                'status'=>'error',
+                'message'=>'Not Item',
+           ];
+           echo json_encode($response);
+        }
+       }else{
+           $response = [
+                'status'=>'error',
+                'message'=>'Jumlah Stock Kurang dari Qty yang di pesan : '.$cek->total,
+           ];
+           echo json_encode($response);
        }
+       
     }
 
     public function remove_cart_id()
@@ -328,12 +349,45 @@ class Pembelian extends MY_Controller
               'created'=>$this->date_now(),
           );
 
+          $barang = $this->db->get_where('scm_barang',['kode_barang'=>$items['id']])->first_row();
+          $stockAgen = $this->db->get_where('scm_barang_stock',['id_barang'=>$barang->id_barang])->first_row();
+          
+          $updateStockNilai = $stockAgen->stock_agen - $items['qty'];
+
+          $updateData = [
+            'stock_agen'=>$updateStockNilai,
+          ];
+          $updateStock = $this->db->where('id_barang',$barang->id_barang)->update('scm_barang_stock',$updateData);
+          
           $simpan = $this->db->insert('scm_pembelian_item', $data_item_pembelian);
         endforeach;
         $this->cart->destroy();
         endif;
         $this->session->set_flashdata('message', 'Create Record Success');
+        $this->session->set_flashdata('kode_pembelian',$this->input->post('kode_pembelian'));
         redirect(site_url('pembelian/create_transaksi_pembelian_konsumen'));
+    }
+
+    public function invoicePembelian($kode_pembelian = NULL)
+    {
+        $pembelian = $this->db->select('*')
+                              ->from('scm_pembelian')
+                              ->join('users','users.id_user = scm_pembelian.id_user','left')
+                              ->join('scm_pembelian_pengiriman','scm_pembelian_pengiriman.kode_pembelian = scm_pembelian.kode_pembelian','left')
+                              ->where('scm_pembelian.kode_pembelian',$kode_pembelian)
+                              ->get()->first_row();
+
+        $daftar_pembelian = $this->db->select('*')
+                                 ->from('scm_pembelian_item')
+                                 ->where('kode_pembelian',$kode_pembelian)
+                                 ->get()->result();                      
+        
+        $data = [
+            'inv'=>$pembelian,
+            'list'=>$daftar_pembelian
+        ];
+        $this->title_page('Invoice Pembelian');
+        $this->load_theme('pembelian/invoice/page',$data);
     }
 
     public function laporan_for_konsumen()
