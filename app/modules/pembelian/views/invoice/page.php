@@ -20,26 +20,26 @@
 <div class="row">
 <div class="col-xs-12">
     <div class="invoice-title">
-        <h2>Invoice</h2><h3 class="pull-right">Order # <?php echo $inv->kode_pembelian; ?></h3>
+        <h2>Invoice</h2><h3 class="pull-right">Order # <?php echo isset($inv->kode_pembelian) ? $inv->kode_pembelian : ''; ?></h3>
     </div>
     <hr>
     <div class="row">
         <div class="col-xs-6">
             <address>
             <strong>Billed To:</strong><br>
-                <?php echo $inv->nama_lengkap ?><br>
-                <?php echo $inv->no_telp ?><br>
-                <?php echo $inv->email ?><br>
-                <?php echo $inv->alamat ?>
+                <?php echo isset($inv->nama_lengkap) ? $inv->nama_lengkap : ''; ?><br>
+                <?php echo isset($inv->no_telp) ? $inv->no_telp : ''; ?><br>
+                <?php echo isset($inv->email) ? $inv->email : ''; ?><br>
+                <?php echo isset($inv->alamat) ? $inv->alamat : ''; ?>
             </address>
         </div>
         <div class="col-xs-6 text-right">
             <address>
             <strong>Shipped To:</strong><br>
-            <?php echo $inv->nama_penerima ?><br>
-            <?php echo $inv->telp_penerima ?><br>
-            <?php echo $inv->kota_penerima ?><br>
-            <?php echo $inv->alamat_penerima ?>
+            <?php echo isset($inv->nama_penerima) ? $inv->nama_penerima : ''; ?><br>
+            <?php echo isset($inv->telp_penerima) ? $inv->telp_penerima : ''; ?><br>
+            <?php echo isset($inv->kota_penerima) ? $inv->kota_penerima : ''; ?><br>
+            <?php echo isset($inv->alamat_penerima) ? $inv->alamat_penerima : ''; ?>
             </address>
         </div>
     </div>
@@ -48,13 +48,13 @@
             <address>
                 <strong>Payment Method:</strong><br>
                 <?php echo config_item('nomor-pembayaran-invoice') ?><br>
-                <?php echo $inv->keterangan ?>
+                <?php echo isset($inv->keterangan) ? $inv->keterangan : ''; ?>
             </address>
         </div>
         <div class="col-xs-6 text-right">
             <address>
                 <strong>Order Date:</strong><br>
-                <?php echo $inv->created; ?><br><br>
+                <?php echo isset($inv->created) ? $inv->created : ''; ?><br><br>
             </address>
         </div>
     </div>
