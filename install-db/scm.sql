@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2017 at 08:35 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Oct 02, 2017 at 06:11 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -35,7 +37,7 @@ CREATE TABLE `scm_about_page` (
 --
 
 INSERT INTO `scm_about_page` (`about_page`) VALUES
-('<div><h1>Manajemen rantai suplai</h1><div><div>Dari Wikipedia bahasa Indonesia, ensiklopedia bebas</div><div><span>(Dialihkan dari&nbsp;Supply chain management)</span><div><div></div></div></div><div><a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Manajemen_rantai_suplai#mw-head"></a><a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Manajemen_rantai_suplai#p-search"></a></div><div><p><b>Manajemen Rantai Suplai</b>&nbsp;(<i>Supply chain management</i>) adalah sebuah ‘proses payung’ di mana&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Produk">produk</a>&nbsp;diciptakan dan disampaikan kepada&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Konsumen" title="Link: https://id.wikipedia.org/wiki/Konsumen">konsumen</a>&nbsp;dari sudut struktural. Sebuah&nbsp;<i>supply chain</i>&nbsp;(rantai&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/w/index.php?title=Suplai&amp;action=edit&amp;redlink=1">suplai</a>) merujuk kepada&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Jaringan">jaringan</a>&nbsp;yang rumit dari hubungan yang mempertahankan&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Organisasi">organisasi</a>&nbsp;dengan rekan&nbsp;<a target="_blank" rel="nofollow" href="https://id.wikipedia.org/wiki/Bisnis">bisnisnya</a>&nbsp;untuk mendapatkan sumber produksi dalam menyampaikan kepada konsumen. (Kalakota, 2000, h197)</p><p>Tujuan yang hendak dicapai dari setiap rantai suplai adalah untuk memaksimalkan nilai yang dihasilkan secara keseluruhan (Chopra, 2001, h5). Rantai suplai yang terintegrasi akan meningkatkan keseluruhan nilai yang dihasilkan oleh rantai suplai tersebut.</p></div></div></div>');
+('<div><h1>Manajemen rantai suplai</h1><div><div>Dari Wikipedia bahasa Indonesia, ensiklopedia bebas</div><div><span>(Dialihkan dari&nbsp;Supply chain management)</span><div><div></div></div></div><div><a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Manajemen_rantai_suplai#mw-head\"></a><a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Manajemen_rantai_suplai#p-search\"></a></div><div><p><b>Manajemen Rantai Suplai</b>&nbsp;(<i>Supply chain management</i>) adalah sebuah ‘proses payung’ di mana&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Produk\">produk</a>&nbsp;diciptakan dan disampaikan kepada&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Konsumen\" title=\"Link: https://id.wikipedia.org/wiki/Konsumen\">konsumen</a>&nbsp;dari sudut struktural. Sebuah&nbsp;<i>supply chain</i>&nbsp;(rantai&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/w/index.php?title=Suplai&amp;action=edit&amp;redlink=1\">suplai</a>) merujuk kepada&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Jaringan\">jaringan</a>&nbsp;yang rumit dari hubungan yang mempertahankan&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Organisasi\">organisasi</a>&nbsp;dengan rekan&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://id.wikipedia.org/wiki/Bisnis\">bisnisnya</a>&nbsp;untuk mendapatkan sumber produksi dalam menyampaikan kepada konsumen. (Kalakota, 2000, h197)</p><p>Tujuan yang hendak dicapai dari setiap rantai suplai adalah untuk memaksimalkan nilai yang dihasilkan secara keseluruhan (Chopra, 2001, h5). Rantai suplai yang terintegrasi akan meningkatkan keseluruhan nilai yang dihasilkan oleh rantai suplai tersebut.</p></div></div></div>');
 
 -- --------------------------------------------------------
 
@@ -161,10 +163,11 @@ CREATE TABLE `scm_barang_stock` (
 --
 
 INSERT INTO `scm_barang_stock` (`id_stock`, `id_agen`, `id_barang`, `stock_agen`, `tanggal_update`) VALUES
-(3, 3, 13, 600, '2017-05-03'),
+(3, 3, 13, 390, '2017-05-03'),
 (4, 3, 17, 600, '2017-05-03'),
 (5, 3, 17, 300, '2017-05-03'),
-(6, 2, 17, 400, '2017-05-03');
+(6, 2, 17, 400, '2017-05-03'),
+(7, 3, 13, 390, '2017-09-30');
 
 -- --------------------------------------------------------
 
@@ -290,7 +293,10 @@ CREATE TABLE `scm_pembelian` (
 INSERT INTO `scm_pembelian` (`id_pembelian`, `id_user`, `id_status`, `kode_pembelian`, `tanggal_pembelian`, `keterangan`, `created`, `modified`, `deleted`) VALUES
 (6, 17, 0, 'DJAGT-20170501-001', '2017-05-01 00:00:00', 'Pembelian gas LPG 3KG jumlah 10 tabung', '2017-05-01 14:28:17', NULL, NULL),
 (7, 17, 0, 'POXGV-20170501-002', '2017-05-01 00:00:00', 'Pemesanan LPG 3 Kilo', '2017-05-01 14:48:07', NULL, NULL),
-(8, 22, 0, 'INUKN-20170529-003', '2017-05-29 00:00:00', 'Pemesanan Gas LPG 3 Kilo', '2017-05-29 11:19:54', NULL, NULL);
+(8, 22, 0, 'INUKN-20170529-003', '2017-05-29 00:00:00', 'Pemesanan Gas LPG 3 Kilo', '2017-05-29 11:19:54', NULL, NULL),
+(9, 22, 0, 'PGPM7-20170930-004', '2017-09-30 00:00:00', 'pembelian gas lpg 3kilo', '2017-09-30 05:00:13', NULL, NULL),
+(10, 22, 0, '8ZTPG-20170930-005', '2017-09-30 00:00:00', 'pembelian gas 3 kilo 200 tabung', '2017-09-30 05:29:57', NULL, NULL),
+(11, 22, 0, 'JN5P1-20170930-006', '2017-09-30 00:00:00', 'Pembelian gas LPG 3 Kilo', '2017-09-30 06:21:25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -325,7 +331,10 @@ INSERT INTO `scm_pembelian_item` (`id_pembelian_item`, `kode_pembelian`, `kode_i
 (9, '2F8LB-20170430-005', 'K001', 3, '16000', '2017-04-30 20:19:25', NULL, NULL),
 (10, 'DJAGT-20170501-001', 'K001', 10, '16000', '2017-05-01 14:28:17', NULL, NULL),
 (11, 'POXGV-20170501-002', 'K001', 20, '16000', '2017-05-01 14:48:07', NULL, NULL),
-(12, 'INUKN-20170529-003', 'K001', 10, '16000', '2017-05-29 11:19:55', NULL, NULL);
+(12, 'INUKN-20170529-003', 'K001', 10, '16000', '2017-05-29 11:19:55', NULL, NULL),
+(13, 'PGPM7-20170930-004', 'K001', 12, '16000', '2017-09-30 05:00:14', NULL, NULL),
+(14, '8ZTPG-20170930-005', 'K001', 200, '16000', '2017-09-30 05:29:57', NULL, NULL),
+(15, 'JN5P1-20170930-006', 'K001', 10, '16000', '2017-09-30 06:21:25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -378,7 +387,10 @@ INSERT INTO `scm_pembelian_pengiriman` (`kode_pembelian`, `nama_penerima`, `alam
 ('2F8LB-20170430-005', 'sdc', 'sdc', 'csdc', 'sdcsd'),
 ('DJAGT-20170501-001', 'Anisa', 'Bogor', 'Bogor', '08907129837'),
 ('POXGV-20170501-002', 'Test', 'Bogor ', 'Bogor', '01928301909'),
-('INUKN-20170529-003', 'Anisa', 'Bogor', 'Bogor', '085718450395');
+('INUKN-20170529-003', 'Anisa', 'Bogor', 'Bogor', '085718450395'),
+('PGPM7-20170930-004', 'anisa', 'Bogor', 'Bogor', '0128309112'),
+('8ZTPG-20170930-005', 'anisa', 'Bogor', 'Bogor', '019231902'),
+('JN5P1-20170930-006', 'Hekky Nurhikmat', 'Jl Nangka Tamansari No 04 RT 002 / RW 003 Kec. Tamansari Bogor Selatan', 'Bogor', '085718450395');
 
 -- --------------------------------------------------------
 
@@ -554,6 +566,7 @@ CREATE TABLE `users` (
   `nama_lengkap` varchar(50) NOT NULL,
   `no_telp` varchar(20) NOT NULL,
   `email` varchar(35) NOT NULL,
+  `alamat` text,
   `username` varchar(50) NOT NULL,
   `password` varchar(225) NOT NULL,
   `created` datetime NOT NULL,
@@ -564,17 +577,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `id_group`, `id_status`, `kode_user`, `kode_akses_position`, `nama_lengkap`, `no_telp`, `email`, `username`, `password`, `created`, `modified`) VALUES
-(1, 1, 6, 'M0001', '', 'Hekky Nurhikmat', '2147483647', '', 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', '2017-04-03 00:00:00', '2017-05-03 10:23:26'),
-(19, 4, 6, 'U002', 'AGEN003', 'Agen Mitra Gasindo', '001920918209', '', 'gasindo', 'c4c2372e582cd749bafc3f5403375905', '2017-05-01 15:49:47', '2017-05-03 13:03:15'),
-(20, 4, 6, 'U003', 'AGEN002', 'Novita Surya', '01273981789127', '', 'novita', '463f4921608f04a290b70bb391c2b74d', '2017-05-01 16:41:17', '2017-05-03 10:26:40'),
-(21, 5, 6, 'U004', 'AGEN002', 'novitauser', '019283019283', '', 'novitauser', '95819d29c748bdcf56d46e3de715862f', '2017-05-01 17:11:50', NULL),
-(22, 7, 6, 'U005', '', 'Anisa', '09820391823', 'anisa@gmail.com', 'anisa', '40cc8f68f52757aff1ad39a006bfbf11', '2017-05-01 17:50:29', '2017-05-11 14:19:29'),
-(23, 7, 7, 'U006', '', 'Hekky Nurhikmat', '085718450395', 'nhekky@gmail.com', 'hekky', '0169a868750db8d5106ed024b9116a4c', '2017-05-01 17:55:01', NULL),
-(24, 7, 7, 'U007', '', 'Anisa', '085718450395', 'nhekky@gmail.com', 'anisa', '40cc8f68f52757aff1ad39a006bfbf11', '2017-05-11 14:18:38', NULL),
-(25, 3, 6, 'U008', 'SPPBE001', 'Admin SPPBE', '09801928309', '', 'adminsppbe', '7d13ce9d74c088a2e8a4c9b76bb008cc', '2017-06-17 13:56:01', NULL),
-(26, 2, 6, 'U009', 'SPPBE001', 'User SPPBE', '09182903810', '', 'usersppbe', '5877d71aa774049e9bf536ac99e4297e', '2017-06-17 14:41:30', NULL),
-(28, 6, 6, 'U010', '316841493009', 'Pangkalan', '09182039182', '', 'pangkalan', '6e6bb6ef15e71de0346b7f5d8185072f', '2017-06-18 06:12:23', NULL);
+INSERT INTO `users` (`id_user`, `id_group`, `id_status`, `kode_user`, `kode_akses_position`, `nama_lengkap`, `no_telp`, `email`, `alamat`, `username`, `password`, `created`, `modified`) VALUES
+(1, 1, 6, 'M0001', '', 'Hekky Nurhikmat', '2147483647', '', NULL, 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', '2017-04-03 00:00:00', '2017-05-03 10:23:26'),
+(19, 4, 6, 'U002', 'AGEN003', 'Agen Mitra Gasindo', '001920918209', '', NULL, 'gasindo', 'c4c2372e582cd749bafc3f5403375905', '2017-05-01 15:49:47', '2017-05-03 13:03:15'),
+(20, 4, 6, 'U003', 'AGEN002', 'Novita Surya', '01273981789127', '', NULL, 'novita', '463f4921608f04a290b70bb391c2b74d', '2017-05-01 16:41:17', '2017-05-03 10:26:40'),
+(21, 5, 6, 'U004', 'AGEN002', 'novitauser', '019283019283', '', NULL, 'novitauser', '95819d29c748bdcf56d46e3de715862f', '2017-05-01 17:11:50', NULL),
+(22, 7, 6, 'U005', '', 'Anisa', '09820391823', 'anisa@gmail.com', NULL, 'anisa', '40cc8f68f52757aff1ad39a006bfbf11', '2017-05-01 17:50:29', '2017-05-11 14:19:29'),
+(23, 7, 7, 'U006', '', 'Hekky Nurhikmat', '085718450395', 'nhekky@gmail.com', NULL, 'hekky', '0169a868750db8d5106ed024b9116a4c', '2017-05-01 17:55:01', NULL),
+(24, 7, 7, 'U007', '', 'Anisa', '085718450395', 'nhekky@gmail.com', NULL, 'anisa', '40cc8f68f52757aff1ad39a006bfbf11', '2017-05-11 14:18:38', NULL),
+(25, 3, 6, 'U008', 'SPPBE001', 'Admin SPPBE', '09801928309', '', NULL, 'adminsppbe', '7d13ce9d74c088a2e8a4c9b76bb008cc', '2017-06-17 13:56:01', NULL),
+(26, 2, 6, 'U009', 'SPPBE001', 'User SPPBE', '09182903810', '', NULL, 'usersppbe', '5877d71aa774049e9bf536ac99e4297e', '2017-06-17 14:41:30', NULL),
+(28, 6, 6, 'U010', '316841493009', 'Pangkalan', '09182039182', '', NULL, 'pangkalan', '6e6bb6ef15e71de0346b7f5d8185072f', '2017-06-18 06:12:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -752,7 +765,7 @@ ALTER TABLE `scm_barang_satuan`
 -- AUTO_INCREMENT for table `scm_barang_stock`
 --
 ALTER TABLE `scm_barang_stock`
-  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `scm_inbox`
 --
@@ -772,12 +785,12 @@ ALTER TABLE `scm_pangkalan`
 -- AUTO_INCREMENT for table `scm_pembelian`
 --
 ALTER TABLE `scm_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `scm_pembelian_item`
 --
 ALTER TABLE `scm_pembelian_item`
-  MODIFY `id_pembelian_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pembelian_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `scm_pembelian_pangkalan`
 --
@@ -827,7 +840,8 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_group`
 --
 ALTER TABLE `users_group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
