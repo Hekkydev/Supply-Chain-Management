@@ -95,7 +95,7 @@ class Faktur extends MY_Controller {
 
 
    /**
-    * fungsi perubahan status invoice
+    * Fungsi perubahan status invoice
     *
     * fungsi ini digunakan sebagai merubah status data invoice pada pangkalan
     *
