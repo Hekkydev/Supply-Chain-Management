@@ -1,4 +1,4 @@
-<?php //print_r($account->id_group); ?>
+
 <!DOCTYPE html>
 <html>
     <head>

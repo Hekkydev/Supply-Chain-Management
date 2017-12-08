@@ -9,17 +9,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Faktur extends MY_Controller {
 
+
     public function __construct()
     {
         parent::__construct();
         $this->account = $this->authentikasi();
         $this->load->model('Faktur_model');
-        $this->load->library('form_validation');
+        $this->load->library('form_validation');        
+        $this->load->library('cart');
+
     }
     
     public function index()
     {
         $this->title_page('Faktur');
+        $this->style('penjualan/faktur/style');
+        $this->script('penjualan/faktur/script');
         $this->load_theme('penjualan/faktur/page');
     }
     
@@ -65,6 +70,36 @@ class Faktur extends MY_Controller {
     }
 
 
+    /**
+     * SIMPAN DATA FAKTUR
+     *
+     * Proses simpan/ request data invoice faktur oleh agen
+     *
+     * @param Data $kode_faktur,$kode_agen,$kode_pangkalan,$kode_item = array(),$tanggal_request
+     * @return type data item
+     * @throws conditon save to table scm_faktur
+     **/
+    public function StoredFaktur()
+    {
+        $kode_faktur = $this->input->post('kode_faktur');
+        $kode_agen = $this->input->post('kode_agen');
+        $kode_pangkalan = $this->input->post('kode_pangkalan');
+        
+
+        $data = [
+
+        ];
+
+        $simpan = $this->db->insert('scm_faktur',$data);
+        if($simpan){
+            $this->session->set_flashdata('info','Permintaan berhasil di proses');
+            
+            redirect('faktur','refresh');
+            
+        }
+    }
+
+
 
     /**
      * -----------PANGKALAN-----------------------------------------------------------------------------
@@ -95,18 +130,34 @@ class Faktur extends MY_Controller {
 
 
    /**
-    * Fungsi perubahan status invoice
+    * Fungsi perubahan status invoice oleh pangkalan
     *
     * fungsi ini digunakan sebagai merubah status data invoice pada pangkalan
-    *
+    * redirect ke faktur pangkalan { laporan/laporan-faktur } - routing pangkalan
     * @param Type $kode_invoice sebagai primary key nya
     * @return type 
     * @throws conditon berdasarkan nomor invoice (kode_invoice faktur) maka data yang di kembalikan berupa status
     **/
    public function updateFakturStatus()
    {
-       
+        $kode_faktur = $this->input->post('kode_faktor');
+        if ($kode_faktor == TRUE) {
+            $data = [
+                'id_status'=>12
+            ];
+
+            $update = $this->db->where('kode_faktur',$kode_faktor)->update('scm_faktur',$data);
+            if($update){
+                $this->session->set_flashdata('info','Proses Berhasil di lakukan');
+                
+                redirect('laporan/laporan-faktur','refresh');
+                                
+            }
+        }   
    }
+
+
+   
 
 
 
