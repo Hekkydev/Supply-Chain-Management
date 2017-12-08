@@ -10,8 +10,8 @@
           break;
     case '4':
           echo $this->scm_library->menu('penyaluran/add_rencana','INPUT RENCANA PENYALURAN','rencana-penyaluran.svg');
-          echo $this->scm_library->menu('penyaluran/add_realisasi','INPUT REALISASI PENYALURAN','realisasi-penyaluran.svg');
-          // echo $this->scm_library->menu('menu/order_agen','PEMESANAN KE AGEN','agen.svg');
+          echo $this->scm_library->menu('penyaluran/add_realisasi','INPUT REALISASI PENYALURAN','report-print.svg');
+          
           // echo $this->scm_library->menu('menu/order_sppbe','PEMESANAN KE SPPBE','sppbe.svg');
           break;
  default:

@@ -11,7 +11,7 @@
             </button>
 
             <a class="navbar-brand" id="logo" href="<?php echo site_url('');?>">
-                <img src="<?php echo base_url()?>/assets/AdminLTE-2.0.5/dist/img/logo-login.png" alt="Pertagas" class="img-responsive" style="width:200px;margin-top:-20px;">
+                <img src="<?php echo base_url()?>/assets/AdminLTE-2.0.5/dist/img/HEADER-MGP.png" alt="Pertagas" width="100" height="90" class="img-responsive" style="width:360px;margin-top:-30px;margin-bottom:-15px;">
             </a>
         </div>
 
@@ -28,13 +28,19 @@
                 </li>
                 <li>
                     <a href="<?php echo site_url('product')?>">
-                        Supply Chain
+                        Product
                     </a>
 
                 </li>
                 <li>
                     <a href="<?php echo site_url('client_area')?>">
                         Client Area
+                    </a>
+
+                </li>
+                <li>
+                    <a href="<?php echo site_url('auth')?>">
+                        Administrator
                     </a>
 
                 </li>

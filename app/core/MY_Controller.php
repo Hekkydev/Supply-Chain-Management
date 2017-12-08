@@ -8,7 +8,7 @@ class MY_Controller extends CI_Controller
 {
 
     protected $helper = array('form','url','scm','rupiah');
-    protected $library = array('session','scm_library','upload');
+    protected $library = array('session','scm_library','upload','pmail');
     protected $model   = array(
         '../modules/home/models/App_model',
         '../modules/users/models/Users_model',
@@ -17,6 +17,9 @@ class MY_Controller extends CI_Controller
     );
     protected $configurasi = "config-app";
     protected $title_page;
+    protected $headstyle;
+    protected $headscript;
+    
 
 
     function __construct()
@@ -35,7 +38,7 @@ class MY_Controller extends CI_Controller
             exit();
         }
 
-        
+
 
     }
     public function about_application()
@@ -102,22 +105,36 @@ class MY_Controller extends CI_Controller
     public function load_theme($content,$data = null)
     {
         $this->kode_akses_position =  $this->authentikasi()->kode_akses_position;
-        
+
+        $this->data['style']            = isset($this->headstyle) ? $this->load->view($this->headstyle,$data,TRUE) : "";
+        $this->data['script']           = isset($this->headscript) ? $this->load->view($this->headscript,$data,TRUE) : "";
         $this->data['menu']             = $this->app_menu();
         $this->data['app_title_logo']   = $this->config->item('ci_app_title_logo');
         $this->data['app_title']        = $this->config->item('ci_app_title');
         $this->data['title_page']       = $this->title_page;
-        $data['account']          = $this->authentikasi();
-        $data['account_posisition'] = $this->scm_library->include_position($this->kode_akses_position);
+        $data['account']                = $this->authentikasi();
+        $data['account_posisition']     = $this->scm_library->include_position($this->kode_akses_position);
         $this->data['content']          = $this->load->view($content,$data,TRUE);
 
         $this->load->view("template/content",$this->data);
     }
 
+    public function script($script)
+    {
+        return $this->headscript = $script;
+    }
+
+    public function style($style)
+    {
+        return $this->headstyle = $style;
+    }
+
+
+
     public function load_theme_dash($content,$data = null)
     {
        $this->kode_akses_position =  $this->authentikasi()->kode_akses_position;
-        
+
         $data['account']            = $this->authentikasi();
         $data['account_posisition'] = $this->scm_library->include_position($this->kode_akses_position);
         $this->data['menu']             = $this->app_menu();

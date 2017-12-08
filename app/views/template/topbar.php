@@ -4,7 +4,7 @@
     <div class="wrapper">
 
         <header class="main-header">
-            <a href="<?php echo site_url('home')?>" class="logo"><img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/logo.png') ?>" alt="<?php echo $app_title_logo; ?>" style="width:155px; margin-top:-5px;"></a>
+            <a href="<?php echo site_url('home')?>" class="logo"><img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/logo.png') ?>" alt="<?php echo $app_title_logo; ?>" width="84" height="60" style="width:66px; margin-top:-5px;"></a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -23,6 +23,7 @@
                         <li><a href="<?php echo site_url('about_page')?>"><i class="fa fa-info"></i></a></li>
                         <?php endif;?>
                         <li><a href="<?php echo site_url('home')?>"><i class="fa fa-th"></i></a></li>
+                        <li><a href="<?php echo site_url('webmail/')?>"><i class="fa fa-mail"></i></a></li>
                         <li><a href="<?php echo site_url()?>" target="_blank"><i class="fa fa-desktop"></i></a></li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">

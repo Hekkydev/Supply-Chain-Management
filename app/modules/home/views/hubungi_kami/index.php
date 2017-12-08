@@ -81,7 +81,7 @@
                                     </p>
                                     <p class="info">
                                         <span class="key">E-post:</span>
-                                        <span class="value">info@pertamina.com</span>
+                                        <span class="value">customerservice@scm-mgp.com</span>
                                     </p>
                                 </div>
 

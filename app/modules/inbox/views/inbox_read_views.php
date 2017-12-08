@@ -20,4 +20,4 @@
     </td>
   </tr>
 </table>
-<small><a href="<?php echo site_url('inbox')?>">kembali</a></small>
+<small><a href="<?php echo site_url('inbox')?>">kembali</a> | <a href="https://mail.koneksiaman.net/#compose/to/<?php echo $inbox->email; ?>" target="blank">Balas</a></small>

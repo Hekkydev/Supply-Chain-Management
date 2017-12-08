@@ -1,4 +1,4 @@
-<?php// print_r($inv); ?>
+
 <style>
 
 .invoice-title h2, .invoice-title h3 {
@@ -48,7 +48,8 @@
             <address>
                 <strong>Payment Method:</strong><br>
                 <?php echo config_item('nomor-pembayaran-invoice') ?><br>
-                <?php echo isset($inv->keterangan) ? $inv->keterangan : ''; ?>
+                <?php echo isset($inv->keterangan) ? $inv->keterangan : ''; ?> <br />
+                Mohon setelah melakukan pembayaran, Foto Bukti Pembayaran silahkan kirim ke e-mail : <b>customerservice@scm-mgp.com </b>
             </address>
         </div>
         <div class="col-xs-6 text-right">

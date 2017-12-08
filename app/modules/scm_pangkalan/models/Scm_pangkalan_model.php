@@ -16,6 +16,24 @@ class Scm_pangkalan_model extends CI_Model
         parent::__construct();
     }
 
+    function get_all_stock()
+    {
+      $this->db->select('*');
+              $this->db->from('scm_barang_stock_pangkalan as a');
+              $this->db->join('scm_pangkalan as b', 'b.id_pangkalan = a.id_pangkalan', 'left');
+              $this->db->join('scm_status as c', 'c.id_status = a.id_status', 'left');
+        return $this->db->get()->result();
+    }
+
+    function get_stock_detail($id)
+    {
+      $this->db->select('*');
+              $this->db->from('scm_barang_stock_pangkalan as a');
+              $this->db->join('scm_pangkalan as b', 'b.id_pangkalan = a.id_pangkalan', 'left');
+              $this->db->join('scm_status as c', 'c.id_status = a.id_status', 'left');
+              $this->db->where('a.id_stock', $id);
+        return $this->db->get()->first_row();
+    }
     // get all
     function get_all()
     {

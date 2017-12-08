@@ -24,10 +24,8 @@
     <img src="<?php echo base_url('assets/icon-scm/users-groups.svg')?>" alt="" style="width:120px;">
     <br>
     <article class="article-client-area" >
-      Supply Chain kami memainkan peran penting dalam menyampaikan barang-barang kami kepada pelanggan dan konsumen.
-      Mulai dari sumber bahan bahan seperti panyaluran dan barang rumah tangga (procurement) sampai distribusi produk akhir (logistics & delivery).
       Dalam sistem ini, kami memudahkan hubungan antar konsumen dan produsen.
-      pilih portal dibawah ini jika anda belum memiliki akun silahkan pilih register dan sudah menjadi member silahkan login! untuk kelanjutan pemesanan produk kami
+      Pilih portal dibawah ini jika anda belum memiliki akun silahkan pilih Register dan setelah menjadi member silahkan Login! untuk kelanjutan pemesanan produk kami. Dengan cara pilih Menu Client Area, kemudian masukkan Username dan Password pada saat Register.
     </article>
   </div>
 

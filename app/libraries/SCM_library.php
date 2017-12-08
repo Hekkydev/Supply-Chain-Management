@@ -6,7 +6,7 @@ defined("BASEPATH") or exit("Jangan Sembarangan Hacking");
  *  general library untuk aplikasi supply chain management
  *
  */
-class SCM_library
+class scm_library
 {
     var $SCM;
 

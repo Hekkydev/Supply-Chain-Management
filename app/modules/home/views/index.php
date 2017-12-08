@@ -7,15 +7,17 @@
                    <div class="col-xs-12 col-md-4 info">
 
                        <div class="page-subheader">
-                           <h2>Supply Chain Management</h2>
+                           <h2>Agen Elpiji 3 Kilogram</h2>
                        </div>
 
                        <div class="description">
-                          Manajemen Rantai Suplai adalah koordinasi dari bahan, informasi dan arus keuangan antara perusahaan yang berpartisipasi. Manajemen rantai suplai bisa juga berarti seluruh jenis kegiatan komoditas dasar hingga penjualan produk akhir ke konsumen untuk mendaur ulang produk yang sudah dipakai.
+                     <p>     PT. Mitra Gasindo Persada (PT. MGP) adalah suatu perusahaan Agen Elpiji yang menjual dan mendistribusikan gas elpiji 3 kilogram dibawah PT. Pertamina (Persero). PT. MGP bertempat di daerah Kp. Bakomsari Kelurahan Harjasari, Kecamatan Bogor Selatan. <br />
+                     Website ini dibuat untuk Alur Pendistribusian Gas Elpiji 3 kg dengan menggunakan Metode <em>Supply Chain Management</em> (SCM).<br />
+                     </p>
                        </div>
 
                        <div class="actions">
-                           <a href="<?php echo site_url('about'); ?>" class="btn btn-clear">About</a>
+                           <a href="<?php echo site_url('about'); ?>" class="btn btn-clear">About Supply Chain</a>
                        </div>
                    </div>
                    <div class="col-xs-12 col-md-8 image">
@@ -54,9 +56,6 @@
                                        JOIN
                                    </a>
 
-                                   <a href="<?php echo site_url('about')?>" class="btn btn-lg btn-default">
-                                       DETAIL INFORMASI
-                                   </a>
 
                                </div>
 

@@ -17,6 +17,36 @@ class Client_area extends MY_Controller{
       $this->load_theme_frontend_large('home/client_area/index',$this->data);
   }
 
+  function aktivasi()
+  {
+    error_reporting(0);
+        $id = $_GET['id'];
+        if ($id == TRUE) {
+
+
+          $this->load->database();
+          $cek = $this->db->get_where('users', ['password'=>$id])->first_row();
+
+          if ($cek == TRUE) {
+              $data = [
+                  'id_status'=>6
+              ];
+              $update = $this->db->where('password',$id)->update('users', $data);
+              if ($update == TRUE) {
+                $this->title_page("Client Area Register");
+                $this->load_theme_frontend_large('home/client_area/activated',$data);
+              }else {
+                echo 'tidak ada akun';
+              }
+          }else {
+            echo 'tidak ada akun';
+          }
+
+        }else {
+          show_404();
+        }
+  }
+
 
 
   public function register()
@@ -53,6 +83,8 @@ class Client_area extends MY_Controller{
           if ($this->form_validation->run() === FALSE) {
             echo json_encode(array('error'=>1,'message'=>'Lengkapi data registrasi!'));
           }else{
+
+
             $data = array(
             'id_group' => $this->input->post('id_group'),
             'id_status'=>7,
@@ -64,6 +96,11 @@ class Client_area extends MY_Controller{
             'password' => md5($this->input->post('password')),
             'created' =>$this->date_now(),
            );
+
+            $message = $this->load->view('email/registrasi',$data,TRUE);
+            $this->sendingmail($message);
+            $this->sendingmailcustomer($data);
+
            $simpan = $this->registrasi_konsumen_my_controller($data);
            echo json_encode(array('error'=>0,'message'=>'<div class="alert alert-info">Berhasil melakukan registrasi!</div>'));
 
@@ -73,5 +110,66 @@ class Client_area extends MY_Controller{
         }
 
 
+  }
+
+  public function sendingmail($message)
+  {
+        $dataMail  = $message;
+        $email = 'customerservice@scm-mgp.com';
+        $fromEmail = 'registrasi@scm-mgp.com';
+        $textEmail = $dataMail;
+        $mail = new PHPMailer();
+        $mail->IsHTML(true);    // set email format to HTML
+        $mail->IsSMTP();   // we are going to use SMTP
+        $mail->SMTPAuth   = true; // enabled SMTP authentication
+        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+        $mail->Host       = "mail.scm-mgp.com";      // setting GMail as our SMTP server
+        $mail->Port       = 465;                   // SMTP port to connect to GMail
+        $mail->Username   = $fromEmail;  // alamat email kamu
+        $mail->Password   = "anisa123";            // password GMail
+        $mail->SetFrom('registrasi@scm-mgp.com','New Client');  //Siapa yg mengirim email
+       //  $mail->SetBcc('customerservice@yutakaglobal.com','noreply');
+        $mail->Subject    = "Pendaftaran Client";
+        $mail->Body       = $textEmail;
+        $toEmail          = $email; // siapa yg menerima email ini
+        $mail->AddAddress($toEmail);
+
+
+        if(!$mail->Send()) {
+             return FALSE;
+        } else {
+             return TRUE;
+        }
+  }
+
+
+  public function sendingmailcustomer($params)
+  {
+        $dataMail  = $this->load->view('email/registrasi_aktivasi',$params,TRUE);
+        $email = $params['email'];
+        $fromEmail = 'registrasi@scm-mgp.com';
+        $textEmail = $dataMail;
+        $mail = new PHPMailer();
+        $mail->IsHTML(true);    // set email format to HTML
+        $mail->IsSMTP();   // we are going to use SMTP
+        $mail->SMTPAuth   = true; // enabled SMTP authentication
+        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+        $mail->Host       = "mail.scm-mgp.com";      // setting GMail as our SMTP server
+        $mail->Port       = 465;                   // SMTP port to connect to GMail
+        $mail->Username   = $fromEmail;  // alamat email kamu
+        $mail->Password   = "anisa123";            // password GMail
+        $mail->SetFrom('registrasi@scm-mgp.com','PT.MGP - Supply Chain Management');  //Siapa yg mengirim email
+       //  $mail->SetBcc('customerservice@yutakaglobal.com','noreply');
+        $mail->Subject    = "Aktivasi akun anda sekarang !";
+        $mail->Body       = $textEmail;
+        $toEmail          = $email; // siapa yg menerima email ini
+        $mail->AddAddress($toEmail);
+
+
+        if(!$mail->Send()) {
+             return FALSE;
+        } else {
+             return TRUE;
+        }
   }
 }

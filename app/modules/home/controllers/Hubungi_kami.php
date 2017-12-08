@@ -45,11 +45,21 @@ class Hubungi_kami extends MY_Controller{
 
   public function send_message()
   {
+
     $this->load->library('form_validation');
     $this->form_validation->set_rules('name', 'nama', 'required|trim');
     $this->form_validation->set_rules('email', 'email', 'required|trim');
     $this->form_validation->set_rules('subject', 'subject', 'required|trim');
     $this->form_validation->set_rules('message', 'message', 'required|trim');
+
+    $params = [
+        'email'=>$this->input->post('email'),
+        'subject'=>$this->input->post('subject'),
+        'message'=>$this->input->post('message'),
+        'name'=>$this->input->post('name')
+    ];
+
+    $this->sendingmail($params);
 
     if ($this->form_validation->run() === FALSE) {
           echo json_encode(array(
@@ -77,6 +87,37 @@ class Hubungi_kami extends MY_Controller{
             ));
           }
     }
+  }
+
+
+  public function sendingmail($params)
+  {
+        $dataMail  = $params['message'];
+        $email = 'customerservice@scm-mgp.com';
+        $fromEmail = 'hubungi@scm-mgp.com';
+        $textEmail = $dataMail;
+        $mail = new PHPMailer();
+        $mail->IsHTML(true);    // set email format to HTML
+        $mail->IsSMTP();   // we are going to use SMTP
+        $mail->SMTPAuth   = true; // enabled SMTP authentication
+        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+        $mail->Host       = "mail.scm-mgp.com";      // setting GMail as our SMTP server
+        $mail->Port       = 465;                   // SMTP port to connect to GMail
+        $mail->Username   = $fromEmail;  // alamat email kamu
+        $mail->Password   = "anisa123";            // password GMail
+        $mail->SetFrom('hubungi@scm-mgp.com','Hubungi Kami');  //Siapa yg mengirim email
+       //  $mail->SetBcc('customerservice@yutakaglobal.com','noreply');
+        $mail->Subject    = "Hubungi Kami dari : ".$params['email'] ." - ".$params['subject']." - ".$params['subject'];
+        $mail->Body       = $textEmail;
+        $toEmail          = $email; // siapa yg menerima email ini
+        $mail->AddAddress($toEmail);
+
+
+        if(!$mail->Send()) {
+             return FALSE;
+        } else {
+             return TRUE;
+        }
   }
 
 }

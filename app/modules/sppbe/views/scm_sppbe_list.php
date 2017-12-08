@@ -54,7 +54,7 @@
       <td style="text-align:center" width="200px">
         <a style="cursor:pointer;" class="btn btn-xs btn-flat btn-primary" onclick="read('<?php echo $sppbe->id_spbbe; ?>')"><i class="fa fa-search"></i> Read</a>
       <?php
-      if ($account->id_group == 1 || $account->id_group == 3) {
+      if ($account->id_group == 1 || $account->id_group == 4 || $account->id_group == 3 ) {
         echo anchor(site_url('sppbe/update/'.$sppbe->id_spbbe),'<i class="fa fa-edit"></i> Update','class="btn btn-xs btn-flat btn-success"');
         echo ' ';
         echo anchor(site_url('sppbe/delete/'.$sppbe->id_spbbe),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-xs btn-flat btn-danger"');

@@ -302,7 +302,7 @@ class Pembelian extends MY_Controller
            ];
            echo json_encode($response);
        }
-       
+
     }
 
     public function remove_cart_id()
@@ -351,14 +351,14 @@ class Pembelian extends MY_Controller
 
           $barang = $this->db->get_where('scm_barang',['kode_barang'=>$items['id']])->first_row();
           $stockAgen = $this->db->get_where('scm_barang_stock',['id_barang'=>$barang->id_barang])->first_row();
-          
+
           $updateStockNilai = $stockAgen->stock_agen - $items['qty'];
 
           $updateData = [
             'stock_agen'=>$updateStockNilai,
           ];
           $updateStock = $this->db->where('id_barang',$barang->id_barang)->update('scm_barang_stock',$updateData);
-          
+
           $simpan = $this->db->insert('scm_pembelian_item', $data_item_pembelian);
         endforeach;
         $this->cart->destroy();
@@ -380,14 +380,54 @@ class Pembelian extends MY_Controller
         $daftar_pembelian = $this->db->select('*')
                                  ->from('scm_pembelian_item')
                                  ->where('kode_pembelian',$kode_pembelian)
-                                 ->get()->result();                      
-        
+                                 ->get()->result();
+
         $data = [
             'inv'=>$pembelian,
             'list'=>$daftar_pembelian
         ];
+
+        $params = [
+          'message'=>$this->load->view('pembelian/invoice/page',$data,TRUE),
+          'email'=>$this->account->email,
+          'invoice'=>$pembelian->kode_pembelian
+        ];
+
+        $this->sendingmailcustomer($params);
         $this->title_page('Invoice Pembelian');
         $this->load_theme('pembelian/invoice/page',$data);
+
+
+    }
+
+    public function sendingmailcustomer($params)
+    {
+          $dataMail  = $params['message'];
+          $email = $params['email'];
+          $fromEmail = 'customerservice@scm-mgp.com';
+          $textEmail = $dataMail;
+          $mail = new PHPMailer();
+          $mail->IsHTML(true);    // set email format to HTML
+          $mail->IsSMTP();   // we are going to use SMTP
+          $mail->SMTPAuth   = true; // enabled SMTP authentication
+          $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+          $mail->Host       = "mail.scm-mgp.com";      // setting GMail as our SMTP server
+          $mail->Port       = 465;                   // SMTP port to connect to GMail
+          $mail->Username   = $fromEmail;  // alamat email kamu
+          $mail->Password   = "anisa123";            // password GMail
+          $mail->SetFrom('customerservice@scm-mgp.com','PT.MGP - Supply Chain Management');  //Siapa yg mengirim email
+         //  $mail->SetBcc('customerservice@yutakaglobal.com','noreply');
+          $mail->Subject    = "INVOICE PEMBELIAN #".$params['invoice'];
+          $mail->Body       = $textEmail;
+          $toEmail          = $email; // siapa yg menerima email ini
+          $mail->AddAddress($toEmail);
+
+
+          if(!$mail->Send()) {
+               return FALSE;
+          } else {
+               return TRUE;
+          }
     }
 
     public function laporan_for_konsumen()

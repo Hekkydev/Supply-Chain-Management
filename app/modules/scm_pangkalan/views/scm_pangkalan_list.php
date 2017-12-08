@@ -58,7 +58,7 @@
                       <td><?php echo $scm_pangkalan->no_telp ?></td>
                       <td style="text-align:center" width="200px">
                       <a style="cursor:pointer" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-search"></i> Read</a>
-                    <?php if ($account->id_group == 1 || $account->id_group == 6):
+                    <?php if ($account->id_group == 1 || $account->id_group == 4 || $account->id_group == 6):
                       echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-edit"></i> Update','class="btn  btn-xs btn-success btn-flat"');
                       echo "&nbsp;";
                       echo anchor(site_url('scm_pangkalan/delete/'.$scm_pangkalan->id_pangkalan),'<i class="fa fa-trash"></i> Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-flat btn-xs btn-danger"');
@@ -96,7 +96,7 @@
                       <td><?php echo $scm_pangkalan->no_telp ?></td>
                       <td style="text-align:center" width="200px">
                       <a href="#" onclick="read_pangkalan('<?php echo $scm_pangkalan->id_pangkalan?>')" class="btn btn-xs btn-flat btn-primary">Read</a>
-                    <?php if ($account->id_group == 1 || $account->id_group == 6):
+                    <?php if ($account->id_group == 1 || $account->id_group == 4 || $account->id_group == 6):
                       echo ' &nbsp; ';
                       echo anchor(site_url('scm_pangkalan/update/'.$scm_pangkalan->id_pangkalan),'Update', 'class="btn btn-xs btn-flat btn-success"');
                       echo ' &nbsp; ';

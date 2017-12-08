@@ -36,6 +36,8 @@ class Scm_barang_model extends CI_Model
       return $this->db->get();
     }
 
+    
+
     function get_product_stock($kode_barang)
     {
         return $this->db->select('SUM(stock_agen) as total')

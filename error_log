@@ -1,0 +1,17 @@
+[06-Oct-2017 22:27:16 America/Chicago] PHP Parse error:  syntax error, unexpected '$fromEmail' (T_VARIABLE) in /home/pasteurt/scm-mgp.com/app/modules/home/controllers/Client_area.php on line 120
+[26-Oct-2017 18:05:55 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 71
+[26-Oct-2017 18:05:58 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 71
+[26-Oct-2017 18:06:17 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 71
+[26-Oct-2017 18:16:13 UTC] PHP Fatal error:  Call to undefined function print_data() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 77
+[26-Oct-2017 18:23:37 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:24:04 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:24:40 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:24:45 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:24:58 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:25:10 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:25:18 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:26:13 UTC] PHP Fatal error:  Call to undefined function get_all_stock() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 34
+[26-Oct-2017 18:36:08 UTC] PHP Fatal error:  Call to a member function result() on boolean in /home/pasteurt/scm-mgp.com/app/modules/scm_pangkalan/models/Scm_pangkalan_model.php on line 25
+[26-Oct-2017 18:54:46 UTC] PHP Fatal error:  Call to undefined method Scm_pangkalan_model::get_stock_detail() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 44
+[26-Oct-2017 18:55:11 UTC] PHP Fatal error:  Call to undefined method Scm_pangkalan_model::get_stock_detail() in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 44
+[26-Oct-2017 19:05:54 UTC] PHP Parse error:  syntax error, unexpected '(', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/pasteurt/scm-mgp.com/app/modules/scm_barang/controllers/Stock_barang.php on line 119

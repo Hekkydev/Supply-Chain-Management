@@ -20,7 +20,7 @@
        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/icon-scm/icons-scm.css');?>">
        <script src="<?php echo base_url()?>assets/js/jquery.min.js" charset="utf-8"></script>
-
+        <?php echo isset($style) ? $style : ''; ?>
        <style media="screen">
          .table {
            font-size: 11px;

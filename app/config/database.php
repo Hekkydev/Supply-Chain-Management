@@ -1,11 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// $hostname = "localhost"; //localhost;
+// $username = "pasteurt_scm"; //users;
+// $password = "mediahutama123"; //password;
+// $database = "pasteurt_scm"; // database;
+
+
 $hostname = "localhost"; //localhost;
 $username = "root"; //users;
 $password = ""; //password;
 $database = "scm"; // database;
-
 
 $db['default'] = array(
 	'dsn'	=> '',

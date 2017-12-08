@@ -1,6 +1,6 @@
 <div class="login-logo">
     <a href="#">
-      <img src="<?php echo site_url('assets/AdminLTE-2.0.5/dist/img/logo-login.png')?>" style="width:200px;">
+      <img src="<?php echo site_url('assets/AdminLTE-2.0.5/dist/img/logo.png')?>" style="width:100px;">
     </a>
 </div><!-- /.login-logo -->
 <div class="login-box-body ">
@@ -19,12 +19,12 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
-          <div class="col-xs-6">
-              <button type="button" class="btn btn-danger btn-block btn-flat"  onClick="return front_site();">FRONT SITE</button>
-          </div><!-- /.col -->
             <div class="col-xs-6">
                 <button type="button" class="btn btn-primary btn-block btn-flat"  onClick="return login();">LOGIN</button>
             </div><!-- /.col -->
+            <div class="col-xs-6">
+              <button type="button" class="btn btn-danger btn-block btn-flat"  onClick="return front_site();">FRONT SITE</button>
+          </div><!-- /.col -->
         </div>
     </form>
 
