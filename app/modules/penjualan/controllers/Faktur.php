@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Class Faktur yang digunakan sebagai proses data faktur berjalan 
+ * author : hekky nurhikmat
+ * nama class : Faktur
+ * extends : ke core/MY_controller
  */
 class Faktur extends MY_Controller {
 
