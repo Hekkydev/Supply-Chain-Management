@@ -26,7 +26,7 @@ class Faktur extends MY_Controller {
         if ($this->account->id_group == "6") {
             $this->index_pangkalan();
         }else{
-            $this->index_gen();
+            $this->index_agen();
         }
     }
 
