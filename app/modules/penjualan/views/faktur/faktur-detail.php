@@ -92,7 +92,11 @@
         </div>
        
         <div style="padding-top:10px;">
-        <?php echo $updatestatus ?>
+        <?php 
+            if ($faktur->id_status == '13') {
+                echo $updatestatus;
+            }
+        ?>
         </div>
     </div>
 </div>

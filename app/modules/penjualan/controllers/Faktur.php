@@ -51,17 +51,44 @@ class Faktur extends MY_Controller {
         $status = $this->input->post('status');
         $faktur = $this->Faktur_model->getByKode($kode_faktur);
         $item = $this->Faktur_model->getItem($kode_faktur);
-
-        // pre($faktur);
-        // pre($item);
-        // if ($status == '14') {
-        //     $update = $thid->db->where('kode_faktur',$kode_faktur)->update('scm_faktur',['id_status'=>$status]);
-        //     if ($update == TRUE) {
-        //         $faktur = $this->Faktur_model->getByKode($kode_faktur);
-        //         $item = $this->Faktur_model->getItem($kode_faktur);
-        //     }
+        
+        if ($status == '12') {
             
-        // }
+            $update = $this->db->where('kode_faktur',$kode_faktur)->update('scm_faktur',['id_status'=>$status]);
+            if ($update == TRUE) {
+                $faktur = $this->Faktur_model->getByKode($kode_faktur);
+                $item = $this->Faktur_model->getItem($kode_faktur);
+                //print_r($item); die();
+                foreach ($item as $item) {
+                   
+                    $cek = $this->db->get_where('scm_barang_stock_pangkalan',['id_pangkalan'=>$faktur->id_pangkalan,'id_barang'=>$item->id_barang])->first_row();
+                    if ($cek == TRUE) {
+
+                        $stock_update = [
+                            'stock_pangkalan'=>$item->qty + $cek->stock_pangkalan,
+                            ];
+
+                        $this->db->where('id_pangkalan',$faktur->id_pangkalan)
+                                 ->where('id_barang',$item->id_barang)
+                                 ->update('scm_barang_stock_pangkalan',$stock_update);
+                    }else {
+                        $stock_update = [
+                            'id_pangkalan'=>$faktur->id_pangkalan,
+                            'id_barang'=>$item->id_barang,
+                            'stock_pangkalan'=>$item->qty,
+                            'satuan_pengiriman'=>satuan($item->id_satuan),
+                        ];
+        
+                        $this->db->insert('scm_barang_stock_pangkalan',$stock_update);
+                    }
+                }
+
+
+            }
+             redirect('faktur/','refresh');
+        }else{
+            redirect('faktur/','refresh');
+        }
     }
     
     public function index_agen()

@@ -6,7 +6,7 @@
             <label for="update" class="control-label">Konfirmasi</label>
             <select class="form-control" name="status">
                 <option value="13">Belum di verifikasi</option>
-                <option value="14">Sudah di verifikasi</option>
+                <option value="12">Sudah di verifikasi</option>
             </select>
         </div>
         <div class="form-group">
