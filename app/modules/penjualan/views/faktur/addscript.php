@@ -58,24 +58,7 @@
             data:item,
             success:function(response)
             {
-                
-                // $('#addRows').on( 'click', function () { 
-                
-                //     table4.rows.add(
-                //     [
-                //         [ 
-                //                 "<input type='checkbox'>", 
-                //                 "<input type='text' class='form-control'>",
-                //                 "<input type='text' class='form-control'>",
-                //                 "<input type='number' class='form-control'>",
-                //                 "<input type='text' class='form-control' readonly>",
-                //                 "<button type='button' class='btn btn-xs btn-danger' id='remove'><i class='fa fa-trash'></i></button>"
-                //             ],
-                //         ]
-                //     ).draw(); 
-                // });
-                
-                // $('#addRows').click();
+                console.log(response);
             }
         });
         

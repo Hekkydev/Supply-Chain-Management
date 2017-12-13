@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title><?php echo $app_title ?></title>
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <meta content='width=device-width, initial-scale=1' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
         <link href="<?php echo base_url('assets/AdminLTE-2.0.5/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
         <!-- Font Awesome Icons -->
@@ -19,6 +19,7 @@
 
        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/Elpiji.png') ?>">
        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/icon-scm/icons-scm.css');?>">
+       <script src="<?php echo base_url()?>assets/firebug-lite/build/firebug-lite.js" charset="utf-8"></script>
        <script src="<?php echo base_url()?>assets/js/jquery.min.js" charset="utf-8"></script>
         <?php echo isset($style) ? $style : ''; ?>
        <style media="screen">

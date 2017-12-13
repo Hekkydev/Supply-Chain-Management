@@ -12,7 +12,7 @@
 <!-- FastClick -->
 <script src='<?php echo base_url('assets/AdminLTE-2.0.5/plugins/fastclick/fastclick.min.js') ?>'></script>
 <!-- AdminLTE App -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/app.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/app.js') ?>" type="text/javascript"></script>
 <?php echo isset($script) ? $script : ''; ?>
 <!-- jQuery 2.1.3 -->
 <?php if($this->uri->segment(1) == "home"):?>
@@ -42,8 +42,8 @@
 <?php endif;?>
 
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <?php if($this->uri->segment(1) == "about_page"):?>
+<script src="<?php echo base_url('assets/AdminLTE-2.0.5/')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
 $(function () {
   $(".textarea").wysihtml5();

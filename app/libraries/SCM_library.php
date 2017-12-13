@@ -201,7 +201,9 @@ class scm_library
         $html .= '<div align="center" class="icon-master">';
         $html .= '<img src="'.base_url().'assets/icon-scm/'.$icon.'" style="width:50px;">';
         $html .= '<h6 class="icon-title">'.$title.'</h6>';
-        $html .= '</div></a></div>';
+        $html .= '</div>';
+        $html .= '</a>';
+        $html .= '</div>';
         return $html;
     }
 
