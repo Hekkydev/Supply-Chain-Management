@@ -24,7 +24,7 @@
         <div class="col-lg-6">
           <div class="form-group ">
                 <label for="" class="control-label">Agen</label>
-                <input type="text" class="form-control" name="agen">
+                <input type="text" class="form-control" name="agen" value="<?php echo($account_posisition['nama_usaha']); ?>">
             </div>
             <div class="form-group ">
                 <label for="" class="control-label">Tanggal Invoice</label>
@@ -41,19 +41,19 @@
         <hr>
 
         <a data-toggle="modal" data-target="#addItem"  class="btn btn-primary"><i class="fa fa-plus"></i> tambah</a><br><br>
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="listtable">
             <thead>
                 <tr>
                    
-                    <th><input type="checkbox" name="" id=""></th>
+                    <th width="2em"><input type="checkbox" name="" id=""></th>
                     <th>Kode item</th>
                     <th>Nama item</th>
                     <th>Qty</th>
                     <th>Total</th>
-                    <th>Opsi</th>
+                    <th width="5em">Opsi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="listfaktur">
               
             </tbody>
         </table>

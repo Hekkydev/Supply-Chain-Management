@@ -15,7 +15,9 @@ $route['pemesanan_konsumen'] = 'pembelian/pembelian/pemesanan_konsumen';
 /*MENU FAKTUR AGEN*/ 
 $route['faktur'] = 'penjualan/faktur';
 $route['faktur/add'] = 'penjualan/faktur/add';
+$route['faktur/add/load-item'] = 'penjualan/faktur/loaditem';
 $route['faktur/add/item-add'] = 'penjualan/faktur/additem';
+$route['faktur/add/item-remove'] = 'penjualan/faktur/removeitem';
 
 /*MENU FAKTUR PANGKALAN*/
 $route['laporan/laporan-faktur'] = 'penjualan/faktur/faktur_pangkalan';

@@ -38,7 +38,23 @@
             console.log($(this).parent());
             table4.row($(this).parents('tr')).remove().draw(false);
         });
-        
+        $.ajax({
+            url:'<?php echo site_url('faktur/add/load-item'); ?>',
+            type:'POST',
+            dataType:'html',
+            cache:false,
+            beforeSend:function(){
+                $('.loader').show();
+                $('#box').hide();
+            },
+            success:function(response)
+            {
+                   $('#listfaktur').html(response);
+                   $('.loader').hide();
+                   $('#box').show();
+            }
+        });
+     
     });
 
     function notifikasi()
@@ -53,15 +69,38 @@
         $.ajax({
             url:'<?php echo site_url('faktur/add/item-add'); ?>',
             type:'POST',
-            dataType:'json',
+            dataType:'html',
             cache:false,
             data:item,
             success:function(response)
             {
-                console.log(response);
+                   $('#listfaktur').html(response);
             }
         });
         
        
     }
+
+   function remove(rowid)
+   {
+       $.ajax({
+            url:'<?php echo site_url('faktur/add/item-remove'); ?>',
+            type:'POST',
+            dataType:'html',
+            cache:false,
+            data:{rowid:rowid},
+            beforeSend:function(){
+                $('.loader').show();
+                $('#box').hide();
+            },
+            success:function(response)
+            {
+                   $('#listfaktur').html(response);
+                   $('.loader').hide();
+                   $('#box').show();
+            }
+        });
+        
+   }
+  
 </script>

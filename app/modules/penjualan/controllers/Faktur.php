@@ -43,9 +43,43 @@ class Faktur extends MY_Controller {
         $this->load_theme('penjualan/faktur/add',$data);
     }
 
+    
+    function loaditem(){ echo $this->load->view('penjualan/faktur/cart-table-item'); }
+
     function additem()
     {
-        print_r($_POST);
+       $kode_item =  $this->input->post('kodeitem');
+       $qty =  !empty($this->input->post('qty')) ? $_POST['qty'] : '';
+        
+
+        $item = cek_item($kode_item);
+        $this->load->library('cart');
+
+        $data = array(
+            'id'      => $kode_item,
+            'qty'     => $qty,
+            'price'   => $qty * $item->harga_beli,
+            'name'    => $item->nama_barang,
+            'options' => array('Size' => 'L', 'Color' => 'Red')
+        );
+
+ 
+        $this->cart->insert($data);
+
+        echo $this->load->view('penjualan/faktur/cart-table-item');
+
+    }
+
+
+    function removeitem()
+    {
+            $data = array(
+                    'rowid' => $this->input->post('rowid'),
+                    'qty'   => 0
+            );
+            
+            $this->cart->update($data);
+            echo $this->load->view('penjualan/faktur/cart-table-item');
     }
 
     function item()
