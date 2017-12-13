@@ -18,14 +18,98 @@ class Faktur extends MY_Controller {
         $this->load->library('form_validation');        
         $this->load->library('cart');
 
+        
     }
-    
+
     public function index()
     {
+        if ($this->account->id_group == "6") {
+            $this->index_pangkalan();
+        }else{
+            $this->index_gen();
+        }
+    }
+
+
+    public function index_pangkalan()
+    {
+        $faktur = $this->Faktur_model->pangkalan($this->account->kode_akses_position);
+
+        $data = [
+            'faktur'=>$faktur,
+        ];
+
         $this->title_page('Faktur');
         $this->style('penjualan/faktur/style');
         $this->script('penjualan/faktur/script');
-        $this->load_theme('penjualan/faktur/page');
+        $this->load_theme('penjualan/faktur_pangkalan/page',$data);
+    }
+
+    public function verifikasi()
+    {
+        $kode_faktur = $this->input->post('kode_faktur');
+        $status = $this->input->post('status');
+        $faktur = $this->Faktur_model->getByKode($kode_faktur);
+        $item = $this->Faktur_model->getItem($kode_faktur);
+
+        // pre($faktur);
+        // pre($item);
+        // if ($status == '14') {
+        //     $update = $thid->db->where('kode_faktur',$kode_faktur)->update('scm_faktur',['id_status'=>$status]);
+        //     if ($update == TRUE) {
+        //         $faktur = $this->Faktur_model->getByKode($kode_faktur);
+        //         $item = $this->Faktur_model->getItem($kode_faktur);
+        //     }
+            
+        // }
+    }
+    
+    public function index_agen()
+    {
+        $faktur = $this->Faktur_model->agen($this->account->kode_akses_position);
+
+        $data = [
+            'faktur'=>$faktur,
+        ];
+
+        $this->title_page('Faktur');
+        $this->style('penjualan/faktur/style');
+        $this->script('penjualan/faktur/script');
+        $this->load_theme('penjualan/faktur/page',$data);
+    }
+
+    function detail()
+    {
+        $kode_faktur = $this->input->post('kode_faktur');
+        $faktur = $this->Faktur_model->getByKode($kode_faktur);
+        $item = $this->Faktur_model->getItem($kode_faktur);
+        
+        if ($this->account->id_group == "6") {
+            /* PANGKALAN*/
+            $data = ['kode_faktur'=>$kode_faktur];
+            $updatestatus = $this->load->view('penjualan/faktur_pangkalan/updatestatus',$data,TRUE);
+            $data =  [
+                'kode_faktur'=>$kode_faktur,
+                'faktur'=>$faktur,
+                'item'=>$item,
+                'updatestatus'=>$updatestatus
+            ];
+    
+        }else{
+            /*AGEN */
+            $data =  [
+                'kode_faktur'=>$kode_faktur,
+                'faktur'=>$faktur,
+                'item'=>$item,
+                'updatestatus'=>NULL,
+            ];
+     
+        }
+
+
+        
+        
+        echo $this->load->view('penjualan/faktur/faktur-detail',$data,TRUE);
     }
     
 
@@ -115,19 +199,37 @@ class Faktur extends MY_Controller {
      **/
     public function StoredFaktur()
     {
-        $kode_faktur = $this->input->post('kode_faktur');
+        $kode_faktur = $this->input->post('invoice');
         $kode_agen = $this->input->post('kode_agen');
         $kode_pangkalan = $this->input->post('kode_pangkalan');
-        
-
+        $item = $this->cart->contents();
+        $note = $this->input->post('note');
+        $tanggal = $this->input->post('tglinvoice');
+        //pre($_POST); 
         $data = [
-
+                
+                'id_status'=>13,
+                'kode_faktur'=>$kode_faktur,
+                'kode_agen'=>$kode_agen,
+                'kode_pangkalan'=>$kode_pangkalan,
+                'note'=>$note,
+                'tanggal_invoice'=>$tanggal,
+                
         ];
-
+       // pre($data); die(); 
         $simpan = $this->db->insert('scm_faktur',$data);
         if($simpan){
-            $this->session->set_flashdata('info','Permintaan berhasil di proses');
-            
+
+            foreach ($item as $i) {
+                $item_list = [
+                    'kode_faktur'=>$kode_faktur,
+                    'kode_barang'=>$i['id'],
+                    'qty'=>$i['qty']
+                ];
+                $simpan_item = $this->db->insert('scm_faktur_item',$item_list);
+            }
+            $this->cart->destroy();
+            $this->session->set_flashdata('info','Permintaan berhasil di proses');            
             redirect('faktur','refresh');
             
         }

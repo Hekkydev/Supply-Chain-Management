@@ -5,4 +5,25 @@
     jQuery(document).ready(function(){
         $(".table").DataTable();
     });
+
+    function detail(row)
+    {
+        $.ajax({
+            url:'<?php echo site_url('faktur/detail/'); ?>',
+            type:'POST',
+            dataType:'html',
+            cache:false,
+            data:{kode_faktur:row},
+            beforeSend:function(){
+                $('.loader').show();
+                $('#box').hide();
+            },
+            success:function(response)
+            {
+                   $('#modal-content').html(response);
+                   $('.loader').hide();
+                   $('#box').show();
+            }
+        });
+    }
 </script>

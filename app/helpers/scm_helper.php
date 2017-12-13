@@ -254,3 +254,23 @@ if (! function_exists('agen'))
 				}
 	}
 }
+
+
+if (! function_exists('status'))
+{
+	function status($id)
+	{
+				$CI =& get_instance();
+				$CI->load->database();
+				
+				$query = $CI->db->get_where('scm_status',['id_status'=>$id])->first_row();
+				if ($query == TRUE) {
+					return $query->tipe_status;
+				}else{
+					return 'error';
+				}
+	}
+}
+
+
+

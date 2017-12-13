@@ -24,6 +24,6 @@
         <?php echo isset($style) ? $style : ''; ?>
        <style media="screen">
          .table {
-           font-size: 11px;
+           font-size: 12px;
          }
        </style>

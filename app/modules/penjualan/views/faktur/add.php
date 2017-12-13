@@ -1,4 +1,4 @@
-<form action="">
+<form action="" method="POST">
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group ">
@@ -25,10 +25,11 @@
           <div class="form-group ">
                 <label for="" class="control-label">Agen</label>
                 <input type="text" class="form-control" name="agen" value="<?php echo($account_posisition['nama_usaha']); ?>">
+                <input type="hidden" name="kode_agen" value="<?php echo $account_posisition['kode_usaha']?>">
             </div>
             <div class="form-group ">
                 <label for="" class="control-label">Tanggal Invoice</label>
-                <input type="text" class="form-control" name="tglinvoice">
+                <input type="date" class="form-control" name="tglinvoice" >
             </div>
            
            
@@ -36,11 +37,16 @@
         </div>
     </div>
     <div class="row">
-    
+
         <div class="col-md-12" id="additem">
         <hr>
-
-        <a data-toggle="modal" data-target="#addItem"  class="btn btn-primary"><i class="fa fa-plus"></i> tambah</a><br><br>
+         <div class="form-group">
+                <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Simpan</button>
+                <a data-toggle="modal" data-target="#addItem"  class="btn btn-primary"><i class="fa fa-plus"></i> tambah item</a><br><br>
+       
+        </div>
+           
+         
         <table class="table table-bordered table-striped" id="listtable">
             <thead>
                 <tr>
